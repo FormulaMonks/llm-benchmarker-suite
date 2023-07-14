@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "llm-benchmarker-suite"
+version = "0.1.0"
+description = ""
+authors = ["Abhijoy Sarkar <abhijoy.sar@gmail.com>"]
+readme = "README.md"
+packages = [{include = "llm_benchmarker_suite"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
