@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSV Table Viewer</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Dataset</th>
+        <th>Version</th>
+        <th>Metric</th>
+        <th>Mode</th>
+        <th>Opt350m</th>
+        <th>Opt125m</th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
+
+  <script>
+    function fetchCSVFile(filePath) {
+      return fetch(filePath)
+        .then(response => response.text())
+        .then(data => {
+          const lines = data.split('\n');
+          const tableBody = document.getElementById('table-body');
+
+          // Clear existing table data
+          tableBody.innerHTML = '';
+
+          // Skip the first line (header row)
+          const linesWithoutHeader = lines.slice(1);
+
+          // Iterate through each line of the CSV (excluding the header)
+          linesWithoutHeader.forEach(line => {
+            const cells = line.split(',');
+
+            // Create a new row in the table
+            const newRow = document.createElement('tr');
+
+            // Iterate through each cell and create table data (td) element
+            cells.forEach(cell => {
+              const newCell = document.createElement('td');
+              newCell.textContent = cell;
+              newRow.appendChild(newCell);
+            });
+
+            // Add the row to the table body
+            tableBody.appendChild(newRow);
+          });
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    // Call the fetchCSVFile function with the path to your CSV file
+    fetchCSVFile('path/to/your/file.csv');
+
+    // Set an interval to refresh the table periodically (e.g., every 5 seconds)
+    setInterval(() => fetchCSVFile('path/to/your/file.csv'), 5000);
+  </script>
+</body>
+</html>
