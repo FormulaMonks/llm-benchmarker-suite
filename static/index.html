@@ -20,60 +20,68 @@
   </style>
 </head>
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th>Dataset</th>
-        <th>Version</th>
-        <th>Metric</th>
-        <th>Mode</th>
-        <th>Opt350m</th>
-        <th>Opt125m</th>
-      </tr>
-    </thead>
-    <tbody id="table-body"></tbody>
-  </table>
+  <div id="table-container"></div>
 
   <script>
-    function fetchCSVFile(filePath) {
-      return fetch(filePath)
-        .then(response => response.text())
-        .then(data => {
-          const lines = data.split('\n');
-          const tableBody = document.getElementById('table-body');
+    const csvFilePath = 'sample.csv'; // Replace with your CSV file path
 
-          // Clear existing table data
-          tableBody.innerHTML = '';
+    window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
 
-          // Skip the first line (header row)
-          const linesWithoutHeader = lines.slice(1);
-
-          // Iterate through each line of the CSV (excluding the header)
-          linesWithoutHeader.forEach(line => {
-            const cells = line.split(',');
-
-            // Create a new row in the table
-            const newRow = document.createElement('tr');
-
-            // Iterate through each cell and create table data (td) element
-            cells.forEach(cell => {
-              const newCell = document.createElement('td');
-              newCell.textContent = cell;
-              newRow.appendChild(newCell);
-            });
-
-            // Add the row to the table body
-            tableBody.appendChild(newRow);
-          });
+    function handleDOMContentLoaded() {
+      fetchCSVFile(csvFilePath)
+        .then(csvContent => {
+          const table = createTableFromCSV(csvContent);
+          document.getElementById('table-container').appendChild(table);
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+          console.error('Error:', error);
+        });
     }
 
-    // Call the fetchCSVFile function with the path to your CSV file
-    fetchCSVFile('path/to/your/file.csv');
+    function fetchCSVFile(filePath) {
+      return fetch(filePath)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        });
+    }
 
-    // Set an interval to refresh the table periodically (e.g., every 5 seconds)
-    setInterval(() => fetchCSVFile('path/to/your/file.csv'), 5000);
+    function createTableFromCSV(csv) {
+      const table = document.createElement('table');
+      const lines = csv.split('\n');
+
+      // Create table headers
+      const headers = lines[0].split(',');
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      for (let i = 0; i < headers.length; i++) {
+        const th = document.createElement('th');
+        th.textContent = headers[i];
+        headerRow.appendChild(th);
+      }
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      // Create table rows
+      const tbody = document.createElement('tbody');
+      for (let i = 1; i < lines.length; i++) {
+        const rowData = lines[i].split(',');
+        if (rowData.length === headers.length) {
+          const row = document.createElement('tr');
+          for (let j = 0; j < rowData.length; j++) {
+            const cell = document.createElement('td');
+            cell.textContent = rowData[j];
+            row.appendChild(cell);
+          }
+          tbody.appendChild(row);
+        }
+      }
+      table.appendChild(tbody);
+
+      return table;
+    }
   </script>
 </body>
 </html>
