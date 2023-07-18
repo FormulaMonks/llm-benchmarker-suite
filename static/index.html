@@ -24,14 +24,22 @@
 
   <script>
     const csvFilePath = 'sample.csv'; // Replace with your CSV file path
+    const refreshInterval = 5000; // Refresh interval in milliseconds (e.g., 5000 = 5 seconds)
 
     window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
 
     function handleDOMContentLoaded() {
+      refreshTable();
+      setInterval(refreshTable, refreshInterval);
+    }
+
+    function refreshTable() {
       fetchCSVFile(csvFilePath)
         .then(csvContent => {
           const table = createTableFromCSV(csvContent);
-          document.getElementById('table-container').appendChild(table);
+          const tableContainer = document.getElementById('table-container');
+          tableContainer.innerHTML = '';
+          tableContainer.appendChild(table);
         })
         .catch(error => {
           console.error('Error:', error);
