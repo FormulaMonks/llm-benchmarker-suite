@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,visualstudio,git,data,database,python,pycharm,jupyternotebooks,venv,dotenv,node
 
 ### Data ###
-*.csv
+# *.csv
 *.dat
 *.efx
 *.gbr

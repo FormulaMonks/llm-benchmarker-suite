@@ -1,0 +1,3 @@
+dataset,version,metric,mode,opt350m,opt125m
+siqa,e78df3,accuracy,gen,21.44,12.44
+winograd,b6c7ed,accuracy,ppl,51.23,49.82
