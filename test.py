@@ -1,0 +1,1 @@
+from llm_benchmarking_suite import run_opencompass
