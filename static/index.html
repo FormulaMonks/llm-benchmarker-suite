@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSV Table Viewer</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div id="table-container"></div>
+
+  <script>
+    const csvFilePath = 'sample.csv'; // Replace with your CSV file path
+    const refreshInterval = 5000; // Refresh interval in milliseconds (e.g., 5000 = 5 seconds)
+
+    window.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
+
+    function handleDOMContentLoaded() {
+      refreshTable();
+      setInterval(refreshTable, refreshInterval);
+    }
+
+    function refreshTable() {
+      fetchCSVFile(csvFilePath)
+        .then(csvContent => {
+          const table = createTableFromCSV(csvContent);
+          const tableContainer = document.getElementById('table-container');
+          tableContainer.innerHTML = '';
+          tableContainer.appendChild(table);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+    function fetchCSVFile(filePath) {
+      return fetch(filePath)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        });
+    }
+
+    function createTableFromCSV(csv) {
+      const table = document.createElement('table');
+      const lines = csv.split('\n');
+
+      // Create table headers
+      const headers = lines[0].split(',');
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      for (let i = 0; i < headers.length; i++) {
+        const th = document.createElement('th');
+        th.textContent = headers[i];
+        headerRow.appendChild(th);
+      }
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      // Create table rows
+      const tbody = document.createElement('tbody');
+      for (let i = 1; i < lines.length; i++) {
+        const rowData = lines[i].split(',');
+        if (rowData.length === headers.length) {
+          const row = document.createElement('tr');
+          for (let j = 0; j < rowData.length; j++) {
+            const cell = document.createElement('td');
+            cell.textContent = rowData[j];
+            row.appendChild(cell);
+          }
+          tbody.appendChild(row);
+        }
+      }
+      table.appendChild(tbody);
+
+      return table;
+    }
+  </script>
+</body>
+</html>
