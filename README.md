@@ -3,36 +3,32 @@
   <br />
   <br />
 
-[![docs](https://readthedocs.org/projects/opencompass/badge)](https://opencompass.readthedocs.io/en)
-[![license](https://img.shields.io/github/license/InternLM/opencompass.svg)](https://github.com/InternLM/opencompass/blob/main/LICENSE)
+[![docs](https://readthedocs.org/projects/LLM Benchmarker Suite/badge)](https://LLM Benchmarker Suite.readthedocs.io/en)
+[![license](https://img.shields.io/github/license/InternLM/LLM Benchmarker Suite.svg)](https://github.com/InternLM/LLM Benchmarker Suite/blob/main/LICENSE)
 
-<!-- [![PyPI](https://badge.fury.io/py/opencompass.svg)](https://pypi.org/project/opencompass/) -->
+<!-- [![PyPI](https://badge.fury.io/py/LLM Benchmarker Suite.svg)](https://pypi.org/project/LLM Benchmarker Suite/) -->
 
-[🌐Website](https://opencompass.org.cn/) |
-[📘Documentation](https://opencompass.readthedocs.io/en/latest/) |
-[🛠️Installation](https://opencompass.readthedocs.io/en/latest/get_started.html#installation) |
-[🤔Reporting Issues](https://github.com/InternLM/opencompass/issues/new/choose)
-
-English | [简体中文](README_zh-CN.md)
+[🌐Website](https://LLM Benchmarker Suite.org.cn/) |
+[📘Documentation](https://LLM Benchmarker Suite.readthedocs.io/en/latest/) |
+[🛠️Installation](https://LLM Benchmarker Suite.readthedocs.io/en/latest/get_started.html#installation) |
+[🤔Reporting Issues](https://github.com/InternLM/LLM Benchmarker Suite/issues/new/choose)
 
 </div>
 
-<p align="center">
-    👋 join us on <a href="https://twitter.com/intern_lm" target="_blank">Twitter</a>, <a href="https://discord.gg/xa29JuW87d" target="_blank">Discord</a> and <a href="https://r.vansin.top/?r=internwx" target="_blank">WeChat</a>
-</p>
 
-Welcome to **OpenCompass**!
 
-Just like a compass guides us on our journey, OpenCompass will guide you through the complex landscape of evaluating large language models. With its powerful algorithms and intuitive interface, OpenCompass makes it easy to assess the quality and effectiveness of your NLP models.
+Welcome to **LLM Benchmarker Suite**!
+
+Just like a compass guides us on our journey, LLM Benchmarker Suite will guide you through the complex landscape of evaluating large language models. With its powerful algorithms and intuitive interface, LLM Benchmarker Suite makes it easy to assess the quality and effectiveness of your NLP models.
 
 ## News
 
 - **\[2023.07.19\]** We have supported [Llama 2](https://ai.meta.com/llama/)! Its performance report will be available soon. \[[doc](./docs/en/get_started.md#Installation)\]
-- **\[2023.07.13\]** We release [MMBench](https://opencompass.org.cn/MMBench), a meticulously curated dataset to comprehensively evaluate different abilities of multimodality models 🔥🔥🔥.
+- **\[2023.07.13\]** We release [MMBench](https://LLM Benchmarker Suite.org.cn/MMBench), a meticulously curated dataset to comprehensively evaluate different abilities of multimodality models 🔥🔥🔥.
 
 ## Introduction
 
-OpenCompass is a one-stop platform for large model evaluation, aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features includes:
+LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features includes:
 
 - **Comprehensive support for models and datasets**: Pre-support for 20+ HuggingFace and API models, a model evaluation scheme of 50+ datasets with about 300,000 questions, comprehensively evaluating the capabilities of the models in five dimensions.
 
@@ -40,15 +36,15 @@ OpenCompass is a one-stop platform for large model evaluation, aiming to provide
 
 - **Diversified evaluation paradigms**: Support for zero-shot, few-shot, and chain-of-thought evaluations, combined with standard or dialogue type prompt templates, to easily stimulate the maximum performance of various models.
 
-- **Modular design with high extensibility**: Want to add new models or datasets, customize an advanced task division strategy, or even support a new cluster management system? Everything about OpenCompass can be easily expanded!
+- **Modular design with high extensibility**: Want to add new models or datasets, customize an advanced task division strategy, or even support a new cluster management system? Everything about LLM Benchmarker Suite can be easily expanded!
 
 - **Experiment management and reporting mechanism**: Use config files to fully record each experiment, support real-time reporting of results.
 
 ## Leaderboard
 
-We provide [OpenCompass Leaderbaord](https://opencompass.org.cn/rank) for community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `opencompass@pjlab.org.cn`.
+We provide [LLM Benchmarker Suite Leaderbaord](https://LLM Benchmarker Suite.org.cn/rank) for community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `LLM Benchmarker Suite@pjlab.org.cn`.
 
-[![image](https://github.com/InternLM/opencompass/assets/13503330/80c5a42c-ddf0-4c6f-b39e-c175711ac381)](https://opencompass.org.cn/rank)
+[![image](https://github.com/InternLM/LLM Benchmarker Suite/assets/13503330/80c5a42c-ddf0-4c6f-b39e-c175711ac381)](https://LLM Benchmarker Suite.org.cn/rank)
 
 ## Dataset Support
 
@@ -294,35 +290,24 @@ We provide [OpenCompass Leaderbaord](https://opencompass.org.cn/rank) for commun
 Below are the steps for quick installation and datasets preparation.
 
 ```Python
-conda create --name opencompass python=3.10 pytorch torchvision pytorch-cuda -c nvidia -c pytorch -y
-conda activate opencompass
-git clone https://github.com/InternLM/opencompass opencompass
-cd opencompass
+conda create --name LLM Benchmarker Suite python=3.10 pytorch torchvision pytorch-cuda -c nvidia -c pytorch -y
+conda activate LLM Benchmarker Suite
+git clone https://github.com/InternLM/LLM Benchmarker Suite LLM Benchmarker Suite
+cd LLM Benchmarker Suite
 pip install -e .
 # Download dataset to data/ folder
-wget https://github.com/InternLM/opencompass/releases/download/0.1.0/OpenCompassData.zip
-unzip OpenCompassData.zip
+wget https://github.com/InternLM/LLM Benchmarker Suite/releases/download/0.1.0/LLM Benchmarker SuiteData.zip
+unzip LLM Benchmarker SuiteData.zip
 ```
 
-Some third-party features, like Humaneval and Llama, may require additional steps to work properly, for detailed steps please refer to the [Installation Guide](https://opencompass.readthedocs.io/en/latest/get_started.html).
+Some third-party features, like Humaneval and Llama, may require additional steps to work properly, for detailed steps please refer to the [Installation Guide](https://LLM Benchmarker Suite.readthedocs.io/en/latest/get_started.html).
 
 ## Evaluation
 
-Make sure you have installed OpenCompass correctly and prepared your datasets according to the above steps. Please read the [Quick Start](https://opencompass.readthedocs.io/en/latest/get_started.html#quick-start) to learn how to run an evaluation task.
+Make sure you have installed LLM Benchmarker Suite correctly and prepared your datasets according to the above steps. Please read the [Quick Start](https://LLM Benchmarker Suite.readthedocs.io/en/latest/get_started.html#quick-start) to learn how to run an evaluation task.
 
-For more tutorials, please check our [Documentation](https://opencompass.readthedocs.io/en/latest/index.html).
+For more tutorials, please check our [Documentation](https://LLM Benchmarker Suite.readthedocs.io/en/latest/index.html).
 
 ## Acknowledgements
 
 Some code in this project is cited and modified from [OpenICL](https://github.com/Shark-NLP/OpenICL).
-
-## Citation
-
-```bibtex
-@misc{2023opencompass,
-    title={OpenCompass: A Universal Evaluation Platform for Foundation Models},
-    author={OpenCompass Contributors},
-    howpublished = {\url{https://github.com/InternLM/OpenCompass}},
-    year={2023}
-}
-```
