@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>CSV Table Viewer</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beautiful Table</title>
+  <!-- Add Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Add DataTables CSS link -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 </head>
+
 <body>
-  <div id="table-container"></div>
+  <div class="container mt-5">
+    <div id="table-container"></div>
+  </div>
+
+  <!-- Add Bootstrap and jQuery JS links -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Add DataTables JS link -->
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
   <script>
     const csvFilePath = 'sample.csv'; // Replace with your CSV file path
@@ -40,6 +41,11 @@
           const tableContainer = document.getElementById('table-container');
           tableContainer.innerHTML = '';
           tableContainer.appendChild(table);
+
+          // Initialize DataTables on the created table
+          $(table).DataTable({
+            // You can add additional DataTables options here if needed
+          });
         })
         .catch(error => {
           console.error('Error:', error);
@@ -58,6 +64,8 @@
 
     function createTableFromCSV(csv) {
       const table = document.createElement('table');
+      table.classList.add('table', 'table-bordered', 'table-striped');
+
       const lines = csv.split('\n');
 
       // Create table headers
@@ -92,4 +100,5 @@
     }
   </script>
 </body>
+
 </html>
