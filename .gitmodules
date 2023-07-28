@@ -1,0 +1,3 @@
+[submodule "opencompass"]
+	path = opencompass
+	url = https://github.com/acebot712/opencompass.git
