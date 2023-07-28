@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "llm-benchmarker-suite"
+version = "0.1.0"
+description = ""
+authors = ["Abhijoy Sarkar <abhijoy.sar@gmail.com>"]
+readme = "README.md"
+packages = [{include = "llm_benchmarker_suite"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+torch = { url = "https://download.pytorch.org/whl/cu117_pypi_cudnn/torch-2.0.0%2Bcu117.with.pypi.cudnn-cp310-cp310-linux_x86_64.whl"}
+torchvision = { url = "https://download.pytorch.org/whl/cu117/torchvision-0.15.1%2Bcu117-cp310-cp310-linux_x86_64.whl"}
+torchaudio = { url = "https://download.pytorch.org/whl/cu117/torchaudio-2.0.1%2Bcu117-cp310-cp310-linux_x86_64.whl"}
+transformers = "^4.30.0"
+datasets = "^2.12.0"
+evaluate = "^0.4.0"
+accelerate = "^0.20.3"
+jupyterlab = "^4.0.2"
+ipywidgets = "^8.0.6"
+bert-score = "^0.3.13"
+python-dotenv = "^1.0.0"
+psutil = "^5.9.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
