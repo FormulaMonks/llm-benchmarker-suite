@@ -1,3 +1,0 @@
-[submodule "llm_benchmarker_suite/opencompass"]
-	path = llm_benchmarker_suite/opencompass
-	url = https://github.com/acebot712/opencompass.git
