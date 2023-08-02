@@ -7,17 +7,83 @@
 
 Welcome to **LLM Benchmarker Suite**!
 
-There are many packages that assist in evaluation of large language models. We take the best practices available along with our own optimizations to create one-stop easy method to evaluate Large Language Models.
+There are many packages that assist in evaluation of large language models. We take the best practices available along with our own optimizations to create one-stop method to evaluate Large Language Models holistically.
 ## Introduction
 
 LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features includes:
 
-### Important Tools:
-- **opencompass**
+### Important Suite Tools:
+The Suite comprises of tools to help you carry out metrics analysis on large language models in a bunch of different ways to suit your use case.
+- **opencompass**:
+This is a static evaluation package meant to test the capabilities of a model.
+```python
+python opencompass/run.py configs/eval_demo.py -w outputs/demo
+```
 
 - **eval_levels**
 
 - **metrics**
+This defines metrics why ca
+# metrics
+
+The `metrics` package is a Python library that provides various evaluation metrics commonly used to assess the performance of large language models. It includes functions to calculate metrics such as F1 score, accuracy, and BLEU score.
+
+## Installation
+
+The `metrics` package is not available on PyPI and can be used as a standalone package. To integrate it into your project, you can directly copy the individual metric files from the `metrics` directory or clone the entire repository.
+
+## Usage
+
+To use the `metrics` package, follow these steps:
+
+Import the specific metric functions into your Python script or notebook:
+
+```python
+from metrics.f1_score import calculate_f1_score
+from metrics.accuracy import calculate_accuracy
+from metrics.bleu_score import calculate_bleu_score
+from metrics.utils import count_true_positives_negatives
+```
+
+Use the imported functions to evaluate your large language models. For example, if you have predictions and true labels for a binary classification task:
+
+```python
+# Assume we have predictions and true labels as follows:
+predictions = [1, 0, 1, 1, 0]
+true_labels = [1, 0, 0, 1, 1]
+
+# Calculate true positives and true negatives for binary classification
+true_positives, true_negatives = count_true_positives_negatives(predictions, true_labels, positive_label=1)
+
+# Calculate F1 score and accuracy
+f1_score = calculate_f1_score(true_positives, false_positives, false_negatives)
+accuracy = calculate_accuracy(true_positives, true_negatives, len(predictions))
+
+print("F1 Score:", f1_score)
+print("Accuracy:", accuracy)
+```
+
+Additionally, the calculate_bleu_score function can be used to compute the BLEU score for evaluating language generation tasks:
+```python
+# Example usage for BLEU score calculation
+reference_sentences = ["This is a reference sentence.", "Another reference sentence."]
+predicted_sentence = "This is a predicted sentence."
+
+bleu_score = calculate_bleu_score(reference_sentences, predicted_sentence)
+print("BLEU Score:", bleu_score)
+
+```
+### Notes
+- The metrics package provides simple and easy-to-use functions for calculating evaluation metrics. However, keep in mind that these functions expect the necessary input arguments (e.g., true positives, true negatives) based on the specific task you are evaluating.
+
+- The calculate_f1_score and calculate_accuracy functions are designed for binary classification tasks. If you are working with multiclass classification, you may need to adapt or extend these functions accordingly.
+
+- For BLEU score calculation, the nltk library is used. Ensure that you have installed it before running the code:
+`pip install nltk`
+- This package aims to offer a basic set of evaluation metrics commonly used in NLP tasks. Depending on your specific use case, you may need to incorporate additional or specialized metrics for comprehensive evaluation.
+
+Feel free to explore and modify the metrics package to suit your evaluation needs. By using these evaluation metrics, you can better understand the performance and effectiveness of your large language models across various tasks and datasets.
+
 
 - **datasets**
 
