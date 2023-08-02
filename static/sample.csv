@@ -1,3 +1,54 @@
-dataset,version,metric,mode,opt350m,opt125m
-siqa,e78df3,accuracy,gen,21.44,12.44
-winograd,b6c7ed,accuracy,ppl,51.23,49.82
+Rank,Model,Average (%),Humanities,STEM,Social Sciences,Other,Parameters (Billions),Tokens (Billions),Paper,Code,Result,Year,Tags
+1,GPT-4 (few-shot, k=5),86.4,,,,,,,"GPT-4 Technical Report",,2023,few-shot
+2,Flan-PaLM 2 (L),81.2,,,,,,,"PaLM 2 Technical Report",,2023,
+3,PaLM 2 (large),78.3,,,,,,,"PaLM 2 Technical Report",,2023,
+4,Flan-PaLM (5-shot, finetuned, CoT + SC),75.2,,,,540,,"Scaling Instruction-Finetuned Language Models",,2022,fine-tuned
+5,Flan-U-PaLM 540B,74.1,,,,540,,"Scaling Instruction-Finetuned Language Models",,2022,fine-tuned
+6,Flan-PaLM (5-shot, finetuned),72.2,,,,540,,"Scaling Instruction-Finetuned Language Models",,2022,fine-tuned
+7,Codex + REPLUG LSR (few-shot, k=5),71.8,76.5,58.9,79.9,73.2,,,,,"REPLUG: Retrieval-Augmented Black-Box Language Models",,2023,few-shot
+8,Codex + REPLUG (few-shot, k=5),71.4,76,58.8,79.7,72.1,,,,,"REPLUG: Retrieval-Augmented Black-Box Language Models",,2023,few-shot
+9,Flan-PaLM 540B (CoT),70.9,,,,540,,"Scaling Instruction-Finetuned Language Models",,2022,fine-tuned
+10,U-PaLM (few-shot, k=5),70.7,,,,540,,"Transcending Scaling Laws with 0.1% Extra Compute",,2022,few-shot
+11,Flan-PaLM (5-shot, finetuned, CoT),70.2,,,,540,,"Scaling Instruction-Finetuned Language Models",,2022,fine-tuned
+12,GPT-3.5 (few-shot, k=5),70,,,,,,,"GPT-4 Technical Report",,2023,few-shot
+13,Flan-U-PaLM (CoT),69.8,,,,540,,"Scaling Instruction-Finetuned Language Models",,2022,fine-tuned
+14,PaLM 540B (few-shot, k=5),69.3,77.0,55.6,81.0,69.6,540,780,"PaLM: Scaling Language Modeling with Pathways",,2022,few-shot
+15,LLaMA 65B (fine-tuned),68.9,,,,65,1400,"LLaMA: Open and Efficient Foundation Language Models",,2023,fine-tuned
+16,LLaMA 2 70B (few-shot, k=5),68.9,,,,70,,,Llama 2: Open Foundation and Fine-Tuned Chat Models,,2023,
+17,Codex (few-shot, k=5),68.3,74.2,57.8,76.9,70.1,175,,"REPLUG: Retrieval-Augmented Black-Box Language Models",,2023,few-shot
+18,Chinchilla (few-shot, k=5),67.5,73.1,55,78.8,70.3,70,1400,"Training Compute-Optimal Large Language Models",,2022,few-shot
+19,Flan-cont-PaLM,66.1,,,,,62,,"Scaling Instruction-Finetuned Language Models",,2022,
+20,LLaMA 65B (few-shot, k=5),63.4,61.8,51.7,72.9,67.4,65,1400,"LLaMA: Open and Efficient Foundation Language Models",,2023,few-shot
+21,LLaMA 2 34B (few-shot, k=5),62.6,,,,70,,,Llama 2: Open Foundation and Fine-Tuned Chat Models,,2023,
+22,Flan-cont-PaLM (CoT),62,,,,540,,"Scaling Instruction-Finetuned Language Models",,2022,
+23,Gopher (few-shot, k=5),60.0,65.8,48.0,71.2,64.0,280,300,"Scaling Language Models: Methods, Analysis & Insights from Training Gopher",,2021,few-shot
+24,Flan-PaLM 62B,59.6,,,,62,,"Scaling Instruction-Finetuned Language Models",,2022,
+25,LLaMA 33B (few-shot, k=5),57.8,55.8,46.0,66.7,63.4,33,1400,"LLaMA: Open and Efficient Foundation Language Models",,2023,few-shot
+26,Flan-PaLM 62B (CoT),56.9,,,,62,,"Scaling Instruction-Finetuned Language Models",,2022,fine-tuned
+27,Flan-T5-XXL,55.1,,,,11,,,Scaling Instruction-Finetuned Language Models,,2022,
+28,LLaMA 2 13B (few-shot, k=5),54.8,,,,,,,"Llama 2: Open Foundation and Fine-Tuned Chat Models",,2023,
+29,GPT-3 (fine-tuned),53.9,52.5,41.4,63.9,57.9,175,300,"Language Models are Few-Shot Learners",,2020,fine-tuned
+30,GAL 120B (zero-shot),52.6,,49.6,,,120,450,"Galactica: A Large Language Model for Science",,2022,zero-shotfew-shot
+31,Flan-T5-XL,52.4,,,,3,,,Scaling Instruction-Finetuned Language Models,,2022,
+32,Flan-PaLM 8B,49.3,,,,8,,,Scaling Instruction-Finetuned Language Models,,2022,
+33,UnifiedQA (fine-tuned),48.9,45.6,40.2,56.6,54.6,11,,,UnifiedQA: Crossing Format Boundaries With a Single QA System,,2020,fine-tuned
+34,Flan-T5-XXL (CoT),48.6,,,,,,,Scaling Instruction-Finetuned Language Models,,2022,
+35,Atlas (few-shot, k=5),47.9,46.1,38.8,54.6,52.8,11,,,Atlas: Few-shot Learning with Retrieval Augmented Language Models,,2022,
+36,LLaMA 13B (few-shot, k=5),46.9,45.0,35.8,53.8,53.3,13,,,LLaMA: Open and Efficient Foundation Language Models,,2023,
+37,Flan-T5-XL (CoT),45.5,,,,,,,Scaling Instruction-Finetuned Language Models,,2022,fine-tuned
+38,LLaMA 2 7B (few-shot, k=5),45.3,,,,,,,"Llama 2: Open Foundation and Fine-Tuned Chat Models",,2023,
+39,Flan-T5-Large 780M,45.1,,,,,,,Scaling Instruction-Finetuned Language Models,,2022,
+40,GLM-130B,44.8,,,,,,,GLM-130B: An Open Bilingual Pre-trained Model,,2022,
+41,GPT-3 175B (few-shot, k=5),43.9,,36.7,,48.8,175,,,Language Models are Few-Shot Learners,,2020,few-shot
+42,GPT-3 6.7B (fine-tuned),43.2,42.1,35.1,49.2,46.9,6.7,,,Language Models are Few-Shot Learners,,2020,fine-tuned
+43,Flan-PaLM 8B (CoT),41.3,,,,,,,Scaling Instruction-Finetuned Language Models,,2022,
+44,Flan-T5-Large (CoT),40.5,,,,,,,Scaling Instruction-Finetuned Language Models,,2022,
+45,Bloomberg GPT (few-shot, k=5),39.18,36.26,35.12,40.04,46.36,,,,,"BloombergGPT: A Large Language Model for Finance",,2023,few-shot
+46,BLOOM 176B (few-shot, k=5),39.13,34.05,36.75,41.50,46.48,176,,,BloombergGPT: A Large Language Model for Finance,,2023,few-shot
+47,OPT 66B (few-shot, k=5),35.99,33.28,30.72,38.32,42.63,66,,,BloombergGPT: A Large Language Model for Finance,,2023,few-shot
+48,GPT-NeoX (few-shot, k=5),35.95,32.75,33.43,36.63,42.29,,,,,"BloombergGPT: A Large Language Model for Finance",,2023,few-shot
+49,Flan-T5-Base 250M,35.9,,,,,,,Scaling Instruction-Finetuned Language Models,,2022,
+50,LLaMA 7B (few-shot, k=5),35.1,34.0,30.5,38.3,38.1,7,,,LLaMA: Open and Efficient Foundation Language Models,,2023,
+51,Flan-T5-Base (CoT),33.7,,,,,,,Scaling Instruction-Finetuned Language Models,,2022,fine-tuned
+52,GPT-NeoX-20B (few-shot, k=5),33.6,29.8,34.9,33.7,37.7,20,300,"GPT-NeoX-20B: An Open-Source Autoregressive Language Model",,2022,few-shot
+53,GPT-2 1.5B (fine-tuned),32.4,32.8,30.2,33.3,33.1,1.5,300,"Language Models are Unsupervised Multitask Learners",,2019,fine-tuned

@@ -21,11 +21,6 @@ Welcome to **LLM Benchmarker Suite**!
 
 Just like a compass guides us on our journey, LLM Benchmarker Suite will guide you through the complex landscape of evaluating large language models. With its powerful algorithms and intuitive interface, LLM Benchmarker Suite makes it easy to assess the quality and effectiveness of your NLP models.
 
-## News
-
-- **\[2023.07.19\]** We have supported [Llama 2](https://ai.meta.com/llama/)! Its performance report will be available soon. \[[doc](./docs/en/get_started.md#Installation)\]
-- **\[2023.07.13\]** We release [MMBench](https://LLM Benchmarker Suite.org.cn/MMBench), a meticulously curated dataset to comprehensively evaluate different abilities of multimodality models 🔥🔥🔥.
-
 ## Introduction
 
 LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features includes:
@@ -292,12 +287,12 @@ Below are the steps for quick installation and datasets preparation.
 ```Python
 conda create --name LLM Benchmarker Suite python=3.10 pytorch torchvision pytorch-cuda -c nvidia -c pytorch -y
 conda activate LLM Benchmarker Suite
-git clone https://github.com/InternLM/LLM Benchmarker Suite LLM Benchmarker Suite
+git clone https://github.com/TheoremOne/LLM_Benchmarker_ Suite LLM Benchmarker Suite
 cd LLM Benchmarker Suite
 pip install -e .
 # Download dataset to data/ folder
-wget https://github.com/InternLM/LLM Benchmarker Suite/releases/download/0.1.0/LLM Benchmarker SuiteData.zip
-unzip LLM Benchmarker SuiteData.zip
+wget https://github.com/TheoremOne/LLM_Benchmarker_Suite/releases/download/0.1.0/LLM Benchmarker/SuiteData.zip
+unzip LLM_Benchmarker_Suite/Data.zip
 ```
 
 Some third-party features, like Humaneval and Llama, may require additional steps to work properly, for detailed steps please refer to the [Installation Guide](https://LLM Benchmarker Suite.readthedocs.io/en/latest/get_started.html).
@@ -307,6 +302,10 @@ Some third-party features, like Humaneval and Llama, may require additional step
 Make sure you have installed LLM Benchmarker Suite correctly and prepared your datasets according to the above steps. Please read the [Quick Start](https://LLM Benchmarker Suite.readthedocs.io/en/latest/get_started.html#quick-start) to learn how to run an evaluation task.
 
 For more tutorials, please check our [Documentation](https://LLM Benchmarker Suite.readthedocs.io/en/latest/index.html).
+
+## Evaluation Levels
+
+You can use further levels of evaluation using eval_levs
 
 ## Acknowledgements
 
