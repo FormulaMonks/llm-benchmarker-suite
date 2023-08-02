@@ -12,6 +12,36 @@ There are many packages that assist in evaluation of large language models. We t
 
 LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features includes:
 
+# Installation
+
+  To install the `llm_benchmarking_suite` package, use the following pip command:
+
+  ```bash
+  pip install llm_benchmarking_suite
+  ```
+
+# Get Started
+
+## Pre-requisites
+Run the following to command in a linux machine to check CUDA toolkit and cuDNN is correctly configured.
+```bash
+nvidia-smi
+nvcc --version
+```
+## Environment Setup
+1. `git clone https://github.com/TheoremOne/llm-benchmarker-suite.git`
+2. `cd llm-benchmarker-suite`
+3. `python3 -m venv venv`
+4. `source ./venv/bin/activate`
+5. `git submodule init && git submodule update`
+6. `pip install -e .`
+
+## Run static evaluations
+```python
+cd opencompass && python opencompass/run.py configs/eval_demo.py -w outputs/demo
+```
+
+
 ### Important Suite Tools:
 The Suite comprises of tools to help you carry out metrics analysis on large language models in a bunch of different ways to suit your use case.
 - **opencompass**:
@@ -108,38 +138,126 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
 - **Evaluation Levels**:
 
   The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
+  Feel free to explore and modify the metrics package to suit your evaluation needs. By using these evaluation metrics, you can better understand the performance and effectiveness of your large language models across various tasks and datasets.
 
-# Installation
 
-  To install the `llm_benchmarking_suite` package, use the following pip command:
+- **datasets**
+  This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
+  ```python
+  from dataset.hellaswaq import load_hellaswaq_dataset
+  from dataset.race import load_race_dataset
 
-  ```bash
-  pip install llm_benchmarking_suite
+  # Example usage:
+  hellaswaq_data = load_hellaswaq_dataset()
+  race_data = load_race_dataset()
+
+  print("HellaSWAQ dataset:", hellaswaq_data)
+  print("RACE dataset:", race_data)
   ```
 
-# Get Started
+- **Evaluation Levels**:
 
-## Pre-requisites
-Run the following to command in a linux machine to check CUDA toolkit and cuDNN is correctly configured.
-```bash
-nvidia-smi
-nvcc --version
-```
-## Environment Setup
-1. `git clone https://github.com/TheoremOne/llm-benchmarker-suite.git`
-2. `cd llm-benchmarker-suite`
-3. `python3 -m venv venv`
-4. `source ./venv/bin/activate`
-5. `git submodule init && git submodule update`
-6. `pip install -e .`
+  The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
+  Feel free to explore and modify the metrics package to suit your evaluation needs. By using these evaluation metrics, you can better understand the performance and effectiveness of your large language models across various tasks and datasets.
 
-## Run static evaluations
-```python
-cd opencompass && python opencompass/run.py configs/eval_demo.py -w outputs/demo
-```
 
-# Usage
-To use the package, follow these steps:
+- **datasets**
+  This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
+  ```python
+  from dataset.hellaswaq import load_hellaswaq_dataset
+  from dataset.race import load_race_dataset
+
+  # Example usage:
+  hellaswaq_data = load_hellaswaq_dataset()
+  race_data = load_race_dataset()
+
+  print("HellaSWAQ dataset:", hellaswaq_data)
+  print("RACE dataset:", race_data)
+  ```
+
+- **Evaluation Levels**:
+
+  The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
+  Feel free to explore and modify the metrics package to suit your evaluation needs. By using these evaluation metrics, you can better understand the performance and effectiveness of your large language models across various tasks and datasets.
+
+
+- **datasets**
+  This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
+  ```python
+  from dataset.hellaswaq import load_hellaswaq_dataset
+  from dataset.race import load_race_dataset
+
+  # Example usage:
+  hellaswaq_data = load_hellaswaq_dataset()
+  race_data = load_race_dataset()
+
+  print("HellaSWAQ dataset:", hellaswaq_data)
+  print("RACE dataset:", race_data)
+  ```
+
+- **Evaluation Levels**:
+
+  The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
+  Feel free to explore and modify the metrics package to suit your evaluation needs. By using these evaluation metrics, you can better understand the performance and effectiveness of your large language models across various tasks and datasets.
+
+
+- **datasets**
+  This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
+  ```python
+  from dataset.hellaswaq import load_hellaswaq_dataset
+  from dataset.race import load_race_dataset
+
+  # Example usage:
+  hellaswaq_data = load_hellaswaq_dataset()
+  race_data = load_race_dataset()
+
+  print("HellaSWAQ dataset:", hellaswaq_data)
+  print("RACE dataset:", race_data)
+  ```
+
+- **Evaluation Levels**:
+
+  The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
+  Feel free to explore and modify the metrics package to suit your evaluation needs. By using these evaluation metrics, you can better understand the performance and effectiveness of your large language models across various tasks and datasets.
+
+
+- **datasets**
+  This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
+  ```python
+  from dataset.hellaswaq import load_hellaswaq_dataset
+  from dataset.race import load_race_dataset
+
+  # Example usage:
+  hellaswaq_data = load_hellaswaq_dataset()
+  race_data = load_race_dataset()
+
+  print("HellaSWAQ dataset:", hellaswaq_data)
+  print("RACE dataset:", race_data)
+  ```
+
+- **Evaluation Levels**:
+
+  The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
+  Feel free to explore and modify the metrics package to suit your evaluation needs. By using these evaluation metrics, you can better understand the performance and effectiveness of your large language models across various tasks and datasets.
+
+
+- **datasets**
+  This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
+  ```python
+  from dataset.hellaswaq import load_hellaswaq_dataset
+  from dataset.race import load_race_dataset
+
+  # Example usage:
+  hellaswaq_data = load_hellaswaq_dataset()
+  race_data = load_race_dataset()
+
+  print("HellaSWAQ dataset:", hellaswaq_data)
+  print("RACE dataset:", race_data)
+  ```
+
+
+## Models
+To use open or proprietary models, follow these steps:
 
 Import the necessary classes from the package:
 
