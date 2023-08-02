@@ -23,7 +23,7 @@ LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming 
 # Get Started
 
 ## Pre-requisites
-Run the following to command in a linux machine to check CUDA toolkit and cuDNN is correctly configured.
+Run the following to command in a linux machine to check _CUDA toolkit_ and _cuDNN_ is correctly configured.
 ```bash
 nvidia-smi
 nvcc --version
@@ -577,12 +577,6 @@ unzip LLM_Benchmarker_Suite/Data.zip
 ```
 
 Some third-party features, like Humaneval and Llama, may require additional steps to work properly, for detailed steps please refer to the [Installation Guide](https://LLM Benchmarker Suite.readthedocs.io/en/latest/get_started.html).
-
-## Evaluation
-
-Make sure you have installed LLM Benchmarker Suite correctly and prepared your datasets according to the above steps. Please read the [Quick Start](https://LLM Benchmarker Suite.readthedocs.io/en/latest/get_started.html#quick-start) to learn how to run an evaluation task.
-
-For more tutorials, please check our [Documentation](https://LLM Benchmarker Suite.readthedocs.io/en/latest/index.html).
 
 ## Evaluation Levels
 
