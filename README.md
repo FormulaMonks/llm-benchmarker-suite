@@ -49,7 +49,8 @@ cd opencompass && python opencompass/run.py configs/eval_demo.py -w outputs/demo
 
 ### Important Suite Tools:
 The Suite comprises of tools to help you carry out metrics analysis on large language models in a bunch of different ways to suit your use case.
-- **opencompass**:
+
+#### OpenCompass:
 This is a static evaluation package meant to test the capabilities of a model.
 ```python
 python opencompass/run.py configs/eval_demo.py -w outputs/demo
@@ -127,8 +128,6 @@ The `metrics` package is a Python library that provides various evaluation metri
 ## Evaluation Levels:
 
   The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
-  Feel free to explore and modify the metrics package to suit your evaluation needs. By using these evaluation metrics, you can better understand the performance and effectiveness of your large language models across various tasks and datasets.
-
 
 ### Datasets
   This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
