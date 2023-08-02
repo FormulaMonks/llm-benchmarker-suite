@@ -1,3 +1,5 @@
 from .generic_language_model import GenericLanguageModel
 from .huggingface_language_model import HuggingFaceLanguageModel
 from .proprietary_language_model import ProprietaryLanguageModel
+from .gpt_completions_api import get_completion_score
+from .large_language_model import load_language_model, generate_completion
