@@ -1,21 +1,24 @@
-from language_model_api import HuggingFaceLanguageModel, AnthropicLanguageModel, GPTLanguageModel
+from .generic_language_model import GenericLanguageModel
 
-# Example usage with Hugging Face model
-huggingface_model = HuggingFaceLanguageModel("gpt2")
-input_text = "Once upon a time, there was a beautiful princess"
-completion = huggingface_model.generate_completions(input_text, max_length=100, num_return_sequences=1)
-print("Hugging Face completion:", completion)
+class AnthropicLanguageModel(GenericLanguageModel):
+    def __init__(self, api_key):
+        # Initialize the Anthropics language model here
+        self.api_key = api_key
 
-# Example usage with Anthropics model
-anthropic_model = AnthropicLanguageModel(api_key="your_anthropic_api_key")
-input_text = "Once upon a time, there was a beautiful princess"
-completions = anthropic_model.generate_completions(input_text, custom_argument="value")
-for idx, completion in enumerate(completions):
-    print(f"Anthropic completion {idx + 1}: {completion}")
+    def generate_completions(self, input_text, **kwargs):
+        # Generate completions using the Anthropics language model here
+        # Replace this with appropriate code to call the Anthropics API and get completions
+        completions = ["[ANTHROPIC] Completion 1", "[ANTHROPIC] Completion 2"]
+        return completions
 
-# Example usage with GPT model
-gpt_model = GPTLanguageModel(model_url="https://api.example.com/gpt", api_key="your_gpt_api_key")
-input_text = "Once upon a time, there was a beautiful princess"
-completions = gpt_model.generate_completions(input_text, custom_argument="value")
-for idx, completion in enumerate(completions):
-    print(f"GPT completion {idx + 1}: {completion}")
+class GPTLanguageModel(GenericLanguageModel):
+    def __init__(self, model_url, api_key):
+        # Initialize the GPT language model here
+        self.model_url = model_url
+        self.api_key = api_key
+
+    def generate_completions(self, input_text, **kwargs):
+        # Generate completions using the GPT language model here
+        # Replace this with appropriate code to call the GPT API and get completions
+        completions = ["[GPT] Completion 1", "[GPT] Completion 2"]
+        return completions
