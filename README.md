@@ -7,11 +7,15 @@
 
 Welcome to **LLM Benchmarker Suite**!
 
-Just like a compass guides us on our journey, LLM Benchmarker Suite will guide you through the complex landscape of evaluating large language models. With its powerful algorithms and intuitive interface, LLM Benchmarker Suite makes it easy to assess the quality and effectiveness of your NLP models.
-
+There are many packages that assist in evaluation of large language models. We take the best practices available along with our own optimizations to create one-stop easy method to evaluate Large Language Models.
 ## Introduction
 
 LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features includes:
+
+### Packages:
+- **opencompass**
+
+- **eval_levels**
 
 - **Comprehensive support for models and datasets**: Pre-support for 20+ HuggingFace and API models, a model evaluation scheme of 50+ datasets with about 300,000 questions, comprehensively evaluating the capabilities of the models in five dimensions.
 
@@ -96,7 +100,8 @@ Feel free to add more details, examples, or links to real model documentation if
 
 ## Leaderboard
 
-We provide [LLM Benchmarker Suite Leaderbaord](https://LLM Benchmarker Suite.org.cn/rank) for community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `LLM Benchmarker Suite@pjlab.org.cn`.
+We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.com/
+) for community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `LLM Benchmarker Suite@pjlab.org.cn`.
 
 [![image](https://github.com/InternLM/LLM Benchmarker Suite/assets/13503330/80c5a42c-ddf0-4c6f-b39e-c175711ac381)](https://LLM Benchmarker Suite.org.cn/rank)
 
