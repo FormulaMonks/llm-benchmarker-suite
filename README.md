@@ -12,6 +12,11 @@ There are many packages that assist in evaluation of large language models. We t
 
 LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features includes:
 
+- Static Evaluations - Uses OpenCompass package to for coverage on most of popular benchmarking datasets and large language models.
+- Evaluation Levels - Dataset independent evaluations similar to the one [here](https://lmsys.org/vicuna_eval/)
+
+This concept allows for multiple levels of evaluating the effectiveness of a large langugae model.
+
 ## Installation
 
   To install the `llm_benchmarking_suite` package, use the following pip command:
@@ -22,13 +27,13 @@ LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming 
 
 ## Get Started
 
-## Pre-requisites
+### Pre-requisites
 Run the following to command in a linux machine to check _CUDA toolkit_ and _cuDNN_ is correctly configured. This will not run in macOS or Windows.
 ```bash
 nvidia-smi
 nvcc --version
 ```
-## Environment Setup
+### Environment Setup
 1. `git clone https://github.com/TheoremOne/llm-benchmarker-suite.git`
 2. `cd llm-benchmarker-suite`
 3. `python3 -m venv venv`
@@ -36,8 +41,8 @@ nvcc --version
 5. `git submodule init && git submodule update`
 6. `pip install -e .`
 
-## Run static evaluations
-```python
+### Run static evaluations
+```bash
 cd opencompass && python opencompass/run.py configs/eval_demo.py -w outputs/demo
 ```
 
@@ -60,13 +65,14 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
   - **Experiment management and reporting mechanism**: Use config files to fully record each experiment, support real-time reporting of results.
 
  
-- **metrics**: The `metrics` package is a Python library that provides various evaluation metrics commonly used to assess the performance of large language models. It includes functions to calculate metrics such as F1 score, accuracy, and BLEU score.
+## **Metrics**
+The `metrics` package is a Python library that provides various evaluation metrics commonly used to assess the performance of large language models. It includes functions to calculate metrics such as F1 score, accuracy, and BLEU score.
 
   ### Installation
 
   The `metrics` package is not available on PyPI and can be used as a standalone package. To integrate it into your project, you can directly copy the individual metric files from the `metrics` directory or clone the entire repository.
 
-    ## Usage
+  ### Usage
 
   To use the `metrics` package, follow these steps:
 
@@ -118,13 +124,13 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
 
   Feel free to explore and modify the metrics package to suit your evaluation needs. By using these evaluation metrics, you can better understand the performance and effectiveness of your large language models across various tasks and datasets.
 
-- **Evaluation Levels**:
+## Evaluation Levels:
 
   The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
   Feel free to explore and modify the metrics package to suit your evaluation needs. By using these evaluation metrics, you can better understand the performance and effectiveness of your large language models across various tasks and datasets.
 
 
-- **datasets**
+### Datasets
   This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
   ```python
   from dataset.hellaswaq import load_hellaswaq_dataset
@@ -138,63 +144,21 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
   print("RACE dataset:", race_data)
   ```
 
-## Models
-To use open or proprietary models, follow these steps:
+### Usage
 
-Import the necessary classes from the package:
+  Go to `eval_levels/example.py` for example usage of _Evaluation Levels_.
 
-```python
-from eval_levels import HuggingFaceLanguageModel, AnthropicLanguageModel, GPTLanguageModel
-```
+### Notes
+    
+- This package provides a generic interface to work with language models. Replace the dummy code for proprietary language models with the actual API calls once you have access to the real APIs.
 
-Create an instance of the language model you want to use. We support Hugging Face, Anthropics, and GPT language models:
+- For Hugging Face models, the model_name parameter should be set to the desired model name. You can choose from models like "gpt2," "gpt2-medium," or "gpt2-large" for larger models.
 
-```python
-# Example usage with Hugging Face model
-huggingface_model = HuggingFaceLanguageModel(model_name="gpt2")
+- For proprietary language models like Anthropic or GPT, replace the api_key and model_url parameters with the actual API key and model URL provided by the respective vendors.
 
-# Example usage with Anthropics model
-anthropic_model = AnthropicLanguageModel(api_key="your_anthropic_api_key")
+- The generate_completions method takes the input text and additional keyword arguments specific to the model. Check the respective class definitions for more details on the supported arguments.
 
-# Example usage with GPT model
-gpt_model = GPTLanguageModel(model_url="https://api.example.com/gpt", api_key="your_gpt_api_key")
-
-```
-
-Generate completions for a given input text using the language model:
-
-```python
-input_text = "Once upon a time, there was a beautiful princess"
-
-# Generating completions using Hugging Face model
-completion = huggingface_model.generate_completions(input_text, max_length=100, num_return_sequences=1)
-print("Hugging Face completion:", completion)
-
-# Generating completions using Anthropics model
-completions = anthropic_model.generate_completions(input_text, custom_argument="value")
-for idx, completion in enumerate(completions):
-    print(f"Anthropic completion {idx + 1}: {completion}")
-
-# Generating completions using GPT model
-completions = gpt_model.generate_completions(input_text, custom_argument="value")
-for idx, completion in enumerate(completions):
-    print(f"GPT completion {idx + 1}: {completion}")
-
-```
-
-  ## Notes
-  - This package provides a generic interface to work with language models. Replace the dummy code for proprietary language models with the actual API calls once you have access to the real APIs.
-
-  - For Hugging Face models, the model_name parameter should be set to the desired model name. You can choose from models like "gpt2," "gpt2-medium," or "gpt2-large" for larger models.
-
-  - For proprietary language models like Anthropic or GPT, replace the api_key and model_url parameters with the actual API key and model URL provided by the respective vendors.
-
-  - The generate_completions method takes the input text and additional keyword arguments specific to the model. Check the respective class definitions for more details on the supported arguments.
-
-  - Ensure that you have internet access to download Hugging Face models and access the proprietary language model APIs.
-
-## Disclaimer
-This package is for demonstration purposes only and may not connect to real APIs. The proprietary language models are placeholders, and you need to replace the dummy completions with actual completions obtained from the real APIs.
+- Ensure that you have internet access to download Hugging Face models and access the proprietary language model APIs.
 
 ## Leaderboard
 
@@ -440,27 +404,6 @@ We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.co
 </tr>
   </tbody>
 </table>
-
-## Installation
-
-Below are the steps for quick installation and datasets preparation.
-
-```Python
-conda create --name LLM Benchmarker Suite python=3.10 pytorch torchvision pytorch-cuda -c nvidia -c pytorch -y
-conda activate LLM Benchmarker Suite
-git clone https://github.com/TheoremOne/LLM_Benchmarker_ Suite LLM Benchmarker Suite
-cd LLM Benchmarker Suite
-pip install -e .
-# Download dataset to data/ folder
-wget https://github.com/TheoremOne/LLM_Benchmarker_Suite/releases/download/0.1.0/LLM Benchmarker/SuiteData.zip
-unzip LLM_Benchmarker_Suite/Data.zip
-```
-
-Some third-party features, like Humaneval and Llama, may require additional steps to work properly, for detailed steps please refer to the [Installation Guide](https://LLM Benchmarker Suite.readthedocs.io/en/latest/get_started.html).
-
-## Evaluation Levels
-
-This concept allows for multiple levels of evaluating the effectiveness of a large langugae model.
 
 ## Acknowledgements
 
