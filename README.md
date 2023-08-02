@@ -3,19 +3,7 @@
   <br />
   <br />
 
-[![docs](https://readthedocs.org/projects/LLM Benchmarker Suite/badge)](https://LLM Benchmarker Suite.readthedocs.io/en)
-[![license](https://img.shields.io/github/license/InternLM/LLM Benchmarker Suite.svg)](https://github.com/InternLM/LLM Benchmarker Suite/blob/main/LICENSE)
-
-<!-- [![PyPI](https://badge.fury.io/py/LLM Benchmarker Suite.svg)](https://pypi.org/project/LLM Benchmarker Suite/) -->
-
-[🌐Website](https://LLM Benchmarker Suite.org.cn/) |
-[📘Documentation](https://LLM Benchmarker Suite.readthedocs.io/en/latest/) |
-[🛠️Installation](https://LLM Benchmarker Suite.readthedocs.io/en/latest/get_started.html#installation) |
-[🤔Reporting Issues](https://github.com/InternLM/LLM Benchmarker Suite/issues/new/choose)
-
 </div>
-
-
 
 Welcome to **LLM Benchmarker Suite**!
 
@@ -34,6 +22,77 @@ LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming 
 - **Modular design with high extensibility**: Want to add new models or datasets, customize an advanced task division strategy, or even support a new cluster management system? Everything about LLM Benchmarker Suite can be easily expanded!
 
 - **Experiment management and reporting mechanism**: Use config files to fully record each experiment, support real-time reporting of results.
+
+- **Evaluation Levels**:
+
+The `eval_levels` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
+
+## Installation
+
+To install the `eval_levels` package, use the following pip command:
+
+```bash
+pip install eval_levels
+```
+# Usage
+To use the package, follow these steps:
+
+Import the necessary classes from the package:
+
+```python
+from language_model_api import HuggingFaceLanguageModel, AnthropicLanguageModel, GPTLanguageModel
+```
+
+Create an instance of the language model you want to use. We support Hugging Face, Anthropics, and GPT language models:
+
+```python
+# Example usage with Hugging Face model
+huggingface_model = HuggingFaceLanguageModel(model_name="gpt2")
+
+# Example usage with Anthropics model
+anthropic_model = AnthropicLanguageModel(api_key="your_anthropic_api_key")
+
+# Example usage with GPT model
+gpt_model = GPTLanguageModel(model_url="https://api.example.com/gpt", api_key="your_gpt_api_key")
+
+```
+
+Generate completions for a given input text using the language model:
+
+```python
+input_text = "Once upon a time, there was a beautiful princess"
+
+# Generating completions using Hugging Face model
+completion = huggingface_model.generate_completions(input_text, max_length=100, num_return_sequences=1)
+print("Hugging Face completion:", completion)
+
+# Generating completions using Anthropics model
+completions = anthropic_model.generate_completions(input_text, custom_argument="value")
+for idx, completion in enumerate(completions):
+    print(f"Anthropic completion {idx + 1}: {completion}")
+
+# Generating completions using GPT model
+completions = gpt_model.generate_completions(input_text, custom_argument="value")
+for idx, completion in enumerate(completions):
+    print(f"GPT completion {idx + 1}: {completion}")
+
+```
+
+## Notes
+- This package provides a generic interface to work with language models. Replace the dummy code for proprietary language models with the actual API calls once you have access to the real APIs.
+
+- For Hugging Face models, the model_name parameter should be set to the desired model name. You can choose from models like "gpt2," "gpt2-medium," or "gpt2-large" for larger models.
+
+- For proprietary language models like Anthropic or GPT, replace the api_key and model_url parameters with the actual API key and model URL provided by the respective vendors.
+
+- The generate_completions method takes the input text and additional keyword arguments specific to the model. Check the respective class definitions for more details on the supported arguments.
+
+- Ensure that you have internet access to download Hugging Face models and access the proprietary language model APIs.
+
+## Disclaimer
+This package is for demonstration purposes only and may not connect to real APIs. The proprietary language models are placeholders, and you need to replace the dummy completions with actual completions obtained from the real APIs.
+
+Feel free to add more details, examples, or links to real model documentation if available for your proprietary models. This readme provides a basic understanding of how to use the package and can be further extended based on the actual functionalities and features of the proprietary models you intend to integrate.
 
 ## Leaderboard
 
