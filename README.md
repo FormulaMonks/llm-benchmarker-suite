@@ -119,12 +119,19 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
 
 # Get Started
 
+## Pre-requisites
+Run the following to command in a linux machine to check CUDA toolkit and cuDNN is correctly configured.
+```bash
+nvidia-smi
+nvcc --version
+```
 ## Environment Setup
 1. `git clone https://github.com/TheoremOne/llm-benchmarker-suite.git`
 2. `cd llm-benchmarker-suite`
 3. `python3 -m venv venv`
-4. `git submodule init && git submodule update`
-5. `pip install -e .`
+4. `source ./venv/bin/activate`
+5. `git submodule init && git submodule update`
+6. `pip install -e .`
 
 ## Run static evaluations
 ```python
