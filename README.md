@@ -12,10 +12,14 @@ There are many packages that assist in evaluation of large language models. We t
 
 LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features includes:
 
-### Packages:
+### Important Tools:
 - **opencompass**
 
 - **eval_levels**
+
+- **metrics**
+
+- **datasets**
 
 - **Comprehensive support for models and datasets**: Pre-support for 20+ HuggingFace and API models, a model evaluation scheme of 50+ datasets with about 300,000 questions, comprehensively evaluating the capabilities of the models in five dimensions.
 
@@ -29,14 +33,14 @@ LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming 
 
 - **Evaluation Levels**:
 
-The `eval_levels` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
+The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
 
 ## Installation
 
-To install the `eval_levels` package, use the following pip command:
+To install the `llm_benchmarking_suite` package, use the following pip command:
 
 ```bash
-pip install eval_levels
+pip install llm_benchmarking_suite
 ```
 # Usage
 To use the package, follow these steps:
@@ -101,9 +105,8 @@ Feel free to add more details, examples, or links to real model documentation if
 ## Leaderboard
 
 We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.com/
-) for community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `LLM Benchmarker Suite@pjlab.org.cn`.
+) for community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `abhijoy.sarkar@theoremone.co`.
 
-[![image](https://github.com/InternLM/LLM Benchmarker Suite/assets/13503330/80c5a42c-ddf0-4c6f-b39e-c175711ac381)](https://LLM Benchmarker Suite.org.cn/rank)
 
 ## Dataset Support
 
@@ -369,7 +372,7 @@ For more tutorials, please check our [Documentation](https://LLM Benchmarker Sui
 
 ## Evaluation Levels
 
-You can use further levels of evaluation using eval_levs
+This concept allows for multiple levels of evaluating the effectiveness of a large langugae model.
 
 ## Acknowledgements
 
