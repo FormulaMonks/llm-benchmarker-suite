@@ -42,9 +42,12 @@ nvcc --version
 6. `pip install -e .`
 
 ### Run static evaluations
-```bash
+1. `
 cd opencompass && python opencompass/run.py configs/eval_demo.py -w outputs/demo
-```
+`
+2. To view the locally created metrics dashboard start a server at `cd ../static && python3 -m http.server 8000` and go to http://localhost:8000/ in your browser. Alternatively you can also compare you're evaluations with ours at [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.com/
+).
+
 
 
 ### Important Suite Tools:
