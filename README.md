@@ -12,7 +12,7 @@ There are many packages that assist in evaluation of large language models. We t
 
 LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features includes:
 
-# Installation
+## Installation
 
   To install the `llm_benchmarking_suite` package, use the following pip command:
 
@@ -20,10 +20,10 @@ LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming 
   pip install llm_benchmarking_suite
   ```
 
-# Get Started
+## Get Started
 
 ## Pre-requisites
-Run the following to command in a linux machine to check _CUDA toolkit_ and _cuDNN_ is correctly configured.
+Run the following to command in a linux machine to check _CUDA toolkit_ and _cuDNN_ is correctly configured. This will not run in macOS or Windows.
 ```bash
 nvidia-smi
 nvcc --version
@@ -49,8 +49,6 @@ This is a static evaluation package meant to test the capabilities of a model.
 ```python
 python opencompass/run.py configs/eval_demo.py -w outputs/demo
 ```
-
-- **eval_levels**
   - **Comprehensive support for models and datasets**: Pre-support for 20+ HuggingFace and API models, a model evaluation scheme of 50+ datasets with about 300,000 questions, comprehensively evaluating the capabilities of the models in five dimensions.
 
   -  **Efficient distributed evaluation**: One line command to implement task division and distributed evaluation, completing the full evaluation of billion-scale models in just a few hours.
@@ -120,21 +118,6 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
 
   Feel free to explore and modify the metrics package to suit your evaluation needs. By using these evaluation metrics, you can better understand the performance and effectiveness of your large language models across various tasks and datasets.
 
-
-- **datasets**
-  This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
-  ```python
-  from dataset.hellaswaq import load_hellaswaq_dataset
-  from dataset.race import load_race_dataset
-
-  # Example usage:
-  hellaswaq_data = load_hellaswaq_dataset()
-  race_data = load_race_dataset()
-
-  print("HellaSWAQ dataset:", hellaswaq_data)
-  print("RACE dataset:", race_data)
-  ```
-
 - **Evaluation Levels**:
 
   The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
@@ -155,14 +138,13 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
   print("RACE dataset:", race_data)
   ```
 
-
 ## Models
 To use open or proprietary models, follow these steps:
 
 Import the necessary classes from the package:
 
 ```python
-from language_model_api import HuggingFaceLanguageModel, AnthropicLanguageModel, GPTLanguageModel
+from eval_levels import HuggingFaceLanguageModel, AnthropicLanguageModel, GPTLanguageModel
 ```
 
 Create an instance of the language model you want to use. We support Hugging Face, Anthropics, and GPT language models:
@@ -213,8 +195,6 @@ for idx, completion in enumerate(completions):
 
 ## Disclaimer
 This package is for demonstration purposes only and may not connect to real APIs. The proprietary language models are placeholders, and you need to replace the dummy completions with actual completions obtained from the real APIs.
-
-Feel free to add more details, examples, or links to real model documentation if available for your proprietary models. This readme provides a basic understanding of how to use the package and can be further extended based on the actual functionalities and features of the proprietary models you intend to integrate.
 
 ## Leaderboard
 
