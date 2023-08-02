@@ -116,6 +116,21 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
   ```bash
   pip install llm_benchmarking_suite
   ```
+
+# Get Started
+
+## Environment Setup
+1. `git clone https://github.com/TheoremOne/llm-benchmarker-suite.git`
+2. `cd llm-benchmarker-suite`
+3. `python3 -m venv venv`
+4. `git submodule init && git submodule update`
+5. `pip install -e .`
+
+## Run static evaluations
+```python
+cd opencompass && python opencompass/run.py configs/eval_demo.py -w outputs/demo
+```
+
 # Usage
 To use the package, follow these steps:
 
