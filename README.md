@@ -96,22 +96,13 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
   ```python
   from dataset.hellaswaq import load_hellaswaq_dataset
   from dataset.race import load_race_dataset
-  from dataset.boolq import load_boolq_dataset
-  from dataset.glue import load_glue_dataset
-  from dataset.superglue import load_superglue_dataset
 
   # Example usage:
   hellaswaq_data = load_hellaswaq_dataset()
   race_data = load_race_dataset()
-  boolq_data = load_boolq_dataset()
-  glue_data = load_glue_dataset()
-  superglue_data = load_superglue_dataset()
 
   print("HellaSWAQ dataset:", hellaswaq_data)
   print("RACE dataset:", race_data)
-  print("BoolQ dataset:", boolq_data)
-  print("GLUE dataset:", glue_data)
-  print("SuperGlue dataset:", superglue_data)
   ```
 
 - **Evaluation Levels**:
