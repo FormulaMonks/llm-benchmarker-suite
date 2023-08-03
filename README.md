@@ -162,11 +162,33 @@ For more information on usage details, refer to the following [docs](https://git
 #### OpenAI Evals
 Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
 
-We now support evaluating the behavior of any system including prompt chains or tool-using agents, via the [Completion Function Protocol](docs/completion-fns.md).
+An “eval” refers to a specific evaluation task that is used to measure the performance of a language model in a particular area, such as question answering or sentiment analysis. These evals are typically standardized benchmarks that allow for the comparison of different language models. The Eval framework provides a standardized interface for running these evals and collecting the results.
+
+At its core, an eval is a dataset and an eval class that is defined in a YAML file. An example of an eval is shown below:
+
+```yaml
+test-match:
+  id: test-match.s1.simple-v0
+  description: Example eval that checks sampled text matches the expected output.
+  disclaimer: This is an example disclaimer.
+  metrics: [accuracy]
+test-match.s1.simple-v0:
+  class: evals.elsuite.basic.match:Match
+  args:
+    samples_jsonl: test_match/samples.jsonl
+```
+
+We can run the above eval with a simple command:
+```bash
+oaieval gpt-3.5-turbo test-match
+```
+Here we’re using the oaieval CLI to run this eval. We’re specifying the name of the completion function (gpt-3.5-turbo) and the name of the eval (test-match)
 
 With Evals, we aim to make it as simple as possible to build an eval while writing as little code as possible. An "eval" is a task used to evaluate the quality of a system's behavior. To get started, we recommend that you follow these steps:
 
-To get set up with evals, follow the [setup instructions below](https://github.com/openai/evals/blob/main/README.md#setup).
+To get set up with evals, follow the [setup instructions](https://github.com/openai/evals/blob/main/README.md#setup).
+
+Refer to the following [Jupyter Notebooks](https://github.com/openai/evals/tree/1fe7d7adb739b727fd1319c073deda4e336c14f7/examples) for example of usages.
 
 For more information on usage details, refer to the following [docs](https://github.com/openai/evals/blob/main/README.md).
 
