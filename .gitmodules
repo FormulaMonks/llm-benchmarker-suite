@@ -4,3 +4,6 @@
 [submodule "FastChat"]
 	path = FastChat
 	url = https://github.com/lm-sys/FastChat.git
+[submodule "evals"]
+	path = evals
+	url = https://github.com/openai/evals.git
