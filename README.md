@@ -13,9 +13,10 @@ There are many packages that assist in evaluation of large language models. We t
 LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features includes:
 
 - Static Evaluations - Uses OpenCompass package to for coverage on most of popular benchmarking datasets and large language models.
-- Evaluation Levels - Dataset independent evaluations similar to the one [here](https://lmsys.org/vicuna_eval/)
+- Evaluation Levels - Dataset independent evaluations similar to the one [here](https://lmsys.org/vicuna_eval/).
+- LLM-as-a-judge - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
 
-This concept allows for multiple levels of evaluating the effectiveness of a large langugae model.
+This concept allows for multiple levels of evaluating the effectiveness of a large language models.
 
 ## Installation
 
@@ -34,12 +35,34 @@ nvidia-smi
 nvcc --version
 ```
 ### Environment Setup
-1. `git clone https://github.com/TheoremOne/llm-benchmarker-suite.git`
-2. `cd llm-benchmarker-suite`
-3. `python3 -m venv venv`
-4. `source ./venv/bin/activate`
-5. `git submodule init && git submodule update`
-6. `pip install -e .`
+1. Clone the repository
+```bash
+git clone https://github.com/TheoremOne/llm-benchmarker-suite.git
+cd llm-benchmarker-suite
+```
+
+2. Create and activate a virtual environment
+```bash
+python3 -m venv venv
+source ./venv/bin/activate
+```
+
+3. Install Poetry if not already installed
+(Ensure Poetry is added to your system's PATH)
+Run the following command if you haven't installed Poetry yet:
+`curl -sSL https://install.python-poetry.org | python3 -`
+
+4. Install dependencies and submodules
+poetry install
+git submodule init && git submodule update
+
+5. Install the main package and submodules in editable mode
+```bash
+pip install -e .
+cd opencompass && pip install -e .
+cd ../FastChat && pip install -e ".[eval]"
+```
+
 
 ### Run static evaluations
 1. `
@@ -55,6 +78,12 @@ The Suite comprises of tools to help you carry out metrics analysis on large lan
 
 #### OpenCompass:
 This is a static evaluation package meant to test the capabilities of a model.
+<!-- [![PyPI](https://badge.fury.io/py/opencompass.svg)](https://pypi.org/project/opencompass/) -->
+[🌐Website](https://opencompass.org.cn/) |
+[📘Documentation](https://opencompass.readthedocs.io/en/latest/) |
+[🛠️Installation](https://opencompass.readthedocs.io/en/latest/get_started.html#installation) |
+[🤔Reporting Issues](https://github.com/InternLM/opencompass/issues/new/choose)
+
 ```python
 python opencompass/run.py configs/eval_demo.py -w outputs/demo
 ```
@@ -68,15 +97,75 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
 
   - **Experiment management and reporting mechanism**: Use config files to fully record each experiment, support real-time reporting of results.
 
+#### FastChat's LLM-as-a-Judge:
+| [Paper](https://arxiv.org/abs/2306.05685) | [Leaderboard](https://chat.lmsys.org/?leaderboard) | [MT-bench Human Annotation Dataset](https://huggingface.co/datasets/lmsys/mt_bench_human_judgments) | [Chatbot Arena Conversation Dataset](https://huggingface.co/datasets/lmsys/chatbot_arena_conversations) |
+
+In this package, you can use MT-bench questions and prompts to evaluate your models with LLM-as-a-judge.
+MT-bench is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
+To automate the evaluation process, we prompt strong LLMs like GPT-4 to act as judges and assess the quality of the models' responses.
+
+#### MT-Bench
+
+##### Evaluate a model on MT-bench
+
+###### Step 1. Generate model answers to MT-bench questions
+```
+python gen_model_answer.py --model-path [MODEL-PATH] --model-id [MODEL-ID]
+```
+Arguments:
+  - `[MODEL-PATH]` is the path to the weights, which can be a local folder or a Hugging Face repo ID.
+  - `[MODEL-ID]` is a name you give to the model.
+
+e.g.,
+```
+python gen_model_answer.py --model-path lmsys/vicuna-7b-v1.3 --model-id vicuna-7b-v1.3
+```
+The answers will be saved to `data/mt_bench/model_answer/[MODEL-ID].jsonl`.
+
+To make sure FastChat loads the correct prompt template, see the supported models and how to add a new model [here](../../docs/model_support.md#how-to-support-a-new-model).
+
+You can also specify `--num-gpus-per-model` for model parallelism (needed for large 65B models) and `--num-gpus-total` to parallelize answer generation with multiple GPUs.
+
+###### Step 2. Generate GPT-4 judgments
+There are several options to use GPT-4 as a judge, such as pairwise winrate and single-answer grading.
+In MT-bench, we recommond single-answer grading as the default mode.
+This mode asks GPT-4 to grade and give a score to model's answer directly without pairwise comparison.
+For each turn, GPT-4 will give a score on a scale of 10. We then compute the average score on all turns.
+
+```
+python gen_judgment.py --model-list [LIST-OF-MODEL-ID] --parallel [num-concurrent-api-call]
+```
+
+e.g.,
+```
+python gen_judgment.py --model-list vicuna-13b-v1.3 alpaca-13b llama-13b claude-v1 gpt-3.5-turbo gpt-4 --parallel 2
+```
+The judgments will be saved to `data/mt_bench/model_judgment/gpt-4_single.jsonl`
+
+###### Step 3. Show MT-bench scores
+
+- Show the scores for selected models
+  ```
+  python show_result.py --model-list vicuna-13b-v1.3 alpaca-13b llama-13b claude-v1 gpt-3.5-turbo gpt-4
+  ```
+- Show all scores
+  ```
+  python show_result.py
+  ```
+
+---
+
+
+For more information on usage details, refer to the following [docs](https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/README.md).
  
-## **Metrics**
+#### Metrics
 The `metrics` package is a Python library that provides various evaluation metrics commonly used to assess the performance of large language models. It includes functions to calculate metrics such as F1 score, accuracy, and BLEU score.
 
-  ### Installation
+  ##### Installation
 
   The `metrics` package is not available on PyPI and can be used as a standalone package. To integrate it into your project, you can directly copy the individual metric files from the `metrics` directory or clone the entire repository.
 
-  ### Usage
+  ##### Usage
 
   To use the `metrics` package, follow these steps:
 
@@ -117,7 +206,7 @@ The `metrics` package is a Python library that provides various evaluation metri
   print("BLEU Score:", bleu_score)
 
   ```
-  ### Notes
+  ##### Notes
   - The metrics package provides simple and easy-to-use functions for calculating evaluation metrics. However, keep in mind that these functions expect the necessary input arguments (e.g., true positives, true negatives) based on the specific task you are evaluating.
 
   - The calculate_f1_score and calculate_accuracy functions are designed for binary classification tasks. If you are working with multiclass classification, you may need to adapt or extend these functions accordingly.
@@ -125,8 +214,6 @@ The `metrics` package is a Python library that provides various evaluation metri
   - For BLEU score calculation, the nltk library is used. Ensure that you have installed it before running the code:
   `pip install nltk`
   - This package aims to offer a basic set of evaluation metrics commonly used in NLP tasks. Depending on your specific use case, you may need to incorporate additional or specialized metrics for comprehensive evaluation.
-
-  Feel free to explore and modify the metrics package to suit your evaluation needs. By using these evaluation metrics, you can better understand the performance and effectiveness of your large language models across various tasks and datasets.
 
 ## Evaluation Levels:
 
