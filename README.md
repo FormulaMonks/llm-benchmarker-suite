@@ -58,8 +58,10 @@ Run the following command if you haven't installed Poetry yet:
 `curl -sSL https://install.python-poetry.org | python3 -`
 
 4. Install dependencies and submodules
+```bash
 poetry install
 git submodule init && git submodule update
+```
 
 5. Install the main package and submodules in editable mode
 ```bash
