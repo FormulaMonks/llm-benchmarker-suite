@@ -15,6 +15,11 @@ LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming 
 - Static Evaluations - Uses OpenCompass package to for coverage on most of popular benchmarking datasets and large language models.
 - Evaluation Levels - Dataset independent evaluations similar to the one [here](https://lmsys.org/vicuna_eval/).
 - LLM-as-a-judge - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
+- OpenAI Evals - Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
+
+#### Running evals
+- Learn how to run existing evals: [run-evals.md](docs/run-evals.md).
+- Familiarize yourself with the existing eval templates: [eval-templates.md](docs/eval-templates.md).
 
 This concept allows for multiple levels of evaluating the effectiveness of a large language models.
 
@@ -104,8 +109,6 @@ In this package, you can use MT-bench questions and prompts to evaluate your mod
 MT-bench is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
 To automate the evaluation process, we prompt strong LLMs like GPT-4 to act as judges and assess the quality of the models' responses.
 
-#### MT-Bench
-
 ##### Evaluate a model on MT-bench
 
 ###### Step 1. Generate model answers to MT-bench questions
@@ -153,11 +156,20 @@ The judgments will be saved to `data/mt_bench/model_judgment/gpt-4_single.jsonl`
   python show_result.py
   ```
 
----
-
-
 For more information on usage details, refer to the following [docs](https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/README.md).
- 
+
+---
+#### OpenAI Evals
+Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
+
+We now support evaluating the behavior of any system including prompt chains or tool-using agents, via the [Completion Function Protocol](docs/completion-fns.md).
+
+With Evals, we aim to make it as simple as possible to build an eval while writing as little code as possible. An "eval" is a task used to evaluate the quality of a system's behavior. To get started, we recommend that you follow these steps:
+
+To get set up with evals, follow the [setup instructions below](https://github.com/openai/evals/blob/main/README.md#setup).
+
+For more information on usage details, refer to the following [docs](https://github.com/openai/evals/blob/main/README.md).
+
 #### Metrics
 The `metrics` package is a Python library that provides various evaluation metrics commonly used to assess the performance of large language models. It includes functions to calculate metrics such as F1 score, accuracy, and BLEU score.
 
