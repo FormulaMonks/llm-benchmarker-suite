@@ -139,16 +139,10 @@ Examining the present statistics, it becomes evident that GPT models, particular
 There are many packages that assist in evaluation of Large Language Models (LLMs). We take the best practices available along with our own optimizations to create one-stop method to evaluate LLMs holistically aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features include:
 
 - **Static Evaluations** - 
-Use standard becnhamrking datasets like BoolQ, HellaSWAG, GLUE OpenCompass package to for coverage on most of popular benchmarking datasets and large language models.
+Use standard becnhamrking datasets like BoolQ, HellaSWAG, GLUE OpenCompass package to for coverage on most of popular benchmarking datasets and large language models. You can view it locally by [index.html](https://github.com/TheoremOne/llm-benchmarker-suite/blob/43be88d30b28e61203ed62739edeb766b39e9915/static/index.html) in your localhost.
 - **Evaluation Levels** - Dataset independent evaluations similar to the one [here](https://lmsys.org/vicuna_eval/).
 - **LLM-as-a-judge** - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
 - **OpenAI Evals** - Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
-
-#### <a id="running-evals"></a> Running evals
-- Learn how to run existing evals: [run-evals.md](https://github.com/openai/evals/blob/main/docs/run-evals.md).
-- Familiarize yourself with the existing eval templates: [eval-templates.md](https://github.com/openai/evals/blob/main/docs/eval-templates.md).
-
-This concept allows for multiple levels of evaluating the effectiveness of a large language models.
 
 ## <a id="installation"></a> Installation
 
@@ -167,6 +161,13 @@ Run the following to command in a linux machine to check _CUDA toolkit_ and _cuD
 nvidia-smi
 nvcc --version
 ```
+
+In case you do not have access to a Linux machine, we recommend using cloud GPU instance providers like [Vast.ai Console](https://cloud.vast.ai/).
+1. Go to [templates](https://cloud.vast.ai/templates/) and select the latest version nvidia/cuda image to create a new instance.
+2. Select the GPU type and the number of GPUs you want to use. (Recommended for benchmarking: 1x A100 SXM4) and select `Rent`.
+3. Then go to the `Instances` tab and press &#9658; to start the instance.
+4. SSH into the instance using:- `ssh -p \<Instance Port Range start\> root@\<public ip addres\> -L 8080:localhost:8080`
+
 ### <a id="environment-setup"></a>Environment Setup
 1. Clone the repository
 ```bash
@@ -184,6 +185,8 @@ source ./venv/bin/activate
 (Ensure Poetry is added to your system's PATH)
 Run the following command if you haven't installed Poetry yet:
 `curl -sSL https://install.python-poetry.org | python3 -`
+>We use Poetry to ensure robust dependency management across various machines. Poetry provides advanced features for managing dependencies, project packaging, and publishing, making it a powerful choice for managing project dependencies.
+
 
 4. Install dependencies and submodules
 ```bash
@@ -204,16 +207,30 @@ cd ../FastChat && pip install -e ".[eval]"
 ```bash
 cd opencompass && python opencompass/run.py configs/eval_demo.py -w outputs/demo
 ```
-2. To view the locally created metrics dashboard start a server at `cd ../static && python3 -m http.server 8000` and go to http://localhost:8000/ in your browser. Alternatively you can also compare you're evaluations with ours at [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.com/
-).
+2. To access the locally created metrics dashboard, initiate a server by navigating to the `../static` directory and running the command `python3 -m http.server 8000`. Afterward, open your web browser and visit http://localhost:8000/. Alternatively, you can compare your evaluations with ours on the [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/).
 
 
 
 ### <a id="important-suite-tools"></a> Important Suite Tools:
-The Suite comprises of tools to help you carry out metrics analysis on large language models in a bunch of different ways to suit your use case.
+The Suite consists of various tools designed to assist you in conducting metrics analysis on large language models. These tools offer diverse approaches tailored to your specific use case such as doing a static evaluation on stabndard dataset or using another LLM as a judge to check your inferencing capabilities.
 
 #### <a id="opencompass"></a> OpenCompass:
-This is a static evaluation package meant to test the capabilities of a model.
+This is a static evaluation package designed to assess the capabilities of a model through predefined measures and scenarios.
+
+In the realm of model evaluation, "static evaluation" refers to an approach where assessments are performed on a fixed set of tasks, data, or benchmarks. These assessments provide a snapshot of a model's performance under specific conditions. Static evaluation contrasts with dynamic evaluation, where models are tested in more interactive, real-world scenarios.
+
+Benefits of static evaluation:
+1. **Controlled Environment:** Static evaluations provide a controlled and repeatable testing environment, making it easier to compare different models objectively.
+2. **Benchmarking:** They enable direct comparison against established benchmarks, aiding in gauging a model's performance relative to others.
+3. **Simplicity:** Static evaluations can be simpler to set up and execute, requiring less complex infrastructure and data handling.
+
+Downsides of static evaluation:
+1. **Limited Realism:** Since static evaluations operate within predefined scenarios, they might not fully capture a model's behavior in dynamic, real-world contexts.
+2. **Lack of Adaptability:** Static evaluations may not account for a model's ability to adapt or learn from ongoing interactions, which is essential for many applications.
+3. **Potential Bias:** The fixed nature of static evaluations might inadvertently introduce bias if the scenarios don't adequately represent the diversity of potential use cases.
+
+Static evaluation offers controlled and comparable assessments of a model's performance within specific conditions. However, it may not capture the full range of a model's capabilities in real-world, dynamic settings. The choice between static and dynamic evaluation depends on the intended goals and the context of the evaluation.
+
 <!-- [![PyPI](https://badge.fury.io/py/opencompass.svg)](https://pypi.org/project/opencompass/) -->
 [Website](https://opencompass.org.cn/) •
 [Documentation](https://opencompass.readthedocs.io/en/latest/) • 
@@ -241,6 +258,36 @@ In this package, you can use MT-bench questions and prompts to evaluate your mod
 MT-bench is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
 
 To automate the evaluation process, we prompt strong LLMs like GPT-4 to act as judges and assess the quality of the models' responses.
+
+This package introduces a novel approach to model evaluation, leveraging the MT-bench framework for evaluating chat assistants through the lens of a Language Model (LLM)-as-a-judge paradigm.
+
+Traditionally, model evaluation has often involved static benchmarks or human evaluators. While valuable, these approaches can have limitations in capturing the complexity of dynamic conversational interactions and may involve subjective biases. The MT-bench methodology seeks to address these challenges by presenting a set of intricate multi-turn open-ended questions tailored to test the abilities of chat assistants comprehensively.
+
+Incorporating LLMs, such as GPT-4, as judges introduces a unique and automated dimension to the evaluation process. Here's the tradeoff and benefits of this innovative approach:
+
+**Benefits and Problem Solving:**
+
+1. **Enhanced Dynamic Assessment:** Unlike static benchmarks, MT-bench questions simulate real-world conversational scenarios, allowing for a more dynamic assessment of a model's performance in multi-turn interactions.
+
+2. **Objective and Consistent Judgment:** By employing LLMs as judges, the evaluation process gains objectivity and consistency. LLMs, trained on vast amounts of text, can provide an unbiased and standardized measure of response quality.
+
+3. **Efficiency and Automation:** Using LLMs as judges automates the evaluation process, enabling rapid and scalable assessments. This is especially advantageous when dealing with a large number of models or frequent evaluations.
+
+4. **Insights into Model Behavior:** LLM judges can offer insights into a model's behavior and thought process during evaluation, shedding light on strengths and weaknesses that might not be apparent through other methods.
+
+5. **Reduced Human Bias:** Human evaluators may introduce subjective biases, whereas LLM judges are not influenced by external factors, leading to fairer and more consistent evaluations.
+
+However, there are considerations to bear in mind:
+
+**Tradeoffs:**
+
+1. **Contextual Understanding:** While LLMs excel in many language tasks, they might not fully understand nuanced context or domain-specific intricacies, potentially affecting their judgment accuracy.
+
+2. **Interpreting Open-ended Responses:** LLM judges may sometimes provide responses that are insightful but not entirely aligned with human intuition, requiring careful interpretation.
+
+3. **Generalization:** LLM judges' behavior might differ from human evaluators, necessitating efforts to ensure that the judgments align with human standards.
+
+This innovative evaluation approach combines the MT-bench framework's rich and dynamic assessment with the objectivity and scalability of LLMs as judges. By automating the process and minimizing biases, this approach addresses challenges that traditional evaluation methods may encounter, providing a valuable tool for comprehensively evaluating chat assistants.
 
 ##### Evaluate a model on MT-bench
 
@@ -354,9 +401,10 @@ Refer to the following [Jupyter Notebooks](https://github.com/openai/evals/tree/
 
 For more information on usage details, refer to the following [docs](https://github.com/openai/evals/blob/main/README.md).
 
-#### Running evals
-- Learn how to run existing evals: [run-evals.md](docs/run-evals.md).
-- Familiarize yourself with the existing eval templates: [eval-templates.md](docs/eval-templates.md).
+
+#### <a id="running-evals"></a> Running evals
+- Learn how to run existing evals: [run-evals.md](https://github.com/openai/evals/blob/main/docs/run-evals.md).
+- Familiarize yourself with the existing eval templates: [eval-templates.md](https://github.com/openai/evals/blob/main/docs/eval-templates.md).
 
 This concept allows for multiple levels of evaluating the effectiveness of a large language models.
 
