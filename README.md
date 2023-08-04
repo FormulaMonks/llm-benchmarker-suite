@@ -12,6 +12,11 @@ To use learn how to use the tools directly jump to [Header](#tools-overview) or 
 
 # <a id="table-of-contents"></a> Table of Contents
 - [Introduction](#introduction)
+- [Building Blocks of LLM Evaluation](#building-blocks-of-llm-evaluation)
+- [Tools Overview](#tools-overview)
+- [Citation](#citation)
+- [Acknowledgements](#acknowledgements)
+- [Contact](#contact)
 
 ## <a id="introduction"></a> Introduction
 
@@ -21,12 +26,12 @@ However, despite the widespread interest in benchmarking LLMs, the process itsel
 
 Motivated by this imperative, we introduce the **LLM Benchmarking Suite**, a pioneering effort aimed at addressing the current fragmentation and ambiguity surrounding LLM benchmarking. Our suite offers a structured methodology, a curated collection of diverse benchmarking tasks, and an amalgam of open-source toolkits designed to streamline the process of assessing LLM performance. By providing a unified platform for benchmarking, our project seeks to foster collaboration, promote transparency, and ultimately elevate the quality of research within the NLP community.
 
-## Building Blocks of LLM Evaluation
+## <a id="building-blocks-of-llm-evaluation"></a> Building Blocks of LLM Evaluation
 For manually conducting evaluations, you generally follow the following steps:
 - Load the model
 - Load an appropriate benchmarking dataset
 - Selecting a relevant metric for evaluation
-### Loading the Model
+### <a id="loading-the-model"></a> Loading the Model
 We need to figure out a way to load these models locally in the most efficient manner to run fast inefernces with. The following options support local loading of a model which differs based on operating system under usage:
 
 - Ollama (Mac) [jmorganca/ollama: Get up and running with large language models locally (github.com)](https://github.com/jmorganca/ollama)
@@ -42,7 +47,7 @@ We need to figure out a way to load these models locally in the most efficient m
 
 Some also offer a web UI integrated with a cloud-based language model.
 
-### Load an appropriate benchmarking dataset
+### <a id="loading-an-appropriate-benchmarking-dataset"></a>Load an appropriate benchmarking dataset
 Datasets mainly fall under multiple categories which aim to test proficiency of a model at a particular task such as question answering or summarization such Squad and RACE. Hybrid benchmarks such as SuperGlue and LAMBADA were also created to which include a variety of tasks to test the model on to get a more holistic understanding of the a large language model's capabilities. The popularity and relevance of a dataset can be gauged from what the latest foundational models use such as:
 - AGIEval (Human standardized tests proficiency) and BigBench Hard (Subset of problems which are yet to surpass Human Level Performance (HLE)) for Orca
 - MMLU (Its metrics are agreed upon to indicate proximity to acheiving AGI) - for Llama-2 
@@ -51,7 +56,7 @@ We also prefer minimally curated datasets to ensure that the dataset is not bias
 ![image](static/assets/image8.gif)
 *This visualization from Google shows how the complexity and score of an LLM can grow within different areas with the number of parameters*
 
-### Selecting a relevant metric for evaluation
+### <a id="selecting-a-relevant-metric-for-evaluation"></a> Selecting a relevant metric for evaluation
 The most common metrics used for evaluation are:
 - Perplexity
   - Pros:
@@ -99,7 +104,7 @@ The most common metrics used for evaluation are:
     - Subjectivity: Human evaluation can be subjective and prone to biases, making it challenging to establish consistent benchmarks.
     -Resource-Intensive: Requires human annotators, time, and resources, making it less feasible for large-scale evaluations.
 
-# Observations
+# <a id="observations"></a> Observations
 
 
 | Bencmark (Higher is Better) | MPT (7B) | Falcon (7B) | LLama-2 (7B) | Llama-2 (13B) | MPT (30B) | Falcon (40B) | Llama-1 (65B) | Llama-2 (70B) |
@@ -118,28 +123,20 @@ The most common metrics used for evaluation are:
 
 
 # <a id="tools-overview"></a> Tools Overview
-There are many packages that assist in evaluation of Large Language Models (LLMs). We take the best practices available along with our own optimizations to create one-stop method to evaluate LLMs holistically.
+There are many packages that assist in evaluation of Large Language Models (LLMs). We take the best practices available along with our own optimizations to create one-stop method to evaluate LLMs holistically aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features include:
 
-## Introduction
-
-LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features include:
-
-- Static Evaluations - Uses OpenCompass package to for coverage on most of popular benchmarking datasets and large language models.
-- Evaluation Levels - Dataset independent evaluations similar to the one [here](https://lmsys.org/vicuna_eval/).
-- LLM-as-a-judge - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
-- OpenAI Evals - Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
 - **Static Evaluations** - Uses OpenCompass package to for coverage on most of popular benchmarking datasets and large language models.
 - **Evaluation Levels** - Dataset independent evaluations similar to the one [here](https://lmsys.org/vicuna_eval/).
 - **LLM-as-a-judge** - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
 - **OpenAI Evals** - Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
 
-#### Running evals
-- Learn how to run existing evals: [run-evals.md](docs/run-evals.md).
-- Familiarize yourself with the existing eval templates: [eval-templates.md](docs/eval-templates.md).
+#### <a id="running-evals"></a> Running evals
+- Learn how to run existing evals: [run-evals.md](https://github.com/openai/evals/blob/main/docs/run-evals.md).
+- Familiarize yourself with the existing eval templates: [eval-templates.md](https://github.com/openai/evals/blob/main/docs/eval-templates.md).
 
 This concept allows for multiple levels of evaluating the effectiveness of a large language models.
 
-## Installation
+## <a id="installation"></a> Installation
 
   To install the `llm_benchmarking_suite` as a PyPi package, use the following pip command:
 To install the `llm_benchmarking_suite` package, use the following pip command:
@@ -150,13 +147,13 @@ pip install llm_benchmarking_suite
 
 ## Get Started
 
-### Pre-requisites
+### <a id="prerequisites"></a> Pre-requisites
 Run the following to command in a linux machine to check _CUDA toolkit_ and _cuDNN_ is correctly configured. This will not run in macOS or Windows.
 ```bash
 nvidia-smi
 nvcc --version
 ```
-### Environment Setup
+### <a id="environment-setup"></a>Environment Setup
 1. Clone the repository
 ```bash
 git clone https://github.com/TheoremOne/llm-benchmarker-suite.git
@@ -188,7 +185,7 @@ cd ../FastChat && pip install -e ".[eval]"
 ```
 
 
-## Run static evaluations
+## <a id="run-static-evaluations"></a> Run static evaluations
 1. 
 ```bash
 cd opencompass && python opencompass/run.py configs/eval_demo.py -w outputs/demo
@@ -198,10 +195,10 @@ cd opencompass && python opencompass/run.py configs/eval_demo.py -w outputs/demo
 
 
 
-### Important Suite Tools:
+### <a id="important-suite-tools"></a> Important Suite Tools:
 The Suite comprises of tools to help you carry out metrics analysis on large language models in a bunch of different ways to suit your use case.
 
-#### OpenCompass:
+#### <a id="opencompass"></a> OpenCompass:
 This is a static evaluation package meant to test the capabilities of a model.
 <!-- [![PyPI](https://badge.fury.io/py/opencompass.svg)](https://pypi.org/project/opencompass/) -->
 [Website](https://opencompass.org.cn/) •
@@ -222,7 +219,7 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
 
 - **Experiment management and reporting mechanism**: Use config files to fully record each experiment, support real-time reporting of results.
 
-#### FastChat's LLM-as-a-Judge:
+#### <a id="llm-as-a-judge"></a> FastChat's LLM-as-a-Judge:
 [Paper](https://arxiv.org/abs/2306.05685) • [Leaderboard](https://chat.lmsys.org/?leaderboard) • [MT-bench Human Annotation Dataset](https://huggingface.co/datasets/lmsys/mt_bench_human_judgments) • [Chatbot Arena Conversation Dataset](https://huggingface.co/datasets/lmsys/chatbot_arena_conversations)
 
 In this package, you can use MT-bench questions and prompts to evaluate your models with LLM-as-a-judge.
@@ -309,7 +306,7 @@ python show_result.py
 For more information on usage details, refer to the following [docs](https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/README.md).
 
 ---
-#### OpenAI Evals
+#### <a id="openai-evals"></a> OpenAI Evals
 Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
 
 An “eval” refers to a specific evaluation task that is used to measure the performance of a language model in a particular area, such as question answering or sentiment analysis. These evals are typically standardized benchmarks that allow for the comparison of different language models. The Eval framework provides a standardized interface for running these evals and collecting the results.
@@ -407,7 +404,7 @@ print("BLEU Score:", bleu_score)
 
 The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
 
-### Datasets
+### <a id="datasets"></a> Datasets
 This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
 
 ```python
@@ -435,13 +432,13 @@ Go to `eval_levels/example.py` for example usage of _Evaluation Levels_.
 
 - Ensure that you have internet access to download Hugging Face models and access the proprietary language model APIs.
 
-## Leaderboard
+## <a id="leaderboard"></a> Leaderboard
 
 We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.com/
 ) for community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `abhijoy.sarkar@theoremone.co`.
 
 
-## Dataset Support
+## <a id="dataset-support"></a> Dataset Support
 
 <table align="center">
 <tbody>
@@ -628,7 +625,7 @@ We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.co
   </tbody>
 </table>
 
-## Model Support
+## <a id="model-support"></a> Model Support
 
 <table align="center">
   <tbody>
@@ -680,6 +677,3 @@ We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.co
 </tbody>
 </table>
 
-## Acknowledgements
-
-Some code in this project is cited and modified from [OpenICL](https://github.com/Shark-NLP/OpenICL).
