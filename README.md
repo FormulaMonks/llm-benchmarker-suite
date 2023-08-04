@@ -160,7 +160,12 @@ pip install llm_benchmarking_suite
 ## Get Started
 
 ### <a id="prerequisites"></a> Pre-requisites
-Run the following to command in a linux machine to check _CUDA toolkit_ and _cuDNN_ is correctly configured. This will not run in macOS or Windows.
+Run the following to command in a linux machine to check _CUDA toolkit_ and _cuDNN_ is correctly configured. This will **NOT** run if CUDA toolkit is not configured for your machine/cloud instance.
+
+Refer to the following links to install CUDA. 
+- [CUDA Linux Installation Guide](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html) and [cuDNN Installation Guide](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html)
+- [CUDA Windows Installation Guide](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html) and [cuDNN Installation Guide](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html)
+
 ```bash
 nvidia-smi
 nvcc --version
