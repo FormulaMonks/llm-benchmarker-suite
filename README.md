@@ -13,10 +13,19 @@ To use learn how to use the tools directly jump to [Header](#tools-overview) or 
 # <a id="table-of-contents"></a> Table of Contents
 - [Introduction](#introduction)
 - [Building Blocks of LLM Evaluation](#building-blocks-of-llm-evaluation)
+  - [Loading the Model](#loading-the-model)
+  - [Loading the Dataset](#loading-the-dataset)
+  - [Selecting a Metric](#selecting-a-metric)
+- [Observations](#observations)
 - [Tools Overview](#tools-overview)
-- [Citation](#citation)
-- [Acknowledgements](#acknowledgements)
-- [Contact](#contact)
+- [Installation](#installation)
+  - [Getting Started](#getting-started)
+  - [Usage](#usage)
+- [Run static evaluations](#run-static-evaluations)
+  - [OpenCompass](#opencompass)
+  - [LLM-as-a-Judge](#llm-as-a-judge)
+  - [OpenAI Evals](#openai-evals)
+- [Evaluation Levels](#evaluation-levels)
 
 ## <a id="introduction"></a> Introduction
 
