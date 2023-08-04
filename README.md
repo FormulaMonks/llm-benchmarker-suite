@@ -7,7 +7,11 @@
 
 Welcome to **LLM Benchmarker Suite**!
 
-Navigating the intricate landscape of large language models evaluation has never been more essential, and as the demand for cutting-edge language AI continues to surge, the need for a comprehensive and streamlined approach becomes increasingly apparent. In this pursuit, we amalgamate state-of-the-art methodologies with our finely tuned optimizations, culminating in a singular, all-encompassing method that promises to redefine how we holistically evaluate large language models. Join us as we unveil a transformative one-stop solution born from best practices and innovation, poised to set new standards in the evaluation paradigm.
+Navigating the complex landscape of evaluating large-scale language models has never been more important. As the demand for cutting-edge language AI continues to grow, the need for a comprehensive and optimized approach becomes ever more apparent. 
+
+To do this, we combine cutting-edge methods with our fine-tuned optimizations to achieve a unique, one-stop-shop approach that promises to redefine the way we holistically evaluate large language models. 
+
+Join us as we unveil a transformative one-stop solution, born of best practices and innovation, that will set new standards for the evaluation paradigm.
 
 To use learn how to use the tools directly jump to [Tools Overview](#tools-overview)
 
