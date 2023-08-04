@@ -6,9 +6,12 @@
 </div>
 
 Welcome to **LLM Benchmarker Suite**!
-Many packages assist in the evaluation of large language models. We take the best practices available along with our optimizations to create a one-stop method to evaluate Large Language Models holistically.
 
-To use learn how to use the tools directly jump to [Header](#tools-overview) or [Table of Contents](#table-of-contents)
+Navigating the intricate landscape of large language models evaluation has never been more essential, and as the demand for cutting-edge language AI continues to surge, the need for a comprehensive and streamlined approach becomes increasingly apparent. In this pursuit, we amalgamate state-of-the-art methodologies with our finely tuned optimizations, culminating in a singular, all-encompassing method that promises to redefine how we holistically evaluate large language models. Join us as we unveil a transformative one-stop solution born from best practices and innovation, poised to set new standards in the evaluation paradigm.
+
+To use learn how to use the tools directly jump to [Tools Overview](#tools-overview)
+
+[Table of Contents](#table-of-contents)
 
 # <a id="table-of-contents"></a> Table of Contents
 - [Introduction](#introduction)
@@ -25,7 +28,6 @@ To use learn how to use the tools directly jump to [Header](#tools-overview) or 
   - [OpenCompass](#opencompass)
   - [LLM-as-a-Judge](#llm-as-a-judge)
   - [OpenAI Evals](#openai-evals)
-- [Evaluation Levels](#evaluation-levels)
 
 ## <a id="introduction"></a> Introduction
 
@@ -58,8 +60,9 @@ Some also offer a web UI integrated with a cloud-based language model.
 
 ### <a id="loading-an-appropriate-benchmarking-dataset"></a>Load an appropriate benchmarking dataset
 Datasets mainly fall under multiple categories which aim to test proficiency of a model at a particular task such as question answering or summarization such Squad and RACE. Hybrid benchmarks such as SuperGlue and LAMBADA were also created to which include a variety of tasks to test the model on to get a more holistic understanding of the a large language model's capabilities. The popularity and relevance of a dataset can be gauged from what the latest foundational models use such as:
-- AGIEval (Human standardized tests proficiency) and BigBench Hard (Subset of problems which are yet to surpass Human Level Performance (HLE)) for Orca
-- MMLU (Its metrics are agreed upon to indicate proximity to acheiving AGI) - for Llama-2 
+- *AGIEval* (Human standardized tests proficiency) and BigBench Hard (Subset of problems which are yet to surpass Human Level Performance (HLE)) for Orca
+- *MMLU* ( A test to measure a text model’s multitask accuracy. The test covers fifty-seven tasks including elementary mathematics, US history, computer science, law, and more.
+) - used for Llama-2 evaluation 
 We also prefer minimally curated datasets to ensure that the dataset is not biased towards a particular model. 
 
 ![image](static/assets/image8.gif)
@@ -130,11 +133,13 @@ The most common metrics used for evaluation are:
 |           *QuAC*          |   37.7   |     18.8    |     39.7     |      44.8     |    41.1   |     43.3     |      39.8     |    **49.3**   |
 |        *Winogrande*       |   68.3   |     66.3    |     69.2     |      72.8     |    71.0   |     76.9     |      77.0     |    **80.2**   |
 
+Examining the present statistics, it becomes evident that GPT models, particularly the likes of GPT-4, developed by OpenAI, consistently achieve the highest average scores across various scenarios. Yet, a pertinent consideration arises: could this remarkable performance be primarily attributed to the sheer number of parameters employed by GPT models? To what extent does this parameter count influence the overall score of a language model? This question gains further substance when observing the test scores presented by LLaMa2, where a conspicuous pattern emerges — models with a greater quantity of parameters tend to correspondingly secure higher scores across diverse benchmark assessments. In light of this, a crucial inquiry persists: does the proliferation of parameters inherently propel GPT's exceptional scoring, or are there other factors interacting to elevate its performance?
 
 # <a id="tools-overview"></a> Tools Overview
 There are many packages that assist in evaluation of Large Language Models (LLMs). We take the best practices available along with our own optimizations to create one-stop method to evaluate LLMs holistically aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features include:
 
-- **Static Evaluations** - Uses OpenCompass package to for coverage on most of popular benchmarking datasets and large language models.
+- **Static Evaluations** - 
+Use standard becnhamrking datasets like BoolQ, HellaSWAG, GLUE OpenCompass package to for coverage on most of popular benchmarking datasets and large language models.
 - **Evaluation Levels** - Dataset independent evaluations similar to the one [here](https://lmsys.org/vicuna_eval/).
 - **LLM-as-a-judge** - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
 - **OpenAI Evals** - Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
@@ -408,10 +413,6 @@ print("BLEU Score:", bleu_score)
 - The `calculate_f1_score` and `calculate_accuracy` functions are designed for binary classification tasks. If you are working with multiclass classification, you may need to adapt or extend these functions accordingly.
 - For BLEU score calculation, the **nltk** library is used. Ensure that you have installed it before running the code `pip install nltk`.
 - This package aims to offer a basic set of evaluation metrics commonly used in NLP tasks. Depending on your specific use case, you may need to incorporate additional or specialized metrics for comprehensive evaluation.
-
-## Evaluation Levels:
-
-The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
 
 ### <a id="datasets"></a> Datasets
 This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
