@@ -2,7 +2,7 @@
 name = "llm-benchmarker-suite"
 version = "0.1.0"
 description = ""
-authors = ["Abhijoy Sarkar <abhijoy.sar@gmail.com>"]
+authors = ["Abhijoy Sarkar <abhijoy.sarkar@theoremone.co>"]
 readme = "README.md"
 packages = [{include = "llm_benchmarker_suite"}]
 
