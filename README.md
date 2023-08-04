@@ -160,16 +160,18 @@ pip install llm_benchmarking_suite
 ## Get Started
 
 ### <a id="prerequisites"></a> Pre-requisites
-Run the following to command in a linux machine to check _CUDA toolkit_ and _cuDNN_ is correctly configured. This will **NOT** run if CUDA toolkit is not configured for your machine/cloud instance.
+The LLM Benchmarking Suite will **NOT** run if CUDA toolkit is not configured for your machine/cloud instance.
+
+Run the following to command in a linux machine to check _CUDA toolkit_ and _cuDNN_ is correctly configured. 
+```bash
+nvidia-smi
+nvcc --version
+```
 
 Refer to the following links to install CUDA. 
 - [CUDA Linux Installation Guide](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html) and [cuDNN Installation Guide](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html)
 - [CUDA Windows Installation Guide](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html) and [cuDNN Installation Guide](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html)
 
-```bash
-nvidia-smi
-nvcc --version
-```
 
 In case you do not have access to a Linux machine, we recommend using cloud GPU instance providers like [Vast.ai Console](https://cloud.vast.ai/).
 1. Go to [templates](https://cloud.vast.ai/templates/) and select the latest version nvidia/cuda image to create a new instance.
@@ -485,10 +487,6 @@ race_data = load_race_dataset()
 print("HellaSWAQ dataset:", hellaswaq_data)
 print("RACE dataset:", race_data)
 ```
-
-### Usage
-
-Go to `eval_levels/example.py` for example usage of _Evaluation Levels_.
 
 ### Notes
   
