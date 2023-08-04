@@ -2,20 +2,20 @@
   <img src="./static/assets/th1-icon-round.svg" width="100px"/>
   <br />
   <br />
-
 </div>
 
 Welcome to **LLM Benchmarker Suite**!
 
-There are many packages that assist in evaluation of large language models. We take the best practices available along with our own optimizations to create one-stop method to evaluate Large Language Models holistically.
+There are many packages that assist in evaluation of Large Language Models (LLMs). We take the best practices available along with our own optimizations to create one-stop method to evaluate LLMs holistically.
+
 ## Introduction
 
 LLM Benchmarker Suite is a one-stop platform for large model evaluation, aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features includes:
 
-- Static Evaluations - Uses OpenCompass package to for coverage on most of popular benchmarking datasets and large language models.
-- Evaluation Levels - Dataset independent evaluations similar to the one [here](https://lmsys.org/vicuna_eval/).
-- LLM-as-a-judge - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
-- OpenAI Evals - Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
+- **Static Evaluations** - Uses OpenCompass package to for coverage on most of popular benchmarking datasets and large language models.
+- **Evaluation Levels** - Dataset independent evaluations similar to the one [here](https://lmsys.org/vicuna_eval/).
+- **LLM-as-a-judge** - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
+- **OpenAI Evals** - Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
 
 #### Running evals
 - Learn how to run existing evals: [run-evals.md](docs/run-evals.md).
@@ -25,11 +25,11 @@ This concept allows for multiple levels of evaluating the effectiveness of a lar
 
 ## Installation
 
-  To install the `llm_benchmarking_suite` package, use the following pip command:
+To install the `llm_benchmarking_suite` package, use the following pip command:
 
-  ```bash
-  pip install llm_benchmarking_suite
-  ```
+```bash
+pip install llm_benchmarking_suite
+```
 
 ## Get Started
 
@@ -86,45 +86,54 @@ The Suite comprises of tools to help you carry out metrics analysis on large lan
 #### OpenCompass:
 This is a static evaluation package meant to test the capabilities of a model.
 <!-- [![PyPI](https://badge.fury.io/py/opencompass.svg)](https://pypi.org/project/opencompass/) -->
-[🌐Website](https://opencompass.org.cn/) |
-[📘Documentation](https://opencompass.readthedocs.io/en/latest/) |
-[🛠️Installation](https://opencompass.readthedocs.io/en/latest/get_started.html#installation) |
-[🤔Reporting Issues](https://github.com/InternLM/opencompass/issues/new/choose)
+[Website](https://opencompass.org.cn/) •
+[Documentation](https://opencompass.readthedocs.io/en/latest/) • 
+[Installation](https://opencompass.readthedocs.io/en/latest/get_started.html#installation) •
+[Reporting Issues](https://github.com/InternLM/opencompass/issues/new/choose)
 
-```python
+```shell
 python opencompass/run.py configs/eval_demo.py -w outputs/demo
 ```
-  - **Comprehensive support for models and datasets**: Pre-support for 20+ HuggingFace and API models, a model evaluation scheme of 50+ datasets with about 300,000 questions, comprehensively evaluating the capabilities of the models in five dimensions.
+- **Comprehensive support for models and datasets**: Pre-support for 20+ HuggingFace and API models, a model evaluation scheme of 50+ datasets with about 300,000 questions, comprehensively evaluating the capabilities of the models in five dimensions.
 
-  -  **Efficient distributed evaluation**: One line command to implement task division and distributed evaluation, completing the full evaluation of billion-scale models in just a few hours.
+-  **Efficient distributed evaluation**: One line command to implement task division and distributed evaluation, completing the full evaluation of billion-scale models in just a few hours.
 
-  - **Diversified evaluation paradigms**: Support for zero-shot, few-shot, and chain-of-thought evaluations, combined with standard or dialogue type prompt templates, to easily stimulate the maximum performance of various models.
+- **Diversified evaluation paradigms**: Support for zero-shot, few-shot, and chain-of-thought evaluations, combined with standard or dialogue type prompt templates, to easily stimulate the maximum performance of various models.
 
-  - **Modular design with high extensibility**: Want to add new models or datasets, customize an advanced task division strategy, or even support a new cluster management system? Everything about LLM Benchmarker Suite can be easily expanded!
+- **Modular design with high extensibility**: Want to add new models or datasets, customize an advanced task division strategy, or even support a new cluster management system? Everything about LLM Benchmarker Suite can be easily expanded!
 
-  - **Experiment management and reporting mechanism**: Use config files to fully record each experiment, support real-time reporting of results.
+- **Experiment management and reporting mechanism**: Use config files to fully record each experiment, support real-time reporting of results.
 
 #### FastChat's LLM-as-a-Judge:
-| [Paper](https://arxiv.org/abs/2306.05685) | [Leaderboard](https://chat.lmsys.org/?leaderboard) | [MT-bench Human Annotation Dataset](https://huggingface.co/datasets/lmsys/mt_bench_human_judgments) | [Chatbot Arena Conversation Dataset](https://huggingface.co/datasets/lmsys/chatbot_arena_conversations) |
+[Paper](https://arxiv.org/abs/2306.05685) • [Leaderboard](https://chat.lmsys.org/?leaderboard) • [MT-bench Human Annotation Dataset](https://huggingface.co/datasets/lmsys/mt_bench_human_judgments) • [Chatbot Arena Conversation Dataset](https://huggingface.co/datasets/lmsys/chatbot_arena_conversations)
 
 In this package, you can use MT-bench questions and prompts to evaluate your models with LLM-as-a-judge.
+
 MT-bench is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
+
 To automate the evaluation process, we prompt strong LLMs like GPT-4 to act as judges and assess the quality of the models' responses.
 
 ##### Evaluate a model on MT-bench
 
 ###### Step 1. Generate model answers to MT-bench questions
-```
+
+```shell
 python gen_model_answer.py --model-path [MODEL-PATH] --model-id [MODEL-ID]
 ```
-Arguments:
-  - `[MODEL-PATH]` is the path to the weights, which can be a local folder or a Hugging Face repo ID.
-  - `[MODEL-ID]` is a name you give to the model.
 
-e.g.,
+Arguments
+
+- `[MODEL-PATH]` is the path to the weights, which can be a local folder or a Hugging Face repo ID.
+- `[MODEL-ID]` is a name you give to the model.
+
+Example
+
+```shell
+python gen_model_answer.py \
+  --model-path lmsys/vicuna-7b-v1.3 \
+  --model-id vicuna-7b-v1.3
 ```
-python gen_model_answer.py --model-path lmsys/vicuna-7b-v1.3 --model-id vicuna-7b-v1.3
-```
+
 The answers will be saved to `data/mt_bench/model_answer/[MODEL-ID].jsonl`.
 
 To make sure FastChat loads the correct prompt template, see the supported models and how to add a new model [here](../../docs/model_support.md#how-to-support-a-new-model).
@@ -132,31 +141,52 @@ To make sure FastChat loads the correct prompt template, see the supported model
 You can also specify `--num-gpus-per-model` for model parallelism (needed for large 65B models) and `--num-gpus-total` to parallelize answer generation with multiple GPUs.
 
 ###### Step 2. Generate GPT-4 judgments
+
 There are several options to use GPT-4 as a judge, such as pairwise winrate and single-answer grading.
-In MT-bench, we recommond single-answer grading as the default mode.
+
+In MT-bench, we recommend single-answer grading as the default mode.
+
 This mode asks GPT-4 to grade and give a score to model's answer directly without pairwise comparison.
+
 For each turn, GPT-4 will give a score on a scale of 10. We then compute the average score on all turns.
 
-```
+```shell
 python gen_judgment.py --model-list [LIST-OF-MODEL-ID] --parallel [num-concurrent-api-call]
 ```
 
-e.g.,
+Example
+
+```shell
+python gen_judgment.py --parallel 2 --model-list \
+  vicuna-13b-v1.3 \
+  alpaca-13b \
+  llama-13b \
+  claude-v1 \
+  gpt-3.5-turbo \
+  gpt-4
 ```
-python gen_judgment.py --model-list vicuna-13b-v1.3 alpaca-13b llama-13b claude-v1 gpt-3.5-turbo gpt-4 --parallel 2
-```
+
 The judgments will be saved to `data/mt_bench/model_judgment/gpt-4_single.jsonl`
 
 ###### Step 3. Show MT-bench scores
 
-- Show the scores for selected models
-  ```
-  python show_result.py --model-list vicuna-13b-v1.3 alpaca-13b llama-13b claude-v1 gpt-3.5-turbo gpt-4
-  ```
-- Show all scores
-  ```
-  python show_result.py
-  ```
+Show the scores for selected models
+
+```shell
+python show_result.py --model-list \
+    vicuna-13b-v1.3 \
+    alpaca-13b \
+    llama-13b \
+    claude-v1 \
+    gpt-3.5-turbo \
+    gpt-4
+```
+
+Show all scores
+
+```shell
+python show_result.py
+```
 
 For more information on usage details, refer to the following [docs](https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/README.md).
 
@@ -170,17 +200,18 @@ At its core, an eval is a dataset and an eval class that is defined in a YAML fi
 
 ```yaml
 test-match:
-  id: test-match.s1.simple-v0
-  description: Example eval that checks sampled text matches the expected output.
-  disclaimer: This is an example disclaimer.
-  metrics: [accuracy]
+id: test-match.s1.simple-v0
+description: Example eval that checks sampled text matches the expected output.
+disclaimer: This is an example disclaimer.
+metrics: [accuracy]
 test-match.s1.simple-v0:
-  class: evals.elsuite.basic.match:Match
-  args:
-    samples_jsonl: test_match/samples.jsonl
+class: evals.elsuite.basic.match:Match
+args:
+  samples_jsonl: test_match/samples.jsonl
 ```
 
 We can run the above eval with a simple command:
+
 ```bash
 oaieval gpt-3.5-turbo test-match
 ```
@@ -197,92 +228,86 @@ For more information on usage details, refer to the following [docs](https://git
 #### Metrics
 The `metrics` package is a Python library that provides various evaluation metrics commonly used to assess the performance of large language models. It includes functions to calculate metrics such as F1 score, accuracy, and BLEU score.
 
-  ##### Installation
+##### Installation
 
-  The `metrics` package is not available on PyPI and can be used as a standalone package. To integrate it into your project, you can directly copy the individual metric files from the `metrics` directory or clone the entire repository.
+The `metrics` package is not available on PyPI and can be used as a standalone package. To integrate it into your project, you can directly copy the individual metric files from the `metrics` directory or clone the entire repository.
 
-  ##### Usage
+##### Usage
 
-  To use the `metrics` package, follow these steps:
+To use the `metrics` package, follow these steps:
 
-  Import the specific metric functions into your Python script or notebook:
+Import the specific metric functions into your Python script or notebook:
 
-  ```python
-  from metrics.f1_score import calculate_f1_score
-  from metrics.accuracy import calculate_accuracy
-  from metrics.bleu_score import calculate_bleu_score
-  from metrics.utils import count_true_positives_negatives
-  ```
+```python
+from metrics.f1_score import calculate_f1_score
+from metrics.accuracy import calculate_accuracy
+from metrics.bleu_score import calculate_bleu_score
+from metrics.utils import count_true_positives_negatives
+```
 
-  Use the imported functions to evaluate your large language models. For example, if you have predictions and true labels for a binary classification task:
+Use the imported functions to evaluate your large language models. For example, if you have predictions and true labels for a binary classification task:
 
-  ```python
-  # Assume we have predictions and true labels as follows:
-  predictions = [1, 0, 1, 1, 0]
-  true_labels = [1, 0, 0, 1, 1]
+```python
+# Assume we have predictions and true labels as follows:
+predictions = [1, 0, 1, 1, 0]
+true_labels = [1, 0, 0, 1, 1]
 
-  # Calculate true positives and true negatives for binary classification
-  true_positives, true_negatives = count_true_positives_negatives(predictions, true_labels, positive_label=1)
+# Calculate true positives and true negatives for binary classification
+true_positives, true_negatives = count_true_positives_negatives(predictions, true_labels, positive_label=1)
 
-  # Calculate F1 score and accuracy
-  f1_score = calculate_f1_score(true_positives, false_positives, false_negatives)
-  accuracy = calculate_accuracy(true_positives, true_negatives, len(predictions))
+# Calculate F1 score and accuracy
+f1_score = calculate_f1_score(true_positives, false_positives, false_negatives)
+accuracy = calculate_accuracy(true_positives, true_negatives, len(predictions))
 
-  print("F1 Score:", f1_score)
-  print("Accuracy:", accuracy)
-  ```
+print("F1 Score:", f1_score)
+print("Accuracy:", accuracy)
+```
 
-  Additionally, the calculate_bleu_score function can be used to compute the BLEU score for evaluating language generation tasks:
-  ```python
-  # Example usage for BLEU score calculation
-  reference_sentences = ["This is a reference sentence.", "Another reference sentence."]
-  predicted_sentence = "This is a predicted sentence."
+Additionally, the calculate_bleu_score function can be used to compute the BLEU score for evaluating language generation tasks:
+```python
+# Example usage for BLEU score calculation
+reference_sentences = ["This is a reference sentence.", "Another reference sentence."]
+predicted_sentence = "This is a predicted sentence."
 
-  bleu_score = calculate_bleu_score(reference_sentences, predicted_sentence)
-  print("BLEU Score:", bleu_score)
+bleu_score = calculate_bleu_score(reference_sentences, predicted_sentence)
+print("BLEU Score:", bleu_score)
 
-  ```
-  ##### Notes
-  - The metrics package provides simple and easy-to-use functions for calculating evaluation metrics. However, keep in mind that these functions expect the necessary input arguments (e.g., true positives, true negatives) based on the specific task you are evaluating.
-
-  - The calculate_f1_score and calculate_accuracy functions are designed for binary classification tasks. If you are working with multiclass classification, you may need to adapt or extend these functions accordingly.
-
-  - For BLEU score calculation, the nltk library is used. Ensure that you have installed it before running the code:
-  `pip install nltk`
-  - This package aims to offer a basic set of evaluation metrics commonly used in NLP tasks. Depending on your specific use case, you may need to incorporate additional or specialized metrics for comprehensive evaluation.
+```
+##### Notes
+- The metrics package provides simple and easy-to-use functions for calculating evaluation metrics. However, keep in mind that these functions expect the necessary input arguments (e.g. true positives, true negatives) based on the specific task you are evaluating.
+- The `calculate_f1_score` and `calculate_accuracy` functions are designed for binary classification tasks. If you are working with multiclass classification, you may need to adapt or extend these functions accordingly.
+- For BLEU score calculation, the **nltk** library is used. Ensure that you have installed it before running the code `pip install nltk`.
+- This package aims to offer a basic set of evaluation metrics commonly used in NLP tasks. Depending on your specific use case, you may need to incorporate additional or specialized metrics for comprehensive evaluation.
 
 ## Evaluation Levels:
 
-  The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
+The `llm_benchmarking_suite` package is a Python library that provides a simple and generic interface to work with various language models. It supports loading pre-trained models from Hugging Face, as well as integration with proprietary language models like Anthropic and GPT. This package allows you to generate completions using these language models based on given input text.
 
 ### Datasets
-  This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
-  ```python
-  from dataset.hellaswaq import load_hellaswaq_dataset
-  from dataset.race import load_race_dataset
+This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
 
-  # Example usage:
-  hellaswaq_data = load_hellaswaq_dataset()
-  race_data = load_race_dataset()
+```python
+from dataset.hellaswaq import load_hellaswaq_dataset
+from dataset.race import load_race_dataset
 
-  print("HellaSWAQ dataset:", hellaswaq_data)
-  print("RACE dataset:", race_data)
-  ```
+# Example usage:
+hellaswaq_data = load_hellaswaq_dataset()
+race_data = load_race_dataset()
+
+print("HellaSWAQ dataset:", hellaswaq_data)
+print("RACE dataset:", race_data)
+```
 
 ### Usage
 
-  Go to `eval_levels/example.py` for example usage of _Evaluation Levels_.
+Go to `eval_levels/example.py` for example usage of _Evaluation Levels_.
 
 ### Notes
-    
+  
 - This package provides a generic interface to work with language models. Replace the dummy code for proprietary language models with the actual API calls once you have access to the real APIs.
-
 - For Hugging Face models, the model_name parameter should be set to the desired model name. You can choose from models like "gpt2," "gpt2-medium," or "gpt2-large" for larger models.
-
-- For proprietary language models like Anthropic or GPT, replace the api_key and model_url parameters with the actual API key and model URL provided by the respective vendors.
-
+- For proprietary language models like Anthropic or GPT, replace the `api_key` and `model_url` parameters with the actual API key and model URL provided by the respective vendors.
 - The generate_completions method takes the input text and additional keyword arguments specific to the model. Check the respective class definitions for more details on the supported arguments.
-
 - Ensure that you have internet access to download Hugging Face models and access the proprietary language model APIs.
 
 ## Leaderboard
@@ -294,26 +319,26 @@ We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.co
 ## Dataset Support
 
 <table align="center">
-  <tbody>
-    <tr align="center" valign="bottom">
-      <td>
-        <b>Language</b>
-      </td>
-      <td>
-        <b>Knowledge</b>
-      </td>
-      <td>
-        <b>Reasoning</b>
-      </td>
-      <td>
-        <b>Comprehensive Examination</b>
-      </td>
-      <td>
-        <b>Understanding</b>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td>
+<tbody>
+  <tr align="center" valign="bottom">
+    <td>
+      <b>Language</b>
+    </td>
+    <td>
+      <b>Knowledge</b>
+    </td>
+    <td>
+      <b>Reasoning</b>
+    </td>
+    <td>
+      <b>Comprehensive Examination</b>
+    </td>
+    <td>
+      <b>Understanding</b>
+    </td>
+  </tr>
+  <tr valign="top">
+    <td>
 <details open>
 <summary><b>Word Definition</b></summary>
 
@@ -352,8 +377,8 @@ We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.co
 - Flores
 
 </details>
-      </td>
-      <td>
+    </td>
+    <td>
 <details open>
 <summary><b>Knowledge Question Answering</b></summary>
 
@@ -370,8 +395,8 @@ We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.co
 - TyDi-QA
 
 </details>
-      </td>
-      <td>
+    </td>
+    <td>
 <details open>
 <summary><b>Textual Entailment</b></summary>
 
@@ -427,8 +452,8 @@ We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.co
 - BBH
 
 </details>
-      </td>
-      <td>
+    </td>
+    <td>
 <details open>
 <summary><b>Junior High, High School, University, Professional Examinations</b></summary>
 
@@ -441,8 +466,8 @@ We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.co
 - ARC
 
 </details>
-      </td>
-      <td>
+    </td>
+    <td>
 <details open>
 <summary><b>Reading Comprehension</b></summary>
 
@@ -471,30 +496,30 @@ We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.co
 - TNEWS
 
 </details>
-      </td>
-    </tr>
+    </td>
+  </tr>
 </td>
-    </tr>
-  </tbody>
+  </tr>
+</tbody>
 </table>
 
 ## Model Support
 
 <table align="center">
-  <tbody>
-    <tr align="center" valign="bottom">
-      <td>
-        <b>Open-source Models</b>
-      </td>
-      <td>
-        <b>API Models</b>
-      </td>
-      <!-- <td>
-        <b>Custom Models</b>
-      </td> -->
-    </tr>
-    <tr valign="top">
-      <td>
+<tbody>
+  <tr align="center" valign="bottom">
+    <td>
+      <b>Open-source Models</b>
+    </td>
+    <td>
+      <b>API Models</b>
+    </td>
+    <!-- <td>
+      <b>Custom Models</b>
+    </td> -->
+  </tr>
+  <tr valign="top">
+    <td>
 
 - InternLM
 - LLaMA
@@ -527,7 +552,7 @@ We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.co
 </td> -->
 
 </tr>
-  </tbody>
+</tbody>
 </table>
 
 ## Acknowledgements
