@@ -11,7 +11,8 @@ Navigating the complex landscape of evaluating large-scale language models has n
 
 To do this, we combine the best practice with our fine-tuned optimizations to achieve a one-stop-shop approach that provides a way to holistically evaluate large language models.
 
-The transformative solutions used in this package addresses the pressing challenge of fragmented evaluation methodologies, providing an all-inclusive framework that streamlines and simplifies the intricate process of assessing model capabilities.
+The solutions used in this package addresses the pressing challenge of fragmented evaluation methodologies, providing an all-inclusive framework that streamlines and simplifies the intricate process of assessing model capabilities.
+
 
 To use learn how to use the tools directly jump to [Tools Overview](#tools-overview)
 
@@ -44,7 +45,7 @@ For manually conducting evaluations, you generally follow the following steps:
 - Load an appropriate benchmarking dataset
 - Selecting a relevant metric for evaluation
 ### <a id="loading-the-model"></a> Loading the Model
-Loading models locally enables efficient and rapid inferences by eliminating the delays associated with remote network-based inferences, which can be particularly sluggish for sizable models. Local loading optimally harnesses local hardware resources such as GPUs, ensuring swift and accelerated inferences. Among the available libraries facilitating local model loading, vLLM stands out for its exceptional ability to maximize resource utilization and attain peak throughput.
+Loading models locally enables efficient and rapid inferences by eliminating the delays associated with remote network-based inferences, which can be particularly sluggish for sizable models. Local loading optimally harnesses local hardware resources such as GPUs, ensuring swift and accelerated inferences. Among the available libraries facilitating local model loading, vLLM stands out for its  ability to maximize resource utilization and attain peak throughput.
 
 [vLLM](https://vllm.ai/) is a library that allows for fast inference on large language models. It is a fork of the popular HuggingFace Transformers library. It has a feature called paged attention - vLLM which can be seen as a buffer and shared memory feature that can be used to drastically increase the response time for a model improving the number of tokens the model can generate in response each second. Overall it gives a significant speedup over directly using the logic of `from_pretrained` from [AutoClasses of HuggingFace](https://huggingface.co/docs/transformers/autoclass_tutorial) which most benchmarking tools directly use. 
 
@@ -142,9 +143,9 @@ We can draw the following conclusions from these observations:
 1. **Model Size Impact**:
 Larger models consistently demonstrate improved performance across most benchmarks. LLaMA-2 70B particularly stands out, securing the highest scores on 6 out of the 10 benchmarks. This suggests that model size plays a crucial role in achieving superior results across a range of tasks.
 2. **Size-Performance Exceptions**:
-Despite the general trend, there are instances where smaller models outshine their larger counterparts. Notably, LLaMA 65B performs better than LLaMA-2 70B on BoolQ and QuAC. This intriguing phenomenon raises the question of whether task-specific nuances contribute to these exceptions.
+Despite the general trend, there are instances where smaller models outshine their larger counterparts. Notably, LLaMA 65B performs better than LLaMA-2 70B on BoolQ and QuAC. This phenomenon raises the question of whether task-specific nuances contribute to these exceptions.
 3. **Benchmark-Specific Trends**:
-The relative performance of models varies significantly across different benchmarks. For instance, on MMLU, LLaMA-2 70B demonstrates exceptional supremacy, while on BoolQ, models exhibit closely competitive performance. This observation indicates that a model's effectiveness is contingent upon the specific characteristics of the task at hand. For example, BoolQ represents a comparatively straightforward dataset, while MMLU assesses the yes/no question answering proficiency of LLMs, demanding less intricate language comprehension.
+The relative performance of models varies significantly across different benchmarks. For instance, on MMLU, LLaMA-2 70B demonstrates supremacy, while on BoolQ, models exhibit closely competitive performance. This observation indicates that a model's effectiveness is contingent upon the specific characteristics of the task at hand. For example, BoolQ represents a comparatively straightforward dataset, while MMLU assesses the yes/no question answering proficiency of LLMs, demanding less intricate language comprehension.
 4. **Performance Gains with Model Size**:
 The gains achieved by increasing model size are not uniform across benchmarks. For instance, the transition from MPT 7B to MPT 30B yields substantial improvements on MMLU, whereas the gains are relatively smaller on BoolQ. This implies that the relationship between model size and performance enhancement is intricate and possibly task-dependent.
 5. **Trade-offs and Task Complexity**:
