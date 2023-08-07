@@ -287,6 +287,9 @@ This innovative evaluation approach combines the MT-bench framework's rich and d
 
 #### Evaluate a model on MT-bench
 
+![mt-bench-browser](static/assets/mt-bench-browser.png)
+*View data locally using `python3 qa_browser.py --share`*
+
 ##### Step 1. Generate model answers to MT-bench questions
 
 ```shell
@@ -359,6 +362,8 @@ Show all scores
 ```shell
 python show_result.py
 ```
+![mt-bench-browser](static/assets/show_results.png)
+
 
 For more information on usage details, refer to the following [docs](https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/README.md).
 
