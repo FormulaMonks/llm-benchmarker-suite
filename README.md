@@ -9,11 +9,9 @@ Welcome to **LLM Benchmarker Suite**!
 
 Navigating the complex landscape of evaluating large-scale language models has never been more important. As the demand for cutting-edge language AI continues to grow, the need for a comprehensive and optimized approach becomes ever more apparent.
 
-To do this, we combine cutting-edge methods with our fine-tuned optimizations to achieve a unique, one-stop-shop approach that promises to redefine the way we holistically evaluate large language models.
+To do this, we combine the best practice with our fine-tuned optimizations to achieve a one-stop-shop approach that provides a way to holistically evaluate large language models.
 
-This transformative solution addresses the pressing challenge of fragmented evaluation methodologies, providing an all-inclusive framework that streamlines and simplifies the intricate process of assessing model capabilities.
-
-Join us as we unveil this game-changing solution, born of best practices and innovation, that will set new standards for the evaluation paradigm.
+The transformative solutions used in this package addresses the pressing challenge of fragmented evaluation methodologies, providing an all-inclusive framework that streamlines and simplifies the intricate process of assessing model capabilities.
 
 To use learn how to use the tools directly jump to [Tools Overview](#tools-overview)
 
@@ -38,28 +36,17 @@ In recent years, the field of natural language processing (NLP) has witnessed an
 
 However, despite the widespread interest in benchmarking LLMs, the process itself has remained remarkably non-standardized and often lacks a coherent framework. This lack of standardization introduces significant challenges, making it difficult to compare results across studies, impeding the reproducibility of findings, and hindering the overall progress of the field. Consequently, there arises a pressing need to establish a comprehensive and standardized approach to benchmarking LLMs, ensuring that evaluations are meaningful, consistent, and comparable.
 
-Motivated by this imperative, we introduce the **LLM Benchmarking Suite**, a pioneering effort aimed at addressing the current fragmentation and ambiguity surrounding LLM benchmarking. Our suite offers a structured methodology, a curated collection of diverse benchmarking tasks, and an amalgam of open-source toolkits designed to streamline the process of assessing LLM performance. By providing a unified platform for benchmarking, our project seeks to foster collaboration, promote transparency, and ultimately elevate the quality of research within the NLP community.
+Motivated by the need for unified benchmarking of large language models, we introduce the **LLM Benchmarking Suite**. This open-source effort aims to address fragmentation and ambiguity in LLM benchmarking. The suite provides a structured methodology, a collection of diverse benchmarks, and toolkits to streamline assessing LLM performance. By offering a common platform, this project seeks to promote collaboration, transparency, and quality research in NLP.
 
 ## <a id="building-blocks-of-llm-evaluation"></a> Building Blocks of LLM Evaluation
 For manually conducting evaluations, you generally follow the following steps:
-- Load the model
+- Loading the model
 - Load an appropriate benchmarking dataset
 - Selecting a relevant metric for evaluation
 ### <a id="loading-the-model"></a> Loading the Model
-We need to figure out a way to load these models locally in the most efficient manner to run fast inefernces with. The following options support local loading of a model which differs based on operating system under usage:
+Loading models locally enables efficient and rapid inferences by eliminating the delays associated with remote network-based inferences, which can be particularly sluggish for sizable models. Local loading optimally harnesses local hardware resources such as GPUs, ensuring swift and accelerated inferences. Among the available libraries facilitating local model loading, vLLM stands out for its exceptional ability to maximize resource utilization and attain peak throughput.
 
-- Ollama (Mac) [jmorganca/ollama: Get up and running with large language models locally (github.com)](https://github.com/jmorganca/ollama)
-- GPT4ALL [(GPT4All)](https://gpt4all.io/index.html)
-- LocalAI [(LocalAI :: LocalAI documentation)](https://localai.io/)
-- oobabooga [(oobabooga/text-generation-webui: A gradio web UI for running Large - - Language Models like LLaMA, llama.cpp, GPT-J, OPT, and GALACTICA. (github.com)](https://github.com/oobabooga/text-generation-webui)
-- LocalGPT [(PromtEngineer/localGPT: Chat with your documents on your local device using GPT models. No data leaves your device and 100% private. (github.com))](https://github.com/PromtEngineer/localGPT)
-- Llama2-webui [(liltom-eth/llama2-webui: Run Llama 2 locally with gradio UI on GPU or CPU from anywhere (Linux/Windows/Mac). Supporting Llama-2-7B/13B/70B with 8-bit, 4-bit. Supporting GPU inference (6 GB VRAM) and CPU inference. (github.com)](https://github.com/liltom-eth/llama2-webui)
-- PrivateGPT [(imartinez/privateGPT: Interact privately with your documents using the power of GPT, 100% privately, no data leaks (github.com))](https://github.com/imartinez/privateGPT)
-- H2oGPT [(h2oai/h2ogpt: Private Q&A and summarization of documents+images or chat with local GPT, 100% private, Apache 2.0. Supports LLaMa2, llama.cpp, and more. Demo: https://gpt.h2o.ai/ (github.com)](https://github.com/h2oai/h2ogpt)
-- vLLM which can be seen as a buffer and shared memory feature that can be used to drastically increase the response time for a model improving the number of tokens the model can generate in response each second.
-[(vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention)](https://vllm.ai/)
-
-Some also offer a web UI integrated with a cloud-based language model.
+[vLLM](https://vllm.ai/) is a library that allows for fast inference on large language models. It is a fork of the popular HuggingFace Transformers library. It has a feature called paged attention - vLLM which can be seen as a buffer and shared memory feature that can be used to drastically increase the response time for a model improving the number of tokens the model can generate in response each second. Overall it gives a significant speedup over directly using the logic of `from_pretrained` from [AutoClasses of HuggingFace](https://huggingface.co/docs/transformers/autoclass_tutorial) which most benchmarking tools directly use. 
 
 ### <a id="loading-an-appropriate-benchmarking-dataset"></a> Load an appropriate benchmarking dataset
 Datasets mainly fall under multiple categories which aim to test proficiency of a model at a particular task such as question answering or summarization such Squad and RACE. Hybrid benchmarks such as SuperGlue and LAMBADA were also created to which include a variety of tasks to test the model on to get a more holistic understanding of the a large language model's capabilities. The popularity and relevance of a dataset can be gauged from what the latest foundational models use such as:
@@ -136,15 +123,39 @@ The most common metrics used for evaluation are:
 |           *QuAC*          |   37.7   |     18.8    |     39.7     |      44.8     |    41.1   |     43.3     |      39.8     |    **49.3**   |
 |        *Winogrande*       |   68.3   |     66.3    |     69.2     |      72.8     |    71.0   |     76.9     |      77.0     |    **80.2**   |
 
-Examining the present statistics, it becomes evident that GPT models, particularly the likes of GPT-4, developed by OpenAI, consistently achieve the highest average scores across various scenarios. Yet, a pertinent consideration arises: could this remarkable performance be primarily attributed to the sheer number of parameters employed by GPT models? To what extent does this parameter count influence the overall score of a language model? This question gains further substance when observing the test scores presented by LLaMa2, where a conspicuous pattern emerges — models with a greater quantity of parameters tend to correspondingly secure higher scores across diverse benchmark assessments. In light of this, a crucial inquiry persists: does the proliferation of parameters inherently propel GPT's exceptional scoring, or are there other factors interacting to elevate its performance?
+A quick look at the above table reveals several interesting observations:
+- Larger models generally perform better across the board. LLama-2 70B has the top score on most of the benchmarks.
+
+- There are some exceptions where smaller models outperform larger ones:
+
+  - On BoolQ, LLaMA 65B outperforms the larger LLaMA 2 70B model.
+  - On QuAC, LLaMA 65B outperforms the much larger PaLM 540B model.
+- The relative performance between models varies significantly across benchmarks. For example:
+
+  - On MMLU, LLama-2 70B vastly outperforms all other models.
+  - On BoolQ, the models are all fairly close together in performance.
+- Performance gains from increasing model size appear more pronounced on some benchmarks than others. For example:
+
+  - Increasing from MPT 7B to MPT 30B provides a large boost on MMLU but a smaller gain on BoolQ.
+
+We can draw the following conclusions from these observations:
+1. **Model Size Impact**:
+Larger models consistently demonstrate improved performance across most benchmarks. LLama-2 70B particularly stands out, securing the highest scores on 6 out of the 10 benchmarks. This suggests that model size plays a crucial role in achieving superior results across a range of tasks.
+2. **Size-Performance Exceptions**:
+Despite the general trend, there are instances where smaller models outshine their larger counterparts. Notably, LLaMA 65B performs better than LLama-2 70B on BoolQ and QuAC. This intriguing phenomenon raises the question of whether task-specific nuances contribute to these exceptions.
+3. **Benchmark-Specific Trends**:
+The relative performance of models varies significantly across different benchmarks. For instance, on MMLU, LLama-2 70B demonstrates exceptional supremacy, while on BoolQ, models exhibit closely competitive performance. This observation indicates that a model's effectiveness is contingent upon the specific characteristics of the task at hand. For example, BoolQ represents a comparatively straightforward dataset, while MMLU assesses the yes/no question answering proficiency of LLMs, demanding less intricate language comprehension.
+4. **Performance Gains with Model Size**:
+The gains achieved by increasing model size are not uniform across benchmarks. For instance, the transition from MPT 7B to MPT 30B yields substantial improvements on MMLU, whereas the gains are relatively smaller on BoolQ. This implies that the relationship between model size and performance enhancement is intricate and possibly task-dependent.
+5. **Trade-offs and Task Complexity**:
+The contrasting performance improvements from model size expansion indicate that there might be a trade-off between model complexity and task specificity. Smaller models might excel in tasks with well-defined patterns, while larger models could excel in more complex, nuanced tasks that require broader context understanding.
 
 # <a id="tools-overview"></a> Tools Overview
 There are many packages that assist in evaluation of Large Language Models (LLMs). We take the best practices available along with our own optimizations to create one-stop method to evaluate LLMs holistically aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features include:
 
 - **Static Evaluations** - 
 Use standard becnhamrking datasets like BoolQ, HellaSWAG, GLUE OpenCompass package to for coverage on most of popular benchmarking datasets and large language models. You can view it locally by [index.html](https://github.com/TheoremOne/llm-benchmarker-suite/blob/43be88d30b28e61203ed62739edeb766b39e9915/static/index.html) in your localhost.
-- **Evaluation Levels** - Dataset independent evaluations similar to the one [here](https://lmsys.org/vicuna_eval/).
-- **LLM-as-a-judge** - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
+- **LLM-as-a-judge** - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants similar to the one [here](https://lmsys.org/vicuna_eval/).
 - **OpenAI Evals** - Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
 
 ## Get Started
@@ -206,7 +217,7 @@ cd ../FastChat && pip install -e ".[eval]"
 ## <a id="important-suite-tools"></a> Important Suite Tools:
 The Suite consists of various tools designed to assist you in conducting metrics analysis on large language models. These tools offer diverse approaches tailored to your specific use case such as doing a static evaluation on stabndard dataset or using another LLM as a judge to check your inferencing capabilities.
 
-### <a id="opencompass"></a> OpenCompass:
+### <a id="opencompass"></a> Static Evaluations:
 This is a static evaluation package designed to assess the capabilities of a model through predefined measures and scenarios.
 
 In the realm of model evaluation, "static evaluation" refers to an approach where assessments are performed on a fixed set of tasks, data, or benchmarks. These assessments provide a snapshot of a model's performance under specific conditions. Static evaluation contrasts with dynamic evaluation, where models are tested in more interactive, real-world scenarios.
@@ -246,7 +257,7 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
 
 - **Experiment management and reporting mechanism**: Use config files to fully record each experiment, support real-time reporting of results.
 
-### <a id="llm-as-a-judge"></a> FastChat's LLM-as-a-Judge:
+### <a id="llm-as-a-judge"></a> LLM-as-a-judge:
 [Paper](https://arxiv.org/abs/2306.05685) • [Leaderboard](https://chat.lmsys.org/?leaderboard) • [MT-bench Human Annotation Dataset](https://huggingface.co/datasets/lmsys/mt_bench_human_judgments) • [Chatbot Arena Conversation Dataset](https://huggingface.co/datasets/lmsys/chatbot_arena_conversations)
 
 In this package, you can use MT-bench questions and prompts to evaluate your models with LLM-as-a-judge.
@@ -495,7 +506,7 @@ print("RACE dataset:", race_data)
 
 ## <a id="leaderboard"></a> Leaderboard
 
-We provide [LLM Benchmarker Suite Leaderbaord](https://llm-evals.formula-labs.com/
+We provide [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/
 ) for community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `abhijoy.sarkar@theoremone.co`.
 
 
