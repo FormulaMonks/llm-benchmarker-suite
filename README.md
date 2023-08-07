@@ -129,7 +129,7 @@ A quick look at the above table reveals several interesting observations:
 - There are some exceptions where smaller models outperform larger ones:
 
   - On BoolQ, LLaMA 65B outperforms the larger LLaMA 2 70B model.
-  - On QuAC, LLaMA 65B outperforms the much larger PaLM 540B model.
+  - In the QuAC benchmark, the smaller LLaMA 65B model achieves a higher F1 Score of 49.3 compared to the significantly larger PaLM 540B model, which was originally reported to have a 41.5 F1 Score in their [research paper](https://arxiv.org/pdf/2210.11416.pdf) for the same benchmark.
 - The relative performance between models varies significantly across benchmarks. For example:
 
   - On MMLU, LLaMA-2 70B vastly outperforms all other models.
