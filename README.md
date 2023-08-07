@@ -25,9 +25,8 @@ To use learn how to use the tools directly jump to [Tools Overview](#tools-overv
   - [Selecting a Metric](#selecting-a-metric)
 - [Observations](#observations)
 - [Tools Overview](#tools-overview)
-- [Installation](#installation)
-  - [Getting Started](#getting-started)
-  - [Usage](#usage)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
 - [Run static evaluations](#run-static-evaluations)
   - [OpenCompass](#opencompass)
   - [LLM-as-a-Judge](#llm-as-a-judge)
@@ -148,15 +147,6 @@ Use standard becnhamrking datasets like BoolQ, HellaSWAG, GLUE OpenCompass packa
 - **LLM-as-a-judge** - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants.
 - **OpenAI Evals** - Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
 
-## <a id="installation"></a> Installation
-
-  To install the `llm_benchmarking_suite` as a PyPi package, use the following pip command:
-To install the `llm_benchmarking_suite` package, use the following pip command:
-
-```bash
-pip install llm_benchmarking_suite
-```
-
 ## Get Started
 
 ### <a id="prerequisites"></a> Pre-requisites
@@ -214,6 +204,8 @@ cd ../FastChat && pip install -e ".[eval]"
 
 
 ## <a id="run-static-evaluations"></a> Run static evaluations
+
+
 1. 
 ```bash
 cd opencompass && python opencompass/run.py configs/eval_demo.py -w outputs/demo

@@ -1,8 +1,8 @@
 from evaluator import evaluate
 import json
 
-model_output = json.load(open('model_output.json')) 
-ground_truth = json.load(open('ground_truth.json'))
+model_output = json.load(open('llm_benchmarker_suite/model_output.json')) 
+ground_truth = json.load(open('llm_benchmarker_suite/ground_truth.json'))
 
-metrics = evaluate(model_output, ground_truth)
-print(metrics)
+calculated_metrics = evaluate(model_output, ground_truth)
+print(calculated_metrics)

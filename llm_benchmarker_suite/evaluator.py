@@ -13,7 +13,7 @@ def evaluate(model_output, ground_truth):
   """
 
   # Calculate accuracy
-  accuracy = metrics.get_accuracy(model_output["predictions"], ground_truth["labels"])
+  accuracy = metrics.calculate_accuracy(model_output["predictions"], ground_truth["labels"])
 
   # Get confusion matrix
   cm = metrics.get_confusion_matrix(model_output["predictions"], ground_truth["labels"])
@@ -24,11 +24,11 @@ def evaluate(model_output, ground_truth):
   f1 = metrics.compute_f_score(cm)
 
   # Return metrics
-  metrics = {
+  calculated_metrics = {
     "accuracy": accuracy,
     "precision": precision,
     "recall": recall, 
     "f1": f1
   }
 
-  return metrics
+  return calculated_metrics
