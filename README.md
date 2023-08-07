@@ -49,10 +49,10 @@ Loading models locally enables efficient and rapid inferences by eliminating the
 [vLLM](https://vllm.ai/) is a library that allows for fast inference on large language models. It is a fork of the popular HuggingFace Transformers library. It has a feature called paged attention - vLLM which can be seen as a buffer and shared memory feature that can be used to drastically increase the response time for a model improving the number of tokens the model can generate in response each second. Overall it gives a significant speedup over directly using the logic of `from_pretrained` from [AutoClasses of HuggingFace](https://huggingface.co/docs/transformers/autoclass_tutorial) which most benchmarking tools directly use. 
 
 ### <a id="loading-an-appropriate-benchmarking-dataset"></a> Load an appropriate benchmarking dataset
-Datasets mainly fall under multiple categories which aim to test proficiency of a model at a particular task such as question answering or summarization such Squad and RACE. Hybrid benchmarks such as SuperGlue and LAMBADA were also created to which include a variety of tasks to test the model on to get a more holistic understanding of the a large language model's capabilities. The popularity and relevance of a dataset can be gauged from what the latest foundational models use such as:
+Datasets mainly fall under multiple categories which aim to test proficiency of a model at a particular task such as question answering or summarization such Squad and RACE. Hybrid benchmarks such as SuperGLUE and LAMBADA were also created to which include a variety of tasks to test the model on to get a more holistic understanding of the a large language model's capabilities. The popularity and relevance of a dataset can be gauged from what the latest foundational models use such as:
 - *AGIEval* (Human standardized tests proficiency) and BigBench Hard (Subset of problems which are yet to surpass Human Level Performance (HLE)) for Orca
 - *MMLU* ( A test to measure a text model’s multitask accuracy. The test covers fifty-seven tasks including elementary mathematics, US history, computer science, law, and more.
-) - used for Llama-2 evaluation 
+) - used for LLaMa-2 evaluation 
 We also prefer minimally curated datasets to ensure that the dataset is not biased towards a particular model. 
 
 ![image](static/assets/image8.gif)
@@ -109,7 +109,7 @@ The most common metrics used for evaluation are:
 # <a id="observations"></a> Observations
 
 
-| Bencmark (Higher is Better) | MPT (7B) | Falcon (7B) | LLama-2 (7B) | Llama-2 (13B) | MPT (30B) | Falcon (40B) | Llama-1 (65B) | Llama-2 (70B) |
+| Bencmark (Higher is Better) | MPT (7B) | Falcon (7B) | LLaMA-2 (7B) | Llama-2 (13B) | MPT (30B) | Falcon (40B) | LLaMA-1 (65B) | LLaMA-2 (70B) |
 |:---------------------------:|:--------:|:-----------:|:------------:|:-------------:|:---------:|:------------:|:-------------:|:-------------:|
 |           *MMLU*          |   26.8   |     26.2    |     45.3     |      54.8     |    46.9   |     55.4     |      63.4     |    **68.9**   |
 |         *TriviaQA*        |   59.6   |     56.8    |     68.9     |      77.2     |    71.3   |     78.6     |      84.5     |     **85**    |
@@ -118,13 +118,13 @@ The most common metrics used for evaluation are:
 |        *HumanEval*        |   18.3   |     N/A     |     12.8     |      18.3     |    25.0   |      N/A     |      23.7     |    **29.9**   |
 |         *AGIEval*         |   23.5   |     21.2    |     29.3     |      39.1     |    33.8   |     37.0     |      47.6     |    **54.2**   |
 |          *BoolQ*          |   75.0   |     67.5    |     77.4     |      81.7     |    79.0   |     83.1     |    **85.3**   |      85.0     |
-|        *HellaSwag*        |   76.4   |     74.1    |     77.2     |      80.7     |    79.9   |     83.6     |      84.2     |    **85.3**   |
+|        *HellaSWAG*        |   76.4   |     74.1    |     77.2     |      80.7     |    79.9   |     83.6     |      84.2     |    **85.3**   |
 |        *OpenBookQA*       |   51.4   |     51.6    |     58.6     |      57.0     |    52.0   |     56.6     |      60.2     |    **60.2**   |
 |           *QuAC*          |   37.7   |     18.8    |     39.7     |      44.8     |    41.1   |     43.3     |      39.8     |    **49.3**   |
 |        *Winogrande*       |   68.3   |     66.3    |     69.2     |      72.8     |    71.0   |     76.9     |      77.0     |    **80.2**   |
 
 A quick look at the above table reveals several interesting observations:
-- Larger models generally perform better across the board. LLama-2 70B has the top score on most of the benchmarks.
+- Larger models generally perform better across the board. LLaMA-2 70B has the top score on most of the benchmarks.
 
 - There are some exceptions where smaller models outperform larger ones:
 
@@ -132,7 +132,7 @@ A quick look at the above table reveals several interesting observations:
   - On QuAC, LLaMA 65B outperforms the much larger PaLM 540B model.
 - The relative performance between models varies significantly across benchmarks. For example:
 
-  - On MMLU, LLama-2 70B vastly outperforms all other models.
+  - On MMLU, LLaMA-2 70B vastly outperforms all other models.
   - On BoolQ, the models are all fairly close together in performance.
 - Performance gains from increasing model size appear more pronounced on some benchmarks than others. For example:
 
@@ -140,11 +140,11 @@ A quick look at the above table reveals several interesting observations:
 
 We can draw the following conclusions from these observations:
 1. **Model Size Impact**:
-Larger models consistently demonstrate improved performance across most benchmarks. LLama-2 70B particularly stands out, securing the highest scores on 6 out of the 10 benchmarks. This suggests that model size plays a crucial role in achieving superior results across a range of tasks.
+Larger models consistently demonstrate improved performance across most benchmarks. LLaMA-2 70B particularly stands out, securing the highest scores on 6 out of the 10 benchmarks. This suggests that model size plays a crucial role in achieving superior results across a range of tasks.
 2. **Size-Performance Exceptions**:
-Despite the general trend, there are instances where smaller models outshine their larger counterparts. Notably, LLaMA 65B performs better than LLama-2 70B on BoolQ and QuAC. This intriguing phenomenon raises the question of whether task-specific nuances contribute to these exceptions.
+Despite the general trend, there are instances where smaller models outshine their larger counterparts. Notably, LLaMA 65B performs better than LLaMA-2 70B on BoolQ and QuAC. This intriguing phenomenon raises the question of whether task-specific nuances contribute to these exceptions.
 3. **Benchmark-Specific Trends**:
-The relative performance of models varies significantly across different benchmarks. For instance, on MMLU, LLama-2 70B demonstrates exceptional supremacy, while on BoolQ, models exhibit closely competitive performance. This observation indicates that a model's effectiveness is contingent upon the specific characteristics of the task at hand. For example, BoolQ represents a comparatively straightforward dataset, while MMLU assesses the yes/no question answering proficiency of LLMs, demanding less intricate language comprehension.
+The relative performance of models varies significantly across different benchmarks. For instance, on MMLU, LLaMA-2 70B demonstrates exceptional supremacy, while on BoolQ, models exhibit closely competitive performance. This observation indicates that a model's effectiveness is contingent upon the specific characteristics of the task at hand. For example, BoolQ represents a comparatively straightforward dataset, while MMLU assesses the yes/no question answering proficiency of LLMs, demanding less intricate language comprehension.
 4. **Performance Gains with Model Size**:
 The gains achieved by increasing model size are not uniform across benchmarks. For instance, the transition from MPT 7B to MPT 30B yields substantial improvements on MMLU, whereas the gains are relatively smaller on BoolQ. This implies that the relationship between model size and performance enhancement is intricate and possibly task-dependent.
 5. **Trade-offs and Task Complexity**:
@@ -484,14 +484,14 @@ print("BLEU Score:", bleu_score)
 This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
 
 ```python
-from dataset.hellaswaq import load_hellaswaq_dataset
+from dataset.hellaswag import load_hellaswag_dataset
 from dataset.race import load_race_dataset
 
 # Example usage:
-hellaswaq_data = load_hellaswaq_dataset()
+hellaswag_data = load_hellaswag_dataset()
 race_data = load_race_dataset()
 
-print("HellaSWAQ dataset:", hellaswaq_data)
+print("HellaSWAG dataset:", hellaswag_data)
 print("RACE dataset:", race_data)
 ```
 
@@ -611,7 +611,7 @@ We provide [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.co
 - StoryCloze-CN (coming soon)
 - COPA
 - ReCoRD
-- HellaSwag
+- HellaSWAG
 - PIQA
 - SIQA
 
