@@ -370,7 +370,7 @@ For more information on usage details, refer to the following [docs](https://git
 ---
 ### <a id="openai-evals"></a> OpenAI Evals (Optional)
 
-> This is mostly useful for running evaluations on LLMs that generated untrusted code.
+> This is mostly useful for running evaluations on LLMs that can possibly generate untrusted code to prompts.
 
 Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
 
