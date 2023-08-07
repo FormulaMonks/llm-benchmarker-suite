@@ -203,21 +203,10 @@ cd ../FastChat && pip install -e ".[eval]"
 ```
 
 
-## <a id="run-static-evaluations"></a> Run static evaluations
-
-
-1. 
-```bash
-cd opencompass && python opencompass/run.py configs/eval_demo.py -w outputs/demo
-```
-2. To access the locally created metrics dashboard, initiate a server by navigating to the `../static` directory and running the command `python3 -m http.server 8000`. Afterward, open your web browser and visit http://localhost:8000/. Alternatively, you can compare your evaluations with ours on the [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/).
-
-
-
-### <a id="important-suite-tools"></a> Important Suite Tools:
+## <a id="important-suite-tools"></a> Important Suite Tools:
 The Suite consists of various tools designed to assist you in conducting metrics analysis on large language models. These tools offer diverse approaches tailored to your specific use case such as doing a static evaluation on stabndard dataset or using another LLM as a judge to check your inferencing capabilities.
 
-#### <a id="opencompass"></a> OpenCompass:
+### <a id="opencompass"></a> OpenCompass:
 This is a static evaluation package designed to assess the capabilities of a model through predefined measures and scenarios.
 
 In the realm of model evaluation, "static evaluation" refers to an approach where assessments are performed on a fixed set of tasks, data, or benchmarks. These assessments provide a snapshot of a model's performance under specific conditions. Static evaluation contrasts with dynamic evaluation, where models are tested in more interactive, real-world scenarios.
@@ -243,6 +232,10 @@ Static evaluation offers controlled and comparable assessments of a model's perf
 ```shell
 python opencompass/run.py configs/eval_demo.py -w outputs/demo
 ```
+
+![leaderboard](static/assets/table.png)
+*To access the locally created metrics dashboard, initiate a server by navigating to the `../static` directory and running the command `python3 -m http.server 8000`. Afterward, open your web browser and visit http://localhost:8000/. Alternatively, you can compare your evaluations with ours on the [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/).*
+
 - **Comprehensive support for models and datasets**: Pre-support for 20+ HuggingFace and API models, a model evaluation scheme of 50+ datasets with about 300,000 questions, comprehensively evaluating the capabilities of the models in five dimensions.
 
 -  **Efficient distributed evaluation**: One line command to implement task division and distributed evaluation, completing the full evaluation of billion-scale models in just a few hours.
@@ -253,7 +246,7 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
 
 - **Experiment management and reporting mechanism**: Use config files to fully record each experiment, support real-time reporting of results.
 
-#### <a id="llm-as-a-judge"></a> FastChat's LLM-as-a-Judge:
+### <a id="llm-as-a-judge"></a> FastChat's LLM-as-a-Judge:
 [Paper](https://arxiv.org/abs/2306.05685) • [Leaderboard](https://chat.lmsys.org/?leaderboard) • [MT-bench Human Annotation Dataset](https://huggingface.co/datasets/lmsys/mt_bench_human_judgments) • [Chatbot Arena Conversation Dataset](https://huggingface.co/datasets/lmsys/chatbot_arena_conversations)
 
 In this package, you can use MT-bench questions and prompts to evaluate your models with LLM-as-a-judge.
@@ -292,9 +285,9 @@ However, there are considerations to bear in mind:
 
 This innovative evaluation approach combines the MT-bench framework's rich and dynamic assessment with the objectivity and scalability of LLMs as judges. By automating the process and minimizing biases, this approach addresses challenges that traditional evaluation methods may encounter, providing a valuable tool for comprehensively evaluating chat assistants.
 
-##### Evaluate a model on MT-bench
+#### Evaluate a model on MT-bench
 
-###### Step 1. Generate model answers to MT-bench questions
+##### Step 1. Generate model answers to MT-bench questions
 
 ```shell
 python gen_model_answer.py --model-path [MODEL-PATH] --model-id [MODEL-ID]
@@ -319,7 +312,7 @@ To make sure FastChat loads the correct prompt template, see the supported model
 
 You can also specify `--num-gpus-per-model` for model parallelism (needed for large 65B models) and `--num-gpus-total` to parallelize answer generation with multiple GPUs.
 
-###### Step 2. Generate GPT-4 judgments
+##### Step 2. Generate GPT-4 judgments
 
 There are several options to use GPT-4 as a judge, such as pairwise winrate and single-answer grading.
 
@@ -347,7 +340,7 @@ python gen_judgment.py --parallel 2 --model-list \
 
 The judgments will be saved to `data/mt_bench/model_judgment/gpt-4_single.jsonl`
 
-###### Step 3. Show MT-bench scores
+##### Step 3. Show MT-bench scores
 
 Show the scores for selected models
 
@@ -370,7 +363,10 @@ python show_result.py
 For more information on usage details, refer to the following [docs](https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/README.md).
 
 ---
-#### <a id="openai-evals"></a> OpenAI Evals
+### <a id="openai-evals"></a> OpenAI Evals (Optional)
+
+> This is mostly useful for running evaluations on LLMs that generated untrusted code.
+
 Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
 
 An “eval” refers to a specific evaluation task that is used to measure the performance of a language model in a particular area, such as question answering or sentiment analysis. These evals are typically standardized benchmarks that allow for the comparison of different language models. The Eval framework provides a standardized interface for running these evals and collecting the results.
@@ -394,31 +390,34 @@ We can run the above eval with a simple command:
 ```bash
 oaieval gpt-3.5-turbo test-match
 ```
+
+![oaievals](static/assets/oaievals.png)
+
 Here we’re using the oaieval CLI to run this eval. We’re specifying the name of the completion function (gpt-3.5-turbo) and the name of the eval (test-match)
 
 With Evals, we aim to make it as simple as possible to build an eval while writing as little code as possible. An "eval" is a task used to evaluate the quality of a system's behavior. To get started, we recommend that you follow these steps:
 
 To get set up with evals, follow the [setup instructions](https://github.com/openai/evals/blob/main/README.md#setup).
 
-Refer to the following [Jupyter Notebooks](https://github.com/openai/evals/tree/1fe7d7adb739b727fd1319c073deda4e336c14f7/examples) for example of usages.
+Refer to the following [Jupyter Notebooks](llm_benchmarker_suite/examples/evals/) for example of usages.
 
 For more information on usage details, refer to the following [docs](https://github.com/openai/evals/blob/main/README.md).
 
 
-#### <a id="running-evals"></a> Running evals
+### <a id="running-evals"></a> Running evals
 - Learn how to run existing evals: [run-evals.md](https://github.com/openai/evals/blob/main/docs/run-evals.md).
 - Familiarize yourself with the existing eval templates: [eval-templates.md](https://github.com/openai/evals/blob/main/docs/eval-templates.md).
 
 This concept allows for multiple levels of evaluating the effectiveness of a large language models.
 
-#### Metrics
+### Metrics
 The `metrics` package is a Python library that provides various evaluation metrics commonly used to assess the performance of large language models. It includes functions to calculate metrics such as F1 score, accuracy, and BLEU score.
 
-##### Installation
+#### Installation
 
 The `metrics` package is not available on PyPI and can be used as a standalone package. To integrate it into your project, you can directly copy the individual metric files from the `metrics` directory or clone the entire repository.
 
-##### Usage
+#### Usage
 
 To use the `metrics` package, follow these steps:
 
@@ -459,13 +458,13 @@ bleu_score = calculate_bleu_score(reference_sentences, predicted_sentence)
 print("BLEU Score:", bleu_score)
 
 ```
-##### Notes
+#### Notes
 - The metrics package provides simple and easy-to-use functions for calculating evaluation metrics. However, keep in mind that these functions expect the necessary input arguments (e.g. true positives, true negatives) based on the specific task you are evaluating.
 - The `calculate_f1_score` and `calculate_accuracy` functions are designed for binary classification tasks. If you are working with multiclass classification, you may need to adapt or extend these functions accordingly.
 - For BLEU score calculation, the **nltk** library is used. Ensure that you have installed it before running the code `pip install nltk`.
 - This package aims to offer a basic set of evaluation metrics commonly used in NLP tasks. Depending on your specific use case, you may need to incorporate additional or specialized metrics for comprehensive evaluation.
 
-### <a id="datasets"></a> Datasets
+## <a id="datasets"></a> Datasets
 This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
 
 ```python
@@ -480,7 +479,7 @@ print("HellaSWAQ dataset:", hellaswaq_data)
 print("RACE dataset:", race_data)
 ```
 
-### Notes
+## Notes
   
 - This package provides a generic interface to work with language models. Replace the dummy code for proprietary language models with the actual API calls once you have access to the real APIs.
 - For Hugging Face models, the model_name parameter should be set to the desired model name. You can choose from models like "gpt2," "gpt2-medium," or "gpt2-large" for larger models.
