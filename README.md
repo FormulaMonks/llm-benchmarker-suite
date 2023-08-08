@@ -162,6 +162,11 @@ Use standard becnhamrking datasets like BoolQ, HellaSWAG, GLUE OpenCompass packa
 ## Get Started
 
 ### <a id="prerequisites"></a> Pre-requisites
+- Python 3.6 or higher
+- CUDA 10.2 or higher
+- cuDNN 7.6.5 or higher
+- [PyTorch](https://pytorch.org/) 1.7.1 or higher
+
 The LLM Benchmarking Suite will **NOT** run if CUDA toolkit is not configured for your machine/cloud instance.
 
 Run the following to command in a linux machine to check _CUDA toolkit_ and _cuDNN_ is correctly configured. 
