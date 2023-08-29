@@ -240,12 +240,6 @@ Downsides of static evaluation:
 
 Static evaluation offers controlled and comparable assessments of a model's performance within specific conditions. However, it may not capture the full range of a model's capabilities in real-world, dynamic settings. The choice between static and dynamic evaluation depends on the intended goals and the context of the evaluation.
 
-<!-- [![PyPI](https://badge.fury.io/py/opencompass.svg)](https://pypi.org/project/opencompass/) -->
-[Website](https://opencompass.org.cn/) •
-[Documentation](https://opencompass.readthedocs.io/en/latest/) • 
-[Installation](https://opencompass.readthedocs.io/en/latest/get_started.html#installation) •
-[Reporting Issues](https://github.com/InternLM/opencompass/issues/new/choose)
-
 ```shell
 python opencompass/run.py configs/eval_demo.py -w outputs/demo
 ```
@@ -253,15 +247,11 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
 ![leaderboard](static/assets/table.png)
 *To access the locally created metrics dashboard, initiate a server by navigating to the `../static` directory and running the command `python3 -m http.server 8000`. Afterward, open your web browser and visit http://localhost:8000/. Alternatively, you can compare your evaluations with ours on the [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/).*
 
-- **Comprehensive support for models and datasets**: Pre-support for 20+ HuggingFace and API models, a model evaluation scheme of 50+ datasets with about 300,000 questions, comprehensively evaluating the capabilities of the models in five dimensions.
-
--  **Efficient distributed evaluation**: One line command to implement task division and distributed evaluation, completing the full evaluation of billion-scale models in just a few hours.
-
-- **Diversified evaluation paradigms**: Support for zero-shot, few-shot, and chain-of-thought evaluations, combined with standard or dialogue type prompt templates, to easily stimulate the maximum performance of various models.
-
-- **Modular design with high extensibility**: Want to add new models or datasets, customize an advanced task division strategy, or even support a new cluster management system? Everything about LLM Benchmarker Suite can be easily expanded!
-
-- **Experiment management and reporting mechanism**: Use config files to fully record each experiment, support real-time reporting of results.
+- Comprehensive support for models and datasets
+- Efficient distributed evaluation
+- Diversified evaluation paradigms
+- Modular design with high extensibility
+- Experiment management and reporting mechanism
 
 ### <a id="llm-as-a-judge"></a> LLM-as-a-judge:
 [Paper](https://arxiv.org/abs/2306.05685) • [Leaderboard](https://chat.lmsys.org/?leaderboard) • [MT-bench Human Annotation Dataset](https://huggingface.co/datasets/lmsys/mt_bench_human_judgments) • [Chatbot Arena Conversation Dataset](https://huggingface.co/datasets/lmsys/chatbot_arena_conversations)
