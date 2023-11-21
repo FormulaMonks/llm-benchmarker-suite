@@ -9,9 +9,7 @@ Welcome to **LLM Benchmarker Suite**!
 
 Navigating the complex landscape of evaluating large-scale language models (LLMs) has never been more important. As the demand for cutting-edge language AI continues to grow, the need for a comprehensive and optimized approach to assessing their underlying models becomes more and more apparent.
 
-In this suite, we combine best practices with fine-tuned optimizations in a one-stop-shop solution to provides a means to holistically evaluate LLMs.
-
-The solutions used in this package represent a powerful way to address the challenge of dealing with fragmented evaluation methodologies and provide a straightforward, comprehensive framework that streamlines and simplifies the complex process of assessing model capabilities.
+To do this, we combine best practice with our fine-tuned optimizations to achieve a one-stop-shop approach that provides a way to holistically evaluate large language models.
 
 
 To use learn how to use the tools directly jump to [Tools Overview](#tools-overview)
@@ -33,84 +31,84 @@ To use learn how to use the tools directly jump to [Tools Overview](#tools-overv
 
 ## <a id="introduction"></a> Introduction
 
-In recent years, the field of natural language processing (NLP) has witnessed an unprecedented surge in innovation, largely fueled by the advancements in large language models (LLMs) such as GPT, BERT, and their derivatives. These models exhibit an impressive ability to understand and generate human-like text, revolutionizing various applications like text generation, sentiment analysis, language translation, and more. As their potential continues to unfold, researchers and practitioners alike are increasingly invested in benchmarking the performance of these LLMs to better comprehend their capabilities and limitations.
+In recent years, the field of natural language processing (NLP) has witnessed an unprecedented surge in innovation, largely fueled by the advancements in large language models (LLMs) such as GPT, BERT, and their derivatives. These models exhibit an impressive ability to understand and generate human-like text, revolutionizing various applications such as content generation, sentiment analysis, language translation, and more. As their potential continues to unfold, researchers and practitioners alike are increasingly invested in benchmarking the performance of these LLMs to better comprehend their capabilities and limitations.
 
-However, despite the widespread interest in benchmarking LLMs, the process itself has remained remarkably non-standardized and often lacks a coherent framework. This lack of standardization introduces significant challenges, making it difficult to compare results across studies, impeding the reproducibility of findings, and hindering the overall progress of the field. Consequently, there arises a pressing need to establish a comprehensive and standardized approach to benchmarking LLMs, ensuring that evaluations are meaningful, consistent, and comparable.
+Despite the widespread interest in benchmarking LLMs, the process itself has remained remarkably non-standardized and often lacks a coherent framework. This lack of standardization introduces significant challenges, making it difficult to compare results across studies, impeding the reproducibility of findings and hindering the overall progress of the field. Consequently, a pressing need arises to establish a comprehensive and standardized approach to benchmarking LLMs, ensuring that evaluations are meaningful, consistent, and comparable.
 
 Motivated by the need for unified benchmarking of large language models, we introduce the **LLM Benchmarking Suite**. This open-source effort aims to address fragmentation and ambiguity in LLM benchmarking. The suite provides a structured methodology, a collection of diverse benchmarks, and toolkits to streamline assessing LLM performance. By offering a common platform, this project seeks to promote collaboration, transparency, and quality research in NLP.
 
 ## <a id="building-blocks-of-llm-evaluation"></a> Building Blocks of LLM Evaluation
-For manually conducting evaluations, you generally follow the following steps:
-- Loading the model
+For manually conducting evaluations, you generally take the following steps:
+- Load the model
 - Load an appropriate benchmarking dataset
-- Selecting a relevant metric for evaluation
-### <a id="loading-the-model"></a> Loading the Model
-Loading models locally enables efficient and rapid inferences by eliminating the delays associated with remote network-based inferences, which can be particularly sluggish for sizable models. Local loading optimally harnesses local hardware resources such as GPUs, ensuring swift and accelerated inferences. Among the available libraries facilitating local model loading, vLLM stands out for its  ability to maximize resource utilization and attain peak throughput.
+- Select a relevant metric for evaluation
+### <a id="load-the-model"></a> Load the Model
+Loading models locally enables efficient and rapid inferences by eliminating the delays associated with remote network-based inferences, which can be particularly sluggish for sizable models. Local loading optimally harnesses local hardware resources such as GPUs, ensuring swift and accelerated inferences. Among the available libraries facilitating local model loading, vLLM stands out for its exceptional ability to maximize resource utilization and attain peak throughput.
 
 [vLLM](https://vllm.ai/) is a library that allows for fast inference on large language models. It is a fork of the popular HuggingFace Transformers library. It has a feature called paged attention - vLLM which can be seen as a buffer and shared memory feature that can be used to drastically increase the response time for a model improving the number of tokens the model can generate in response each second. Overall it gives a significant speedup over directly using the logic of `from_pretrained` from [AutoClasses of HuggingFace](https://huggingface.co/docs/transformers/autoclass_tutorial) which most benchmarking tools directly use. 
 
-### <a id="loading-an-appropriate-benchmarking-dataset"></a> Load an appropriate benchmarking dataset
-Datasets mainly fall under multiple categories which aim to test proficiency of a model at a particular task such as question answering or summarization such Squad and RACE. Hybrid benchmarks such as SuperGLUE and LAMBADA were also created to which include a variety of tasks to test the model on to get a more holistic understanding of the a large language model's capabilities. The popularity and relevance of a dataset can be gauged from what the latest foundational models use such as:
+### <a id="load-an-appropriate-benchmarking-dataset"></a> Load an appropriate benchmarking dataset
+Datasets mainly fall under multiple categories which aim to test proficiency of a model at a particular task such as question answering or summarization such as Squad and RACE. Hybrid benchmarks such as SuperGlue and LAMBADA also include a variety of test to get a more holistic understanding of the a large language model's capabilities. The popularity and relevance of a dataset can be gauged from what the latest foundational models use such as:
 - *AGIEval* (Human standardized tests proficiency) and BigBench Hard (Subset of problems which are yet to surpass Human Level Performance (HLE)) for Orca
-- *MMLU* ( A test to measure a text model’s multitask accuracy. The test covers fifty-seven tasks including elementary mathematics, US history, computer science, law, and more.
-) - used for LLaMa-2 evaluation 
+- *MMLU* (A test to measure a text model’s multitask accuracy. The test covers fifty-seven tasks including elementary mathematics, US history, computer science, law, and more.) - used for Llama-2 evaluation
+
 We also prefer minimally curated datasets to ensure that the dataset is not biased towards a particular model. 
 
 ![image](static/assets/image8.gif)
 *This visualization from Google shows how the complexity and score of an LLM can grow within different areas with the number of parameters*
 
-### <a id="selecting-a-relevant-metric-for-evaluation"></a> Selecting a relevant metric for evaluation
+### <a id="select-a-relevant-metric-for-evaluation"></a> Select a relevant metric for evaluation
 The most common metrics used for evaluation are:
 - Perplexity
   - Pros:
     - Fast to calculate
-    - Useful in Estimating a Language Model’s uncertainty
-    - Statistically Robust
+    - Useful in estimating a language model’s uncertainty
+    - Statistically robust
   - Cons:
-    - Not Accurate for Final Evaluation as it’s possible for a model to have low perplexity but a high error rate.
-    - It can be hard to make comparisons across datasets because each dataset has its own distribution of words, and each model has its own parameters.
-    - If a newer dataset contains words not present in the training data, the perplexity of the models trained on that data will be artificially inflated.
-  - cannot 
+    - Not accurate for final evaluation as it’s possible for a model to have low perplexity but a high error rate
+    - It can be hard to make comparisons across datasets as each has its own distribution of words, and each model has its own parameters
+    - If a newer dataset contains words not present in the training data, the perplexity of the models trained on that data will be artificially inflated
 - F1 Score
   - Pros:
-    - Balanced Evaluation: F1 score considers both precision and recall, providing a balanced evaluation of model performance.
-    - Useful for Imbalanced Data: Particularly useful when dealing with imbalanced classes, as it considers false positives and false negatives.
+    - Balanced Evaluation: F1 considers both precision and recall, providing a balanced evaluation of model performance
+    - Useful for Imbalanced Data: Particularly useful when dealing with imbalanced classes, as it considers false positives and false negatives
   - Cons:
-    - Single Threshold: F1 score requires choosing a specific threshold, which might not be optimal for all applications.
-    - Binary Classification Focus: Originally designed for binary classification, it might not be the best fit for all NLP tasks.
+    - Single Threshold: F1 requires choosing a specific threshold, which might not be optimal for all applications.
+    - Binary Classification Focus: Originally designed for binary classification, it might not be the best fit for all NLP tasks
 - BLEU Score
   - Pros:
     - Language independent
     - Correlates well with human evaluation
   - Cons:
-    - Insensitive to Semantic Meaning: BLEU does not capture semantic similarity well and may favor literal translations, penalizing creative and contextually appropriate responses.
-    - Reference Dependency: Scores can be highly sensitive to the choice and number of reference texts.
+    - Insensitive to Semantic Meaning: BLEU does not capture semantic similarity well and may favor literal translations, penalizing creative and contextually appropriate responses
+    - Reference Dependency: Scores can be highly sensitive to the choice and number of reference texts
 - ROUGE Score
   - Pros:
-    - Recall-Oriented: ROUGE emphasizes recall by measuring overlap of n-grams between generated and reference text.
-    - Summarization Evaluation: Commonly used for automatic summarization tasks and can offer insights into content overlap.
+    - Recall-Oriented: ROUGE emphasizes recall by measuring overlap of n-grams between generated and reference text
+    - Summarization Evaluation: Commonly used for automatic summarization tasks and can offer insights into content overlap
   - Cons:
-    - Limited to N-grams: Like BLEU, ROUGE is sensitive to n-gram overlap and might not capture semantic meaning accurately.
-    - Reference Dependency: Similar to BLEU, ROUGE scores are affected by the choice and number of reference summaries.
+    - Limited to N-grams: Like BLEU, ROUGE is sensitive to n-gram overlap and might not capture semantic meaning accurately
+    - Reference Dependency: Similar to BLEU, ROUGE scores are affected by the choice and number of reference summaries
 - Accuracy
   - Pros:
-    - Intuitive: Accuracy is easy to understand and interpret, representing the proportion of correct predictions.
-    - Applicability: Suitable for classification tasks and when classes are roughly balanced.
+    - Intuitive: Accuracy is easy to understand and interpret, representing the proportion of correct predictions
+    - Applicability: Suitable for classification tasks and when classes are roughly balanced
   - Cons:
-    - Imbalanced Data Issues: Accuracy can be misleading when dealing with imbalanced classes, as it can be high even if the model predominantly predicts the majority class.
-    - Doesn't Capture Confidence: Doesn't consider the confidence or certainty of the predictions.
+    - Imbalanced Data Issues: Accuracy can be misleading when dealing with imbalanced classes, as it can be high even if the model predominantly predicts the majority class
+    - Doesn't Capture Confidence: Doesn't consider the confidence or certainty of the predictions
 - Human Evaluation
   - Pros:
-    - Holistic Assessment: Human evaluation provides a comprehensive assessment of model outputs, considering fluency, coherence, contextuality, and other qualitative aspects.
-    - Real-World Relevance: Especially relevant when the ultimate goal is human satisfaction, such as in chatbots or content generation.
+    - Holistic Assessment: Human evaluation provides a comprehensive assessment of model outputs, considering fluency, coherence, contextuality, and other qualitative aspects
+    - Real-World Relevance: Especially relevant when the ultimate goal is human satisfaction, such as in chatbots or content generation
   - Cons:
-    - Subjectivity: Human evaluation can be subjective and prone to biases, making it challenging to establish consistent benchmarks.
-    -Resource-Intensive: Requires human annotators, time, and resources, making it less feasible for large-scale evaluations.
+    - Subjectivity: Human evaluation can be subjective and prone to biases, making it challenging to establish consistent benchmarks
+    - Resource-Intensive: Requires human annotators, time, and resources, making it less feasible for large-scale evaluations
 
 # <a id="observations"></a> Observations
 
 
-| Bencmark (Higher is Better) | MPT (7B) | Falcon (7B) | LLaMA-2 (7B) | Llama-2 (13B) | MPT (30B) | Falcon (40B) | LLaMA-1 (65B) | LLaMA-2 (70B) |
+| Benchmark (Higher is Better) | MPT (7B) | Falcon (7B) | Llama-2 (7B) | Llama-2 (13B) | MPT (30B) | Falcon (40B) | Llama-1 (65B) | Llama-2 (70B) |
+
 |:---------------------------:|:--------:|:-----------:|:------------:|:-------------:|:---------:|:------------:|:-------------:|:-------------:|
 |           *MMLU*          |   26.8   |     26.2    |     45.3     |      54.8     |    46.9   |     55.4     |      63.4     |    **68.9**   |
 |         *TriviaQA*        |   59.6   |     56.8    |     68.9     |      77.2     |    71.3   |     78.6     |      84.5     |     **85**    |
@@ -119,8 +117,8 @@ The most common metrics used for evaluation are:
 |        *HumanEval*        |   18.3   |     N/A     |     12.8     |      18.3     |    25.0   |      N/A     |      23.7     |    **29.9**   |
 |         *AGIEval*         |   23.5   |     21.2    |     29.3     |      39.1     |    33.8   |     37.0     |      47.6     |    **54.2**   |
 |          *BoolQ*          |   75.0   |     67.5    |     77.4     |      81.7     |    79.0   |     83.1     |    **85.3**   |      85.0     |
-|        *HellaSWAG*        |   76.4   |     74.1    |     77.2     |      80.7     |    79.9   |     83.6     |      84.2     |    **85.3**   |
-|        *OpenBookQA*       |   51.4   |     51.6    |     58.6     |      57.0     |    52.0   |     56.6     |      60.2     |    **60.2**   |
+|        *HellaSwag*        |   76.4   |     74.1    |     77.2     |      80.7     |    79.9   |     83.6     |      84.2     |    **85.3**   |
+|        *OpenBookQA*       |   51.4   |     51.6    |     58.6     |      57.0     |    52.0   |     56.6     |      **60.2**     |    **60.2**   |
 |           *QuAC*          |   37.7   |     18.8    |     39.7     |      44.8     |    41.1   |     43.3     |      39.8     |    **49.3**   |
 |        *Winogrande*       |   68.3   |     66.3    |     69.2     |      72.8     |    71.0   |     76.9     |      77.0     |    **80.2**   |
 
@@ -141,11 +139,11 @@ A quick look at the above table reveals several interesting observations:
 
 We can draw the following conclusions from these observations:
 1. **Model Size Impact**:
-Larger models consistently demonstrate improved performance across most benchmarks. LLaMA-2 70B particularly stands out, securing the highest scores on 6 out of the 10 benchmarks. This suggests that model size plays a crucial role in achieving superior results across a range of tasks.
+Larger models consistently demonstrate improved performance across most benchmarks. Llama-2 70B particularly stands out, securing the highest scores on 10 out of the 11 benchmarks. This suggests that model size plays a crucial role in achieving superior results across a range of tasks.
 2. **Size-Performance Exceptions**:
-Despite the general trend, there are instances where smaller models outshine their larger counterparts. Notably, LLaMA 65B performs better than LLaMA-2 70B on BoolQ and QuAC. This phenomenon raises the question of whether task-specific nuances contribute to these exceptions.
+Despite the general trend, there are instances where smaller models outshine their larger counterparts. Notably, Llama-1 65B performs better than Llama-2 70B on BoolQ. This intriguing phenomenon raises the question of whether task-specific nuances contribute to these exceptions.
 3. **Benchmark-Specific Trends**:
-The relative performance of models varies significantly across different benchmarks. For instance, on MMLU, LLaMA-2 70B demonstrates supremacy, while on BoolQ, models exhibit closely competitive performance. This observation indicates that a model's effectiveness is contingent upon the specific characteristics of the task at hand. For example, BoolQ represents a comparatively straightforward dataset, while MMLU assesses the yes/no question answering proficiency of LLMs, demanding less intricate language comprehension.
+The relative performance of models varies significantly across different benchmarks. For instance, on MMLU, Llama-2 70B demonstrates exceptional supremacy, while on BoolQ, models exhibit closely competitive performance. This observation indicates that a model's effectiveness is contingent upon the specific characteristics of the task at hand. For example, BoolQ represents a comparatively straightforward dataset, while MMLU assesses the yes/no question answering proficiency of LLMs, demanding less intricate language comprehension.
 4. **Performance Gains with Model Size**:
 The gains achieved by increasing model size are not uniform across benchmarks. For instance, the transition from MPT 7B to MPT 30B yields substantial improvements on MMLU, whereas the gains are relatively smaller on BoolQ. This implies that the relationship between model size and performance enhancement is intricate and possibly task-dependent.
 5. **Trade-offs and Task Complexity**:
@@ -155,7 +153,7 @@ The contrasting performance improvements from model size expansion indicate that
 There are many packages that assist in evaluation of Large Language Models (LLMs). We take the best practices available along with our own optimizations to create one-stop method to evaluate LLMs holistically aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features include:
 
 - **Static Evaluations** - 
-Use standard becnhamrking datasets like BoolQ, HellaSWAG, GLUE OpenCompass package to for coverage on most of popular benchmarking datasets and large language models. You can view it locally by [index.html](https://github.com/TheoremOne/llm-benchmarker-suite/blob/43be88d30b28e61203ed62739edeb766b39e9915/static/index.html) in your localhost.
+Use standard benchmarking datasets like BoolQ, HellaSWAG, GLUE OpenCompass package to for coverage on most of popular benchmarking datasets and large language models. You can view it locally by [index.html](https://github.com/TheoremOne/llm-benchmarker-suite/blob/43be88d30b28e61203ed62739edeb766b39e9915/static/index.html) in your localhost.
 - **LLM-as-a-judge** - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants similar to the one [here](https://lmsys.org/vicuna_eval/).
 - **OpenAI Evals** - Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
 
@@ -180,11 +178,11 @@ Refer to the following links to install CUDA.
 - [CUDA Windows Installation Guide](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html) and [cuDNN Installation Guide](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html)
 
 
-In case you do not have access to a Linux machine, we recommend using cloud GPU instance providers like [Vast.ai Console](https://cloud.vast.ai/).
+In case you do not have access to a Linux machine, we recommend using a cloud GPU instance provider such as [Vast.ai Console](https://cloud.vast.ai/). As an example, Vast.ai can be connected in the following way:
 1. Go to [templates](https://cloud.vast.ai/templates/) and select the latest version nvidia/cuda image to create a new instance.
 2. Select the GPU type and the number of GPUs you want to use. (Recommended for benchmarking: 1x A100 SXM4) and select `Rent`.
 3. Then go to the `Instances` tab and press &#9658; to start the instance.
-4. SSH into the instance using:- `ssh -p \<Instance Port Range start\> root@\<public ip addres\> -L 8080:localhost:8080`
+4. SSH into the instance using:- `ssh -p \<Instance Port Range start\> root@\<public ip address\> -L 8080:localhost:8080`
 
 ### <a id="environment-setup"></a>Environment Setup
 1. Clone the repository
@@ -193,7 +191,7 @@ git clone https://github.com/TheoremOne/llm-benchmarker-suite.git
 cd llm-benchmarker-suite
 ```
 
-2. Create and activate a virtual environment
+2. We recommend using a virtual environment
 ```bash
 python3 -m venv venv
 source ./venv/bin/activate
@@ -220,10 +218,10 @@ cd ../FastChat && pip install -e ".[eval]"
 ```
 
 
-## <a id="important-suite-tools"></a> Important Suite Tools:
+## <a id="important-suite-tools"></a> Important Suite Tools
 The Suite consists of various tools designed to assist you in conducting metrics analysis on large language models. These tools offer diverse approaches tailored to your specific use case such as doing a static evaluation on stabndard dataset or using another LLM as a judge to check your inferencing capabilities.
 
-### <a id="opencompass"></a> Static Evaluations:
+### <a id="opencompass"></a> Static Evaluations
 This is a static evaluation package designed to assess the capabilities of a model through predefined measures and scenarios.
 
 In the realm of model evaluation, "static evaluation" refers to an approach where assessments are performed on a fixed set of tasks, data, or benchmarks. These assessments provide a snapshot of a model's performance under specific conditions. Static evaluation contrasts with dynamic evaluation, where models are tested in more interactive, real-world scenarios.
@@ -245,13 +243,17 @@ python opencompass/run.py configs/eval_demo.py -w outputs/demo
 ```
 
 ![leaderboard](static/assets/table.png)
-*To access the locally created metrics dashboard, initiate a server by navigating to the `../static` directory and running the command `python3 -m http.server 8000`. Afterward, open your web browser and visit http://localhost:8000/. Alternatively, you can compare your evaluations with ours on the [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/).*
+*To access the locally created metrics dashboard, initiate a server by navigating to the `static` directory and running the command `python3 -m http.server 8000`. Afterward, open your web browser and visit `http://<Host IP>:8000/`. Alternatively, you can compare your evaluations with ours on the [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/).*
 
-- Comprehensive support for models and datasets
-- Efficient distributed evaluation
-- Diversified evaluation paradigms
-- Modular design with high extensibility
-- Experiment management and reporting mechanism
+- **Comprehensive support for models and datasets**: Out-of-box support for 20+ HuggingFace and API models with a model evaluation scheme of 50+ datasets with about 300,000 questions, comprehensively evaluating the capabilities of the models in five dimensions.
+
+-  **Efficient distributed evaluation**: Single line command to implement task division and distributed evaluation, completing the full evaluation of billion-scale models in just a few hours.
+
+- **Diversified evaluation paradigms**: Support for zero-shot, few-shot, and chain-of-thought evaluations, combined with standard or dialogue type prompt templates, to easily stimulate the maximum performance of various models.
+
+- **Modular design with high extensibility**: Want to add new models or datasets, customize an advanced task division strategy, or even support a new cluster management system? Everything about LLM Benchmarker Suite can be easily expanded!
+
+- **Experiment management and reporting mechanism**: Use config files to fully record each experiment and see real-time reporting of results.
 
 ### <a id="llm-as-a-judge"></a> LLM-as-a-judge:
 [Paper](https://arxiv.org/abs/2306.05685) • [Leaderboard](https://chat.lmsys.org/?leaderboard) • [MT-bench Human Annotation Dataset](https://huggingface.co/datasets/lmsys/mt_bench_human_judgments) • [Chatbot Arena Conversation Dataset](https://huggingface.co/datasets/lmsys/chatbot_arena_conversations)
