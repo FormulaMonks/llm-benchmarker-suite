@@ -106,6 +106,10 @@ The most common metrics used for evaluation are:
 
 # <a id="leaderboard"></a> Leaderboard
 
+We provide [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/) for the community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `abhijoy.sarkar@theoremone.co`.
+
+*To access the locally created metrics dashboard, initiate a server by navigating to the `static` directory and running the command `python3 -m http.server 8000`. Afterward, open your web browser and visit `http://<Host IP>:8000/`. Alternatively, you can compare your evaluations with ours on the [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/).*
+
 | Model | MMLU | TriviaQA | Natural Questions | GSM8K | HumanEval | AGIEval | BoolQ | HellaSWAG | OpenBookQA | QuAC | Winogrande |
 |:------|-----:|---------:|------------------:|------:|----------:|--------:|------:|----------:|-----------:|-----:|-----------:|
 | MPT (7B)      |   26.8 |       59.6 |                17.8 |     6.8 |        18.3 |      23.5 |    75   |        76.4 |         51.4 |   37.7 |         68.3 |
@@ -236,9 +240,6 @@ Static evaluation offers controlled and comparable assessments of a model's perf
 ```shell
 python opencompass/run.py configs/eval_demo.py -w outputs/demo
 ```
-
-![leaderboard](static/assets/table.png)
-*To access the locally created metrics dashboard, initiate a server by navigating to the `static` directory and running the command `python3 -m http.server 8000`. Afterward, open your web browser and visit `http://<Host IP>:8000/`. Alternatively, you can compare your evaluations with ours on the [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/).*
 
 - **Comprehensive support for models and datasets**: Out-of-box support for 20+ HuggingFace and API models with a model evaluation scheme of 50+ datasets with about 300,000 questions, comprehensively evaluating the capabilities of the models in five dimensions.
 
@@ -496,12 +497,6 @@ print("RACE dataset:", race_data)
 - The generate_completions method takes the input text and additional keyword arguments specific to the model. Check the respective class definitions for more details on the supported arguments.
 
 - Ensure that you have internet access to download Hugging Face models and access the proprietary language model APIs.
-
-## <a id="leaderboard"></a> Leaderboard
-
-We provide [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/
-) for community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `abhijoy.sarkar@theoremone.co`.
-
 
 ## <a id="dataset-support"></a> Dataset Support
 
