@@ -20,7 +20,7 @@ To use learn how to use the tools directly jump to [Tools Overview](#tools-overv
   - [Loading the Model](#loading-the-model)
   - [Loading the Dataset](#loading-the-dataset)
   - [Selecting a Metric](#selecting-a-metric)
-- [Observations](#observations)
+- [Leaderboard](#leaderboard)
 - [Tools Overview](#tools-overview)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
@@ -104,23 +104,22 @@ The most common metrics used for evaluation are:
     - Subjectivity: Human evaluation can be subjective and prone to biases, making it challenging to establish consistent benchmarks
     - Resource-Intensive: Requires human annotators, time, and resources, making it less feasible for large-scale evaluations
 
-# <a id="observations"></a> Observations
+# <a id="leaderboard"></a> Leaderboard
 
+We provide [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/) for the community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `abhijoy.sarkar@theoremone.co`.
 
-| Benchmark (Higher is Better) | MPT (7B) | Falcon (7B) | Llama-2 (7B) | Llama-2 (13B) | MPT (30B) | Falcon (40B) | Llama-1 (65B) | Llama-2 (70B) |
+*To access the locally created metrics dashboard, initiate a server by navigating to the `static` directory and running the command `python3 -m http.server 8000`. Afterward, open your web browser and visit `http://<Host IP>:8000/`. Alternatively, you can compare your evaluations with ours on the [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/).*
 
-|:---------------------------:|:--------:|:-----------:|:------------:|:-------------:|:---------:|:------------:|:-------------:|:-------------:|
-|           *MMLU*          |   26.8   |     26.2    |     45.3     |      54.8     |    46.9   |     55.4     |      63.4     |    **68.9**   |
-|         *TriviaQA*        |   59.6   |     56.8    |     68.9     |      77.2     |    71.3   |     78.6     |      84.5     |     **85**    |
-|    *Natural Questions*    |   17.8   |     18.1    |     22.7     |      28.0     |    23.0   |     29.5     |      31.0     |    **33.0**   |
-|          *GSM8K*          |    6.8   |     6.8     |     14.6     |      28.7     |    15.2   |     19.6     |      50.9     |    **56.8**   |
-|        *HumanEval*        |   18.3   |     N/A     |     12.8     |      18.3     |    25.0   |      N/A     |      23.7     |    **29.9**   |
-|         *AGIEval*         |   23.5   |     21.2    |     29.3     |      39.1     |    33.8   |     37.0     |      47.6     |    **54.2**   |
-|          *BoolQ*          |   75.0   |     67.5    |     77.4     |      81.7     |    79.0   |     83.1     |    **85.3**   |      85.0     |
-|        *HellaSwag*        |   76.4   |     74.1    |     77.2     |      80.7     |    79.9   |     83.6     |      84.2     |    **85.3**   |
-|        *OpenBookQA*       |   51.4   |     51.6    |     58.6     |      57.0     |    52.0   |     56.6     |      **60.2**     |    **60.2**   |
-|           *QuAC*          |   37.7   |     18.8    |     39.7     |      44.8     |    41.1   |     43.3     |      39.8     |    **49.3**   |
-|        *Winogrande*       |   68.3   |     66.3    |     69.2     |      72.8     |    71.0   |     76.9     |      77.0     |    **80.2**   |
+| Model | MMLU | TriviaQA | Natural Questions | GSM8K | HumanEval | AGIEval | BoolQ | HellaSWAG | OpenBookQA | QuAC | Winogrande |
+|:------|-----:|---------:|------------------:|------:|----------:|--------:|------:|----------:|-----------:|-----:|-----------:|
+| MPT (7B)      |   26.8 |       59.6 |                17.8 |     6.8 |        18.3 |      23.5 |    75   |        76.4 |         51.4 |   37.7 |         68.3 |
+| Falcon (7B)   |   26.2 |       56.8 |                18.1 |     6.8 |       nan   |      21.2 |    67.5 |        74.1 |         51.6 |   18.8 |         66.3 |
+| LLaMA-2 (7B)  |   45.3 |       68.9 |                22.7 |    14.6 |        12.8 |      29.3 |    77.4 |        77.2 |         58.6 |   39.7 |         69.2 |
+| Llama-2 (13B) |   54.8 |       77.2 |                28   |    28.7 |        18.3 |      39.1 |    81.7 |        80.7 |         57   |   44.8 |         72.8 |
+| MPT (30B)     |   46.9 |       71.3 |                23   |    15.2 |        25   |      33.8 |    79   |        79.9 |         52   |   41.1 |         71   |
+| Falcon (40B)  |   55.4 |       78.6 |                29.5 |    19.6 |       nan   |      37   |    83.1 |        83.6 |         56.6 |   43.3 |         76.9 |
+| LLaMA-1 (65B) |   63.4 |       84.5 |                31   |    50.9 |        23.7 |      47.6 |    85.3 |        84.2 |         60.2 |   39.8 |         77   |
+| LLaMA-2 (70B) |   68.9 |       85   |                33   |    56.8 |        29.9 |      54.2 |    85   |        85.3 |         60.2 |   49.3 |         80.2 |
 
 A quick look at the above table reveals several interesting observations:
 - Larger models generally perform better across the board. LLaMA-2 70B has the top score on most of the benchmarks.
@@ -241,9 +240,6 @@ Static evaluation offers controlled and comparable assessments of a model's perf
 ```shell
 python opencompass/run.py configs/eval_demo.py -w outputs/demo
 ```
-
-![leaderboard](static/assets/table.png)
-*To access the locally created metrics dashboard, initiate a server by navigating to the `static` directory and running the command `python3 -m http.server 8000`. Afterward, open your web browser and visit `http://<Host IP>:8000/`. Alternatively, you can compare your evaluations with ours on the [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/).*
 
 - **Comprehensive support for models and datasets**: Out-of-box support for 20+ HuggingFace and API models with a model evaluation scheme of 50+ datasets with about 300,000 questions, comprehensively evaluating the capabilities of the models in five dimensions.
 
@@ -501,12 +497,6 @@ print("RACE dataset:", race_data)
 - The generate_completions method takes the input text and additional keyword arguments specific to the model. Check the respective class definitions for more details on the supported arguments.
 
 - Ensure that you have internet access to download Hugging Face models and access the proprietary language model APIs.
-
-## <a id="leaderboard"></a> Leaderboard
-
-We provide [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/
-) for community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `abhijoy.sarkar@theoremone.co`.
-
 
 ## <a id="dataset-support"></a> Dataset Support
 
