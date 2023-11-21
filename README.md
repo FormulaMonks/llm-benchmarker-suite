@@ -7,11 +7,10 @@
 
 Welcome to **LLM Benchmarker Suite**!
 
-Navigating the complex landscape of evaluating large-scale language models has never been more important. As the demand for cutting-edge language AI continues to grow, the need for a comprehensive and optimized approach becomes ever more apparent.
+Navigating the complex landscape of evaluating large-scale language models (LLMs) has never been more important. As the demand for cutting-edge language AI continues to grow, the need for a comprehensive and optimized approach to assessing their underlying models becomes more and more apparent.
 
 To do this, we combine best practice with our fine-tuned optimizations to achieve a one-stop-shop approach that provides a way to holistically evaluate large language models.
 
-The transformative solutions used in this package addresses the pressing challenge of fragmented evaluation methodologies, providing an all-inclusive framework that streamlines and simplifies the intricate process of assessing model capabilities.
 
 To use learn how to use the tools directly jump to [Tools Overview](#tools-overview)
 
@@ -109,6 +108,7 @@ The most common metrics used for evaluation are:
 
 
 | Benchmark (Higher is Better) | MPT (7B) | Falcon (7B) | Llama-2 (7B) | Llama-2 (13B) | MPT (30B) | Falcon (40B) | Llama-1 (65B) | Llama-2 (70B) |
+
 |:---------------------------:|:--------:|:-----------:|:------------:|:-------------:|:---------:|:------------:|:-------------:|:-------------:|
 |           *MMLU*          |   26.8   |     26.2    |     45.3     |      54.8     |    46.9   |     55.4     |      63.4     |    **68.9**   |
 |         *TriviaQA*        |   59.6   |     56.8    |     68.9     |      77.2     |    71.3   |     78.6     |      84.5     |     **85**    |
@@ -123,15 +123,15 @@ The most common metrics used for evaluation are:
 |        *Winogrande*       |   68.3   |     66.3    |     69.2     |      72.8     |    71.0   |     76.9     |      77.0     |    **80.2**   |
 
 A quick look at the above table reveals several interesting observations:
-- Larger models generally perform better across the board. LLama-2 70B has the top score on most of the benchmarks.
+- Larger models generally perform better across the board. LLaMA-2 70B has the top score on most of the benchmarks.
 
 - There are some exceptions where smaller models outperform larger ones:
 
   - On BoolQ, LLaMA 65B outperforms the larger LLaMA 2 70B model.
-  - On QuAC, LLaMA 65B outperforms the much larger PaLM 540B model.
+  - In the QuAC benchmark, the smaller LLaMA 65B model achieves a higher F1 Score of 49.3 compared to the significantly larger PaLM 540B model, which was originally reported to have a 41.5 F1 Score in their [research paper](https://arxiv.org/pdf/2210.11416.pdf) for the same benchmark.
 - The relative performance between models varies significantly across benchmarks. For example:
 
-  - On MMLU, LLama-2 70B vastly outperforms all other models.
+  - On MMLU, LLaMA-2 70B vastly outperforms all other models.
   - On BoolQ, the models are all fairly close together in performance.
 - Performance gains from increasing model size appear more pronounced on some benchmarks than others. For example:
 
@@ -160,6 +160,11 @@ Use standard benchmarking datasets like BoolQ, HellaSWAG, GLUE OpenCompass packa
 ## Get Started
 
 ### <a id="prerequisites"></a> Pre-requisites
+- Python 3.6 or higher
+- CUDA 10.2 or higher
+- cuDNN 7.6.5 or higher
+- [PyTorch](https://pytorch.org/) 1.7.1 or higher
+
 The LLM Benchmarking Suite will **NOT** run if CUDA toolkit is not configured for your machine/cloud instance.
 
 Run the following to command in a linux machine to check _CUDA toolkit_ and _cuDNN_ is correctly configured. 
@@ -232,12 +237,6 @@ Downsides of static evaluation:
 3. **Potential Bias:** The fixed nature of static evaluations might inadvertently introduce bias if the scenarios don't adequately represent the diversity of potential use cases.
 
 Static evaluation offers controlled and comparable assessments of a model's performance within specific conditions. However, it may not capture the full range of a model's capabilities in real-world, dynamic settings. The choice between static and dynamic evaluation depends on the intended goals and the context of the evaluation.
-
-<!-- [![PyPI](https://badge.fury.io/py/opencompass.svg)](https://pypi.org/project/opencompass/) -->
-[Website](https://opencompass.org.cn/) •
-[Documentation](https://opencompass.readthedocs.io/en/latest/) • 
-[Installation](https://opencompass.readthedocs.io/en/latest/get_started.html#installation) •
-[Reporting Issues](https://github.com/InternLM/opencompass/issues/new/choose)
 
 ```shell
 python opencompass/run.py configs/eval_demo.py -w outputs/demo
@@ -483,14 +482,14 @@ print("BLEU Score:", bleu_score)
 This is a utility package that allows efficient loading of popular datasets for evaluation. They use HuggingFace loaders by default.
 
 ```python
-from dataset.hellaswaq import load_hellaswaq_dataset
+from dataset.hellaswag import load_hellaswag_dataset
 from dataset.race import load_race_dataset
 
 # Example usage:
-hellaswaq_data = load_hellaswaq_dataset()
+hellaswag_data = load_hellaswag_dataset()
 race_data = load_race_dataset()
 
-print("HellaSWAQ dataset:", hellaswaq_data)
+print("HellaSWAG dataset:", hellaswag_data)
 print("RACE dataset:", race_data)
 ```
 
@@ -610,7 +609,7 @@ We provide [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.co
 - StoryCloze-CN (coming soon)
 - COPA
 - ReCoRD
-- HellaSwag
+- HellaSWAG
 - PIQA
 - SIQA
 
