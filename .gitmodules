@@ -1,6 +1,6 @@
 [submodule "opencompass"]
 	path = opencompass
-	url = https://github.com/acebot712/opencompass.git
+	url = https://github.com/open-compass/opencompass.git
 [submodule "FastChat"]
 	path = FastChat
 	url = https://github.com/lm-sys/FastChat.git
