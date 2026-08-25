@@ -106,7 +106,7 @@ The most common metrics used for evaluation are:
 
 # <a id="leaderboard"></a> Leaderboard
 
-We provide [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/) for the community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `abhijoy.sarkar@theoremone.co`.
+We provide [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/) for the community to rank all public models and API models. If you would like to join the evaluation, please provide the model repository URL or a standard API interface to the email address `abhijoy.sar@gmail.com`.
 
 *To access the locally created metrics dashboard, initiate a server by navigating to the `static` directory and running the command `python3 -m http.server 8000`. Afterward, open your web browser and visit `http://<Host IP>:8000/`. Alternatively, you can compare your evaluations with ours on the [LLM Benchmarker Suite Leaderboard](https://llm-evals.formula-labs.com/).*
 
@@ -152,7 +152,7 @@ The contrasting performance improvements from model size expansion indicate that
 There are many packages that assist in evaluation of Large Language Models (LLMs). We take the best practices available along with our own optimizations to create one-stop method to evaluate LLMs holistically aiming to provide a fair, open, and reproducible benchmark for large model evaluation. Its main features include:
 
 - **Static Evaluations** - 
-Use standard benchmarking datasets like BoolQ, HellaSWAG, GLUE OpenCompass package to for coverage on most of popular benchmarking datasets and large language models. You can view it locally by [index.html](https://github.com/TheoremOne/llm-benchmarker-suite/blob/43be88d30b28e61203ed62739edeb766b39e9915/static/index.html) in your localhost.
+Use standard benchmarking datasets like BoolQ, HellaSWAG, GLUE OpenCompass package to for coverage on most of popular benchmarking datasets and large language models. You can view it locally by [index.html](https://github.com/FormulaMonks/llm-benchmarker-suite/blob/43be88d30b28e61203ed62739edeb766b39e9915/static/index.html) in your localhost.
 - **LLM-as-a-judge** - Uses FastChat's LLM-as-a-judge to evaluate your models with MT-bench questions and prompts which is a set of challenging multi-turn open-ended questions for evaluating chat assistants similar to the one [here](https://lmsys.org/vicuna_eval/).
 - **OpenAI Evals** - Evals is a framework for evaluating LLMs (large language models) or systems built using LLMs as components. It also includes an open-source registry of challenging evals.
 
@@ -186,7 +186,7 @@ In case you do not have access to a Linux machine, we recommend using a cloud GP
 ### <a id="environment-setup"></a>Environment Setup
 1. Clone the repository
 ```bash
-git clone https://github.com/TheoremOne/llm-benchmarker-suite.git
+git clone https://github.com/FormulaMonks/llm-benchmarker-suite.git
 cd llm-benchmarker-suite
 ```
 
